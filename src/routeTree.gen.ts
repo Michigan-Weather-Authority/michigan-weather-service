@@ -9,169 +9,44 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as WebcamsRouteImport } from './routes/webcams'
-import { Route as TropicalRouteImport } from './routes/tropical'
-import { Route as ToolsRouteImport } from './routes/tools'
-import { Route as ThresholdsRouteImport } from './routes/thresholds'
-import { Route as StormReportsRouteImport } from './routes/storm-reports'
-import { Route as SpotterRouteImport } from './routes/spotter'
-import { Route as SnowRouteImport } from './routes/snow'
-import { Route as SettingsRouteImport } from './routes/settings'
-import { Route as SatelliteRouteImport } from './routes/satellite'
-import { Route as ReportsRouteImport } from './routes/reports'
-import { Route as OutlookRouteImport } from './routes/outlook'
-import { Route as MesoscaleRouteImport } from './routes/mesoscale'
-import { Route as ManagementRouteImport } from './routes/management'
-import { Route as LocationsRouteImport } from './routes/locations'
-import { Route as LightningRouteImport } from './routes/lightning'
-import { Route as ForecastsRouteImport } from './routes/forecasts'
-import { Route as DispatcherHealthRouteImport } from './routes/dispatcher-health'
-import { Route as CommandRouteImport } from './routes/command'
-import { Route as ClimateRouteImport } from './routes/climate'
-import { Route as ChaseRouteImport } from './routes/chase'
-import { Route as ChangelogRouteImport } from './routes/changelog'
-import { Route as AuthRouteImport } from './routes/auth'
-import { Route as AlertsMapRouteImport } from './routes/alerts-map'
-import { Route as AdminSubscribersRouteImport } from './routes/admin-subscribers'
-import { Route as AdminSchedulerRouteImport } from './routes/admin-scheduler'
-import { Route as AdminAuditRouteImport } from './routes/admin-audit'
-import { Route as AdminAnalyticsRouteImport } from './routes/admin-analytics'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as ReportsIdRouteImport } from './routes/reports.$id'
+import { Route as AdminAnalyticsRouteImport } from './routes/admin-analytics'
+import { Route as AdminAuditRouteImport } from './routes/admin-audit'
+import { Route as AdminSchedulerRouteImport } from './routes/admin-scheduler'
+import { Route as AdminSubscribersRouteImport } from './routes/admin-subscribers'
+import { Route as AlertsMapRouteImport } from './routes/alerts-map'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as ChangelogRouteImport } from './routes/changelog'
+import { Route as ChaseRouteImport } from './routes/chase'
+import { Route as ClimateRouteImport } from './routes/climate'
+import { Route as CommandRouteImport } from './routes/command'
+import { Route as DispatcherHealthRouteImport } from './routes/dispatcher-health'
+import { Route as ForecastsRouteImport } from './routes/forecasts'
+import { Route as LightningRouteImport } from './routes/lightning'
+import { Route as LocationsRouteImport } from './routes/locations'
+import { Route as ManagementRouteImport } from './routes/management'
+import { Route as MesoscaleRouteImport } from './routes/mesoscale'
+import { Route as OutlookRouteImport } from './routes/outlook'
+import { Route as ReportsRouteImport } from './routes/reports'
+import { Route as SatelliteRouteImport } from './routes/satellite'
+import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as SnowRouteImport } from './routes/snow'
+import { Route as SpotterRouteImport } from './routes/spotter'
+import { Route as StormReportsRouteImport } from './routes/storm-reports'
+import { Route as ThresholdsRouteImport } from './routes/thresholds'
+import { Route as ToolsRouteImport } from './routes/tools'
+import { Route as TropicalRouteImport } from './routes/tropical'
+import { Route as WebcamsRouteImport } from './routes/webcams'
 import { Route as AlertsIdRouteImport } from './routes/alerts.$id'
-import { Route as ApiPublicCronDispatcherSelfTestRouteImport } from './routes/api/public/cron.dispatcher-self-test'
-import { Route as ApiPublicCronDispatchScheduledRouteImport } from './routes/api/public/cron.dispatch-scheduled'
-import { Route as ApiPublicCronDailyBriefingRouteImport } from './routes/api/public/cron.daily-briefing'
+import { Route as ReportsIdRouteImport } from './routes/reports.$id'
 import { Route as ApiPublicCronCheckThresholdsRouteImport } from './routes/api/public/cron.check-thresholds'
+import { Route as ApiPublicCronDailyBriefingRouteImport } from './routes/api/public/cron.daily-briefing'
+import { Route as ApiPublicCronDispatchScheduledRouteImport } from './routes/api/public/cron.dispatch-scheduled'
+import { Route as ApiPublicCronDispatcherSelfTestRouteImport } from './routes/api/public/cron.dispatcher-self-test'
 
-const WebcamsRoute = WebcamsRouteImport.update({
-  id: '/webcams',
-  path: '/webcams',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const TropicalRoute = TropicalRouteImport.update({
-  id: '/tropical',
-  path: '/tropical',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ToolsRoute = ToolsRouteImport.update({
-  id: '/tools',
-  path: '/tools',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ThresholdsRoute = ThresholdsRouteImport.update({
-  id: '/thresholds',
-  path: '/thresholds',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const StormReportsRoute = StormReportsRouteImport.update({
-  id: '/storm-reports',
-  path: '/storm-reports',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SpotterRoute = SpotterRouteImport.update({
-  id: '/spotter',
-  path: '/spotter',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SnowRoute = SnowRouteImport.update({
-  id: '/snow',
-  path: '/snow',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SettingsRoute = SettingsRouteImport.update({
-  id: '/settings',
-  path: '/settings',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SatelliteRoute = SatelliteRouteImport.update({
-  id: '/satellite',
-  path: '/satellite',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ReportsRoute = ReportsRouteImport.update({
-  id: '/reports',
-  path: '/reports',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const OutlookRoute = OutlookRouteImport.update({
-  id: '/outlook',
-  path: '/outlook',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MesoscaleRoute = MesoscaleRouteImport.update({
-  id: '/mesoscale',
-  path: '/mesoscale',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ManagementRoute = ManagementRouteImport.update({
-  id: '/management',
-  path: '/management',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LocationsRoute = LocationsRouteImport.update({
-  id: '/locations',
-  path: '/locations',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LightningRoute = LightningRouteImport.update({
-  id: '/lightning',
-  path: '/lightning',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ForecastsRoute = ForecastsRouteImport.update({
-  id: '/forecasts',
-  path: '/forecasts',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DispatcherHealthRoute = DispatcherHealthRouteImport.update({
-  id: '/dispatcher-health',
-  path: '/dispatcher-health',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CommandRoute = CommandRouteImport.update({
-  id: '/command',
-  path: '/command',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ClimateRoute = ClimateRouteImport.update({
-  id: '/climate',
-  path: '/climate',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ChaseRoute = ChaseRouteImport.update({
-  id: '/chase',
-  path: '/chase',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ChangelogRoute = ChangelogRouteImport.update({
-  id: '/changelog',
-  path: '/changelog',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AuthRoute = AuthRouteImport.update({
-  id: '/auth',
-  path: '/auth',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AlertsMapRoute = AlertsMapRouteImport.update({
-  id: '/alerts-map',
-  path: '/alerts-map',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminSubscribersRoute = AdminSubscribersRouteImport.update({
-  id: '/admin-subscribers',
-  path: '/admin-subscribers',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminSchedulerRoute = AdminSchedulerRouteImport.update({
-  id: '/admin-scheduler',
-  path: '/admin-scheduler',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminAuditRoute = AdminAuditRouteImport.update({
-  id: '/admin-audit',
-  path: '/admin-audit',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminAnalyticsRoute = AdminAnalyticsRouteImport.update({
@@ -179,9 +54,139 @@ const AdminAnalyticsRoute = AdminAnalyticsRouteImport.update({
   path: '/admin-analytics',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const AdminAuditRoute = AdminAuditRouteImport.update({
+  id: '/admin-audit',
+  path: '/admin-audit',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminSchedulerRoute = AdminSchedulerRouteImport.update({
+  id: '/admin-scheduler',
+  path: '/admin-scheduler',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminSubscribersRoute = AdminSubscribersRouteImport.update({
+  id: '/admin-subscribers',
+  path: '/admin-subscribers',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AlertsMapRoute = AlertsMapRouteImport.update({
+  id: '/alerts-map',
+  path: '/alerts-map',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ChangelogRoute = ChangelogRouteImport.update({
+  id: '/changelog',
+  path: '/changelog',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ChaseRoute = ChaseRouteImport.update({
+  id: '/chase',
+  path: '/chase',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ClimateRoute = ClimateRouteImport.update({
+  id: '/climate',
+  path: '/climate',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CommandRoute = CommandRouteImport.update({
+  id: '/command',
+  path: '/command',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DispatcherHealthRoute = DispatcherHealthRouteImport.update({
+  id: '/dispatcher-health',
+  path: '/dispatcher-health',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ForecastsRoute = ForecastsRouteImport.update({
+  id: '/forecasts',
+  path: '/forecasts',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LightningRoute = LightningRouteImport.update({
+  id: '/lightning',
+  path: '/lightning',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LocationsRoute = LocationsRouteImport.update({
+  id: '/locations',
+  path: '/locations',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ManagementRoute = ManagementRouteImport.update({
+  id: '/management',
+  path: '/management',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MesoscaleRoute = MesoscaleRouteImport.update({
+  id: '/mesoscale',
+  path: '/mesoscale',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OutlookRoute = OutlookRouteImport.update({
+  id: '/outlook',
+  path: '/outlook',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReportsRoute = ReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SatelliteRoute = SatelliteRouteImport.update({
+  id: '/satellite',
+  path: '/satellite',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SnowRoute = SnowRouteImport.update({
+  id: '/snow',
+  path: '/snow',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SpotterRoute = SpotterRouteImport.update({
+  id: '/spotter',
+  path: '/spotter',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StormReportsRoute = StormReportsRouteImport.update({
+  id: '/storm-reports',
+  path: '/storm-reports',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ThresholdsRoute = ThresholdsRouteImport.update({
+  id: '/thresholds',
+  path: '/thresholds',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ToolsRoute = ToolsRouteImport.update({
+  id: '/tools',
+  path: '/tools',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TropicalRoute = TropicalRouteImport.update({
+  id: '/tropical',
+  path: '/tropical',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WebcamsRoute = WebcamsRouteImport.update({
+  id: '/webcams',
+  path: '/webcams',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AlertsIdRoute = AlertsIdRouteImport.update({
+  id: '/alerts/$id',
+  path: '/alerts/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ReportsIdRoute = ReportsIdRouteImport.update({
@@ -189,21 +194,10 @@ const ReportsIdRoute = ReportsIdRouteImport.update({
   path: '/$id',
   getParentRoute: () => ReportsRoute,
 } as any)
-const AlertsIdRoute = AlertsIdRouteImport.update({
-  id: '/alerts/$id',
-  path: '/alerts/$id',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ApiPublicCronDispatcherSelfTestRoute =
-  ApiPublicCronDispatcherSelfTestRouteImport.update({
-    id: '/api/public/cron/dispatcher-self-test',
-    path: '/api/public/cron/dispatcher-self-test',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const ApiPublicCronDispatchScheduledRoute =
-  ApiPublicCronDispatchScheduledRouteImport.update({
-    id: '/api/public/cron/dispatch-scheduled',
-    path: '/api/public/cron/dispatch-scheduled',
+const ApiPublicCronCheckThresholdsRoute =
+  ApiPublicCronCheckThresholdsRouteImport.update({
+    id: '/api/public/cron/check-thresholds',
+    path: '/api/public/cron/check-thresholds',
     getParentRoute: () => rootRouteImport,
   } as any)
 const ApiPublicCronDailyBriefingRoute =
@@ -212,10 +206,16 @@ const ApiPublicCronDailyBriefingRoute =
     path: '/api/public/cron/daily-briefing',
     getParentRoute: () => rootRouteImport,
   } as any)
-const ApiPublicCronCheckThresholdsRoute =
-  ApiPublicCronCheckThresholdsRouteImport.update({
-    id: '/api/public/cron/check-thresholds',
-    path: '/api/public/cron/check-thresholds',
+const ApiPublicCronDispatchScheduledRoute =
+  ApiPublicCronDispatchScheduledRouteImport.update({
+    id: '/api/public/cron/dispatch-scheduled',
+    path: '/api/public/cron/dispatch-scheduled',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ApiPublicCronDispatcherSelfTestRoute =
+  ApiPublicCronDispatcherSelfTestRouteImport.update({
+    id: '/api/public/cron/dispatcher-self-test',
+    path: '/api/public/cron/dispatcher-self-test',
     getParentRoute: () => rootRouteImport,
   } as any)
 
@@ -477,186 +477,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/webcams': {
-      id: '/webcams'
-      path: '/webcams'
-      fullPath: '/webcams'
-      preLoaderRoute: typeof WebcamsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/tropical': {
-      id: '/tropical'
-      path: '/tropical'
-      fullPath: '/tropical'
-      preLoaderRoute: typeof TropicalRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/tools': {
-      id: '/tools'
-      path: '/tools'
-      fullPath: '/tools'
-      preLoaderRoute: typeof ToolsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/thresholds': {
-      id: '/thresholds'
-      path: '/thresholds'
-      fullPath: '/thresholds'
-      preLoaderRoute: typeof ThresholdsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/storm-reports': {
-      id: '/storm-reports'
-      path: '/storm-reports'
-      fullPath: '/storm-reports'
-      preLoaderRoute: typeof StormReportsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/spotter': {
-      id: '/spotter'
-      path: '/spotter'
-      fullPath: '/spotter'
-      preLoaderRoute: typeof SpotterRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/snow': {
-      id: '/snow'
-      path: '/snow'
-      fullPath: '/snow'
-      preLoaderRoute: typeof SnowRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/settings': {
-      id: '/settings'
-      path: '/settings'
-      fullPath: '/settings'
-      preLoaderRoute: typeof SettingsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/satellite': {
-      id: '/satellite'
-      path: '/satellite'
-      fullPath: '/satellite'
-      preLoaderRoute: typeof SatelliteRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/reports': {
-      id: '/reports'
-      path: '/reports'
-      fullPath: '/reports'
-      preLoaderRoute: typeof ReportsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/outlook': {
-      id: '/outlook'
-      path: '/outlook'
-      fullPath: '/outlook'
-      preLoaderRoute: typeof OutlookRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/mesoscale': {
-      id: '/mesoscale'
-      path: '/mesoscale'
-      fullPath: '/mesoscale'
-      preLoaderRoute: typeof MesoscaleRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/management': {
-      id: '/management'
-      path: '/management'
-      fullPath: '/management'
-      preLoaderRoute: typeof ManagementRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/locations': {
-      id: '/locations'
-      path: '/locations'
-      fullPath: '/locations'
-      preLoaderRoute: typeof LocationsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/lightning': {
-      id: '/lightning'
-      path: '/lightning'
-      fullPath: '/lightning'
-      preLoaderRoute: typeof LightningRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/forecasts': {
-      id: '/forecasts'
-      path: '/forecasts'
-      fullPath: '/forecasts'
-      preLoaderRoute: typeof ForecastsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/dispatcher-health': {
-      id: '/dispatcher-health'
-      path: '/dispatcher-health'
-      fullPath: '/dispatcher-health'
-      preLoaderRoute: typeof DispatcherHealthRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/command': {
-      id: '/command'
-      path: '/command'
-      fullPath: '/command'
-      preLoaderRoute: typeof CommandRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/climate': {
-      id: '/climate'
-      path: '/climate'
-      fullPath: '/climate'
-      preLoaderRoute: typeof ClimateRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/chase': {
-      id: '/chase'
-      path: '/chase'
-      fullPath: '/chase'
-      preLoaderRoute: typeof ChaseRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/changelog': {
-      id: '/changelog'
-      path: '/changelog'
-      fullPath: '/changelog'
-      preLoaderRoute: typeof ChangelogRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/auth': {
-      id: '/auth'
-      path: '/auth'
-      fullPath: '/auth'
-      preLoaderRoute: typeof AuthRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/alerts-map': {
-      id: '/alerts-map'
-      path: '/alerts-map'
-      fullPath: '/alerts-map'
-      preLoaderRoute: typeof AlertsMapRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin-subscribers': {
-      id: '/admin-subscribers'
-      path: '/admin-subscribers'
-      fullPath: '/admin-subscribers'
-      preLoaderRoute: typeof AdminSubscribersRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin-scheduler': {
-      id: '/admin-scheduler'
-      path: '/admin-scheduler'
-      fullPath: '/admin-scheduler'
-      preLoaderRoute: typeof AdminSchedulerRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin-audit': {
-      id: '/admin-audit'
-      path: '/admin-audit'
-      fullPath: '/admin-audit'
-      preLoaderRoute: typeof AdminAuditRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin-analytics': {
@@ -666,11 +491,193 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminAnalyticsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/admin-audit': {
+      id: '/admin-audit'
+      path: '/admin-audit'
+      fullPath: '/admin-audit'
+      preLoaderRoute: typeof AdminAuditRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin-scheduler': {
+      id: '/admin-scheduler'
+      path: '/admin-scheduler'
+      fullPath: '/admin-scheduler'
+      preLoaderRoute: typeof AdminSchedulerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin-subscribers': {
+      id: '/admin-subscribers'
+      path: '/admin-subscribers'
+      fullPath: '/admin-subscribers'
+      preLoaderRoute: typeof AdminSubscribersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/alerts-map': {
+      id: '/alerts-map'
+      path: '/alerts-map'
+      fullPath: '/alerts-map'
+      preLoaderRoute: typeof AlertsMapRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/changelog': {
+      id: '/changelog'
+      path: '/changelog'
+      fullPath: '/changelog'
+      preLoaderRoute: typeof ChangelogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/chase': {
+      id: '/chase'
+      path: '/chase'
+      fullPath: '/chase'
+      preLoaderRoute: typeof ChaseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/climate': {
+      id: '/climate'
+      path: '/climate'
+      fullPath: '/climate'
+      preLoaderRoute: typeof ClimateRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/command': {
+      id: '/command'
+      path: '/command'
+      fullPath: '/command'
+      preLoaderRoute: typeof CommandRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dispatcher-health': {
+      id: '/dispatcher-health'
+      path: '/dispatcher-health'
+      fullPath: '/dispatcher-health'
+      preLoaderRoute: typeof DispatcherHealthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/forecasts': {
+      id: '/forecasts'
+      path: '/forecasts'
+      fullPath: '/forecasts'
+      preLoaderRoute: typeof ForecastsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lightning': {
+      id: '/lightning'
+      path: '/lightning'
+      fullPath: '/lightning'
+      preLoaderRoute: typeof LightningRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/locations': {
+      id: '/locations'
+      path: '/locations'
+      fullPath: '/locations'
+      preLoaderRoute: typeof LocationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/management': {
+      id: '/management'
+      path: '/management'
+      fullPath: '/management'
+      preLoaderRoute: typeof ManagementRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mesoscale': {
+      id: '/mesoscale'
+      path: '/mesoscale'
+      fullPath: '/mesoscale'
+      preLoaderRoute: typeof MesoscaleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/outlook': {
+      id: '/outlook'
+      path: '/outlook'
+      fullPath: '/outlook'
+      preLoaderRoute: typeof OutlookRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reports': {
+      id: '/reports'
+      path: '/reports'
+      fullPath: '/reports'
+      preLoaderRoute: typeof ReportsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/satellite': {
+      id: '/satellite'
+      path: '/satellite'
+      fullPath: '/satellite'
+      preLoaderRoute: typeof SatelliteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/snow': {
+      id: '/snow'
+      path: '/snow'
+      fullPath: '/snow'
+      preLoaderRoute: typeof SnowRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/spotter': {
+      id: '/spotter'
+      path: '/spotter'
+      fullPath: '/spotter'
+      preLoaderRoute: typeof SpotterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/storm-reports': {
+      id: '/storm-reports'
+      path: '/storm-reports'
+      fullPath: '/storm-reports'
+      preLoaderRoute: typeof StormReportsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/thresholds': {
+      id: '/thresholds'
+      path: '/thresholds'
+      fullPath: '/thresholds'
+      preLoaderRoute: typeof ThresholdsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tools': {
+      id: '/tools'
+      path: '/tools'
+      fullPath: '/tools'
+      preLoaderRoute: typeof ToolsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tropical': {
+      id: '/tropical'
+      path: '/tropical'
+      fullPath: '/tropical'
+      preLoaderRoute: typeof TropicalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/webcams': {
+      id: '/webcams'
+      path: '/webcams'
+      fullPath: '/webcams'
+      preLoaderRoute: typeof WebcamsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/alerts/$id': {
+      id: '/alerts/$id'
+      path: '/alerts/$id'
+      fullPath: '/alerts/$id'
+      preLoaderRoute: typeof AlertsIdRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/reports/$id': {
@@ -680,25 +687,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ReportsIdRouteImport
       parentRoute: typeof ReportsRoute
     }
-    '/alerts/$id': {
-      id: '/alerts/$id'
-      path: '/alerts/$id'
-      fullPath: '/alerts/$id'
-      preLoaderRoute: typeof AlertsIdRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/api/public/cron/dispatcher-self-test': {
-      id: '/api/public/cron/dispatcher-self-test'
-      path: '/api/public/cron/dispatcher-self-test'
-      fullPath: '/api/public/cron/dispatcher-self-test'
-      preLoaderRoute: typeof ApiPublicCronDispatcherSelfTestRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/api/public/cron/dispatch-scheduled': {
-      id: '/api/public/cron/dispatch-scheduled'
-      path: '/api/public/cron/dispatch-scheduled'
-      fullPath: '/api/public/cron/dispatch-scheduled'
-      preLoaderRoute: typeof ApiPublicCronDispatchScheduledRouteImport
+    '/api/public/cron/check-thresholds': {
+      id: '/api/public/cron/check-thresholds'
+      path: '/api/public/cron/check-thresholds'
+      fullPath: '/api/public/cron/check-thresholds'
+      preLoaderRoute: typeof ApiPublicCronCheckThresholdsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/public/cron/daily-briefing': {
@@ -708,11 +701,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPublicCronDailyBriefingRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/api/public/cron/check-thresholds': {
-      id: '/api/public/cron/check-thresholds'
-      path: '/api/public/cron/check-thresholds'
-      fullPath: '/api/public/cron/check-thresholds'
-      preLoaderRoute: typeof ApiPublicCronCheckThresholdsRouteImport
+    '/api/public/cron/dispatch-scheduled': {
+      id: '/api/public/cron/dispatch-scheduled'
+      path: '/api/public/cron/dispatch-scheduled'
+      fullPath: '/api/public/cron/dispatch-scheduled'
+      preLoaderRoute: typeof ApiPublicCronDispatchScheduledRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/cron/dispatcher-self-test': {
+      id: '/api/public/cron/dispatcher-self-test'
+      path: '/api/public/cron/dispatcher-self-test'
+      fullPath: '/api/public/cron/dispatcher-self-test'
+      preLoaderRoute: typeof ApiPublicCronDispatcherSelfTestRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
