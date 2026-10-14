@@ -13,7 +13,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { listScheduledAlerts, createScheduledAlert, cancelScheduledAlert } from "@/lib/scheduled-alerts.functions";
 
 export const Route = createFileRoute("/admin-scheduler")({
-  head: () => ({ meta: [{ title: "Admin · Scheduler — MWA" }, { name: "robots", content: "noindex" }] }),
+  head: () => ({ meta: [{ name: "description", content: "Admin \u00b7 Scheduler tools and preferences for Michigan Weather Service." }, { property: "og:title", content: "Admin \u00b7 Scheduler \u2014 Michigan Weather Service" }, { property: "og:description", content: "Admin \u00b7 Scheduler tools and preferences for Michigan Weather Service." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" }, { title: "Admin \u00b7 Scheduler \u2014 Michigan Weather Service" }, { name: "robots", content: "noindex" }] }),
   component: AdminScheduler,
 });
 

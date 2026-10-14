@@ -33,8 +33,8 @@ export const Route = createFileRoute("/alerts/$id")({
   },
   head: ({ loaderData }) => {
     const a = loaderData?.alert;
-    if (!a) return { meta: [{ title: "Alert — MWA" }] };
-    const title = `${(a.custom_name || a.headline).slice(0, 70)} — MWA`;
+    if (!a) return { meta: [{"title": "Alert details \u2014 Michigan Weather Service"}, {"name": "description", "content": "Michigan Weather Service alert details and affected areas."}, {"property": "og:title", "content": "Alert details \u2014 Michigan Weather Service"}, {"property": "og:description", "content": "Michigan Weather Service alert details and affected areas."}, {"property": "og:type", "content": "article"}, {"name": "twitter:card", "content": "summary"}] };
+    const title = `${(a.custom_name || a.headline).slice(0, 70)} — Michigan Weather Service`;
     const desc = `${a.severity.toUpperCase()} · ${(a.areas ?? []).join(", ").slice(0, 130)}`;
     return {
       meta: [

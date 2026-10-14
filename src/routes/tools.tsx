@@ -7,8 +7,8 @@ import {
 
 export const Route = createFileRoute("/tools")({
   head: () => ({
-    meta: [
-      { title: "Tools — Michigan Weather Authority" },
+    meta: [{ property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" }, 
+      { title: "Tools \u2014 Michigan Weather Service" },
       { name: "description", content: "Every MWA tool: alerts map, severe outlook, lightning, satellite, storm reports, tropical, climate, webcams, and more." },
       { property: "og:title", content: "MWA Tools" },
       { property: "og:description", content: "Every Michigan Weather Authority tool in one place." },

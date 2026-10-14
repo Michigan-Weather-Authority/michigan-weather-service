@@ -8,7 +8,7 @@ import { toast } from "sonner";
 import { listPushSubscribers, revokeSubscription } from "@/lib/admin-analytics.functions";
 
 export const Route = createFileRoute("/admin-subscribers")({
-  head: () => ({ meta: [{ title: "Admin · Subscribers — MWA" }, { name: "robots", content: "noindex" }] }),
+  head: () => ({ meta: [{ name: "description", content: "Admin \u00b7 Subscribers tools and preferences for Michigan Weather Service." }, { property: "og:title", content: "Admin \u00b7 Subscribers \u2014 Michigan Weather Service" }, { property: "og:description", content: "Admin \u00b7 Subscribers tools and preferences for Michigan Weather Service." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" }, { title: "Admin \u00b7 Subscribers \u2014 Michigan Weather Service" }, { name: "robots", content: "noindex" }] }),
   component: AdminSubscribers,
 });
 

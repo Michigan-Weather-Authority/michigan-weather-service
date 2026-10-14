@@ -5,8 +5,8 @@ import { ToolShell } from "@/routes/alerts-map";
 
 export const Route = createFileRoute("/satellite")({
   head: () => ({
-    meta: [
-      { title: "GOES Satellite — Michigan Weather Authority" },
+    meta: [{ property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" }, 
+      { title: "GOES Satellite \u2014 Michigan Weather Service" },
       { name: "description", content: "Live GOES-East satellite imagery over Michigan and the Great Lakes from NOAA STAR." },
       { property: "og:title", content: "GOES Satellite over Michigan" },
       { property: "og:description", content: "Live satellite imagery from NOAA STAR." },

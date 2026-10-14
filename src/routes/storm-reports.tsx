@@ -5,8 +5,8 @@ import { ToolShell } from "@/routes/alerts-map";
 
 export const Route = createFileRoute("/storm-reports")({
   head: () => ({
-    meta: [
-      { title: "Storm Reports — Michigan Weather Authority" },
+    meta: [{ property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" }, 
+      { title: "Storm Reports \u2014 Michigan Weather Service" },
       { name: "description", content: "Local Storm Reports (LSRs) from NOAA SPC for today and yesterday across the Great Lakes." },
       { property: "og:title", content: "Storm Reports" },
       { property: "og:description", content: "Today and yesterday's tornado, wind, and hail reports from NOAA SPC." },

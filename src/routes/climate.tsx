@@ -5,8 +5,8 @@ import { ArrowLeft, ThermometerSun, ExternalLink } from "lucide-react";
 
 export const Route = createFileRoute("/climate")({
   head: () => ({
-    meta: [
-      { title: "Climate & Records — Michigan Weather Authority" },
+    meta: [{ property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" }, 
+      { title: "Climate & Records \u2014 Michigan Weather Service" },
       { name: "description", content: "Monthly climate normals and recent records for Michigan cities." },
       { property: "og:title", content: "MWA Climate & Records" },
       { property: "og:description", content: "30-year normals and live climate data for Michigan cities." },

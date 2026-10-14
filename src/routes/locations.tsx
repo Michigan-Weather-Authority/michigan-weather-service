@@ -12,7 +12,7 @@ import {
 } from "@/lib/saved-locations.functions";
 
 export const Route = createFileRoute("/locations")({
-  head: () => ({ meta: [{ title: "Saved locations — MWA" }, { name: "robots", content: "noindex" }] }),
+  head: () => ({ meta: [{ name: "description", content: "Saved locations tools and preferences for Michigan Weather Service." }, { property: "og:title", content: "Saved locations \u2014 Michigan Weather Service" }, { property: "og:description", content: "Saved locations tools and preferences for Michigan Weather Service." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" }, { title: "Saved locations \u2014 Michigan Weather Service" }, { name: "robots", content: "noindex" }] }),
   component: LocationsPage,
 });
 

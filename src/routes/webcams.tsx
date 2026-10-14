@@ -4,8 +4,8 @@ import { ArrowLeft, Camera, RefreshCw, ExternalLink } from "lucide-react";
 
 export const Route = createFileRoute("/webcams")({
   head: () => ({
-    meta: [
-      { title: "Michigan Webcams — MWA" },
+    meta: [{ property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" }, 
+      { title: "Michigan Webcams \u2014 Michigan Weather Service" },
       { name: "description", content: "Live highway and sky cameras across Michigan." },
       { property: "og:title", content: "MWA Michigan Webcams" },
       { property: "og:description", content: "Live look-outdoors cameras from across Michigan." },

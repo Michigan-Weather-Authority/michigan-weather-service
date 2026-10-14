@@ -10,8 +10,8 @@ import { getPoint } from "@/lib/weather-api";
 
 export const Route = createFileRoute("/snow")({
   head: () => ({
-    meta: [
-      { title: "Snow & Ice Mode — Michigan Weather Authority" },
+    meta: [{ property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" }, 
+      { title: "Snow & Ice Mode \u2014 Michigan Weather Service" },
       { name: "description", content: "Snow accumulation forecast, road temperature, and school-closure likelihood for Michigan cities." },
       { property: "og:title", content: "Snow & Ice Mode — MWA" },
       { property: "og:description", content: "Live snow forecast, surface temp, and closure odds." },
