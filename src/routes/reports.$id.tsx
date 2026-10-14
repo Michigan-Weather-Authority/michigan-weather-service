@@ -13,8 +13,8 @@ import { useEffect } from "react";
 
 export const Route = createFileRoute("/reports/$id")({
   head: ({ params }) => ({
-    meta: [
-      { title: `Spotter report — MWA` },
+    meta: [{ property: "og:title", content: "Spotter report \u2014 Michigan Weather Service" }, { property: "og:description", content: "Storm spotter report details on the Michigan Weather Service network." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" }, 
+      { title: "Spotter report \u2014 Michigan Weather Service" },
       { name: "description", content: `Storm spotter report details on the Michigan Weather Authority network.` },
       { name: "robots", content: "noindex" },
     ],

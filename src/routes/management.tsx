@@ -24,8 +24,8 @@ import {
 export const Route = createFileRoute("/management")({
   ssr: false,
   head: () => ({
-    meta: [
-      { title: "Management · MWA" },
+    meta: [{ name: "description", content: "Management \u00b7 Michigan Weather Service tools and preferences for Michigan Weather Service." }, { property: "og:title", content: "Management \u00b7 Michigan Weather Service" }, { property: "og:description", content: "Management \u00b7 Michigan Weather Service tools and preferences for Michigan Weather Service." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" }, 
+      { title: "Management \u00b7 Michigan Weather Service" },
       { name: "robots", content: "noindex, nofollow" },
     ],
   }),

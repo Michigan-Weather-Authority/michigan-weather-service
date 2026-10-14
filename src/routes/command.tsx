@@ -35,8 +35,8 @@ import { isCommandUnlocked, lockCommand } from "@/lib/command-gate.functions";
 
 export const Route = createFileRoute("/command")({
   head: () => ({
-    meta: [
-      { title: "MWA Command" },
+    meta: [{ name: "description", content: "Michigan Weather Service Command tools and preferences for Michigan Weather Service." }, { property: "og:title", content: "Michigan Weather Service Command" }, { property: "og:description", content: "Michigan Weather Service Command tools and preferences for Michigan Weather Service." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" }, 
+      { title: "Michigan Weather Service Command" },
       { name: "robots", content: "noindex,nofollow" },
     ],
   }),

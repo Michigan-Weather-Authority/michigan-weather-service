@@ -5,7 +5,7 @@ import { ArrowLeft, Users, Send, AlertTriangle, BarChart3 } from "lucide-react";
 import { getAdminAnalytics } from "@/lib/admin-analytics.functions";
 
 export const Route = createFileRoute("/admin-analytics")({
-  head: () => ({ meta: [{ title: "Admin · Analytics — MWA" }, { name: "robots", content: "noindex" }] }),
+  head: () => ({ meta: [{ name: "description", content: "Admin \u00b7 Analytics tools and preferences for Michigan Weather Service." }, { property: "og:title", content: "Admin \u00b7 Analytics \u2014 Michigan Weather Service" }, { property: "og:description", content: "Admin \u00b7 Analytics tools and preferences for Michigan Weather Service." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" }, { title: "Admin \u00b7 Analytics \u2014 Michigan Weather Service" }, { name: "robots", content: "noindex" }] }),
   component: AdminAnalytics,
 });
 

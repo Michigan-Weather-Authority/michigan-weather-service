@@ -13,8 +13,8 @@ import { AuthShell } from "@/components/AuthShell";
 
 export const Route = createFileRoute("/auth")({
   head: () => ({
-    meta: [
-      { title: "Sign in — Michigan Weather Authority" },
+    meta: [{ property: "og:title", content: "Sign in \u2014 Michigan Weather Service" }, { property: "og:description", content: "Sign in or create your MWS account to save your home location and get weather alert notifications." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" }, 
+      { title: "Sign in \u2014 Michigan Weather Service" },
       { name: "description", content: "Sign in or create your MWA account to save your home location and get weather alert notifications." },
       { name: "robots", content: "noindex,nofollow" },
     ],

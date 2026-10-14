@@ -5,8 +5,8 @@ import { PhosphorousBadge } from "@/components/PhosphorousBadge";
 
 export const Route = createFileRoute("/changelog")({
   head: () => ({
-    meta: [
-      { title: "Changelog — Michigan Weather Authority" },
+    meta: [{ property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" }, 
+      { title: "Changelog \u2014 Michigan Weather Service" },
       { name: "description", content: "Release notes and version history for the Michigan Weather Authority." },
       { property: "og:title", content: "MWA Changelog" },
       { property: "og:description", content: "What's new at Michigan Weather Authority." },

@@ -5,8 +5,8 @@ import { ToolShell } from "@/routes/alerts-map";
 
 export const Route = createFileRoute("/lightning")({
   head: () => ({
-    meta: [
-      { title: "Live Lightning — Michigan Weather Authority" },
+    meta: [{ property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" }, 
+      { title: "Live Lightning \u2014 Michigan Weather Service" },
       { name: "description", content: "Real-time lightning strike map over Michigan and the Great Lakes powered by Blitzortung." },
       { property: "og:title", content: "Live Lightning Strikes" },
       { property: "og:description", content: "Real-time strike data over Michigan." },

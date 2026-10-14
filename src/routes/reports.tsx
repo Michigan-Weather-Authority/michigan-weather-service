@@ -8,8 +8,8 @@ import { listReports, leaderboardThisMonth } from "@/lib/spotter-reports.functio
 
 export const Route = createFileRoute("/reports")({
   head: () => ({
-    meta: [
-      { title: "Storm Reports — MWA Spotter Network" },
+    meta: [{ property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" }, 
+      { title: "Storm Reports \u2014 Michigan Weather Service Spotter Network" },
       { name: "description", content: "Live ground-truth storm reports from the Michigan Weather Authority spotter network." },
       { property: "og:title", content: "MWA Spotter Reports" },
       { property: "og:description", content: "Crowd-sourced storm reports across Michigan — hail, wind, flooding, funnels." },
