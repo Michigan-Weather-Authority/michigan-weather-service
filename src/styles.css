@@ -418,7 +418,7 @@
 
   h1, h2, h3, h4 {
     font-family: var(--font-display);
-    letter-spacing: -0.01em;
+    letter-spacing: 0;
     font-weight: 400;
   }
 }
@@ -556,4 +556,96 @@
   opacity: 0.45;
   animation: radar-sweep 4s linear infinite;
   border-radius: 50%;
+}
+
+/* Lakefront: quiet graphite, mint-green signals, clear paper-like hierarchy. */
+[data-theme="lake"] {
+  --radius: 0.5rem;
+  --background: oklch(0.16 0.006 160);
+  --foreground: oklch(0.95 0.006 160);
+  --card: oklch(0.20 0.008 160);
+  --card-foreground: var(--foreground);
+  --popover: oklch(0.22 0.008 160);
+  --popover-foreground: var(--foreground);
+  --primary: oklch(0.78 0.13 160);
+  --primary-foreground: oklch(0.16 0.02 160);
+  --secondary: oklch(0.25 0.01 160);
+  --secondary-foreground: var(--foreground);
+  --muted: var(--secondary);
+  --muted-foreground: oklch(0.71 0.015 160);
+  --accent: var(--primary);
+  --accent-foreground: var(--primary-foreground);
+  --border: oklch(0.36 0.01 160);
+  --input: var(--secondary);
+  --ring: var(--primary);
+  --storm: var(--card);
+  --storm-deep: var(--background);
+  --body-bg: var(--background);
+  --body-grad-1: none;
+  --body-grad-2: none;
+  --grid-color: transparent;
+  --glass-grad: linear-gradient(var(--card), var(--card));
+  --aurora-edge: linear-gradient(var(--foreground), var(--foreground));
+  --app-font-display: "Space Grotesk", system-ui, sans-serif;
+  --app-font-sans: "Fira Sans", system-ui, sans-serif;
+}
+[data-theme="lake"][data-mode="light"] {
+  --background: oklch(0.98 0.003 160);
+  --foreground: oklch(0.24 0.012 160);
+  --card: oklch(1 0 0);
+  --popover: var(--card);
+  --primary: oklch(0.51 0.115 160);
+  --primary-foreground: oklch(0.99 0 0);
+  --secondary: oklch(0.94 0.009 160);
+  --muted-foreground: oklch(0.48 0.02 160);
+  --border: oklch(0.86 0.01 160);
+}
+[data-theme="lake"] .glass {
+  background: var(--card);
+  backdrop-filter: none;
+  box-shadow: none;
+}
+[data-theme="lake"] .glass::after,
+[data-theme="lake"] .aurora-border::before { display: none; }
+[data-theme="lake"] .text-glow { text-shadow: none; }
+[data-theme="lake"] :is(h1,h2,h3,h4) { font-weight: 500; }
+[data-theme="lake"] [class*="tracking-"] { letter-spacing: 0; }
+[data-theme="lake"] :is(.rounded-xl,.rounded-2xl) { border-radius: var(--radius); }
+.weather-layout { display: grid; gap: 28px; grid-template-columns: minmax(0,1fr); }
+.weather-rail { display: none; }
+.weather-summary { min-width: 0; }
+.weather-trend { grid-row: 4; }
+.weather-forecast { grid-row: 3; }
+.weather-tools { grid-row: 6; }
+.weather-radar { grid-row: 5; }
+.weather-header h1 { font-size: 18px; }
+@media (min-width: 1100px) {
+  .weather-home { padding-left: 212px; }
+  .weather-rail {
+    display: flex; flex-direction: column; gap: 8px;
+    position: fixed; left: 0; top: 0; bottom: 0; width: 212px;
+    padding: 32px 16px 24px; border-right: 1px solid var(--border);
+    background: var(--card); z-index: 55;
+  }
+  .weather-rail > span { padding: 0 12px 28px; }
+  .weather-rail > a { display: flex; align-items: center; gap: 12px; padding: 12px; font-size: 13px; border-radius: var(--radius); color: var(--muted-foreground); }
+  .weather-rail > a:hover { background: var(--secondary); color: var(--foreground); }
+  .weather-rail > a[aria-current] { background: var(--secondary); color: var(--accent); }
+  .weather-rail svg { width: 18px; height: 18px; flex-shrink: 0; }
+  .weather-layout { grid-template-columns: minmax(0,1fr) 290px; padding: 32px; }
+  .weather-location,.weather-summary,.weather-trend,.weather-forecast,.weather-source { grid-column: 1 / -1; }
+  .weather-radar { grid-column: 1; grid-row: 5; }
+  .weather-tools { grid-column: 2; grid-row: 5 / span 2; }
+  .weather-history { grid-column: 1; }
+}
+@media (max-width: 639px) {
+  .weather-header h1 { font-size: 20px; }
+  .weather-header nav { gap: 0; }
+  .weather-header nav > span[aria-hidden] { width: 0; }
+  .weather-header nav > a:nth-child(4) { display: none; }
+  .weather-home footer > div { gap: 16px; }
+  .weather-home footer > div > div { flex-wrap: wrap; gap: 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,*::before,*::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
 }
