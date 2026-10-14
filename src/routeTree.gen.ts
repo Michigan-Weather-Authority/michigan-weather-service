@@ -37,6 +37,7 @@ import { Route as ThresholdsRouteImport } from './routes/thresholds'
 import { Route as ToolsRouteImport } from './routes/tools'
 import { Route as TropicalRouteImport } from './routes/tropical'
 import { Route as WebcamsRouteImport } from './routes/webcams'
+import { Route as WidgetsRouteImport } from './routes/widgets'
 import { Route as AlertsIdRouteImport } from './routes/alerts.$id'
 import { Route as ReportsIdRouteImport } from './routes/reports.$id'
 import { Route as ApiPublicCronCheckThresholdsRouteImport } from './routes/api/public/cron.check-thresholds'
@@ -184,6 +185,11 @@ const WebcamsRoute = WebcamsRouteImport.update({
   path: '/webcams',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WidgetsRoute = WidgetsRouteImport.update({
+  id: '/widgets',
+  path: '/widgets',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AlertsIdRoute = AlertsIdRouteImport.update({
   id: '/alerts/$id',
   path: '/alerts/$id',
@@ -248,6 +254,7 @@ export interface FileRoutesByFullPath {
   '/tools': typeof ToolsRoute
   '/tropical': typeof TropicalRoute
   '/webcams': typeof WebcamsRoute
+  '/widgets': typeof WidgetsRoute
   '/alerts/$id': typeof AlertsIdRoute
   '/reports/$id': typeof ReportsIdRoute
   '/api/public/cron/check-thresholds': typeof ApiPublicCronCheckThresholdsRoute
@@ -284,6 +291,7 @@ export interface FileRoutesByTo {
   '/tools': typeof ToolsRoute
   '/tropical': typeof TropicalRoute
   '/webcams': typeof WebcamsRoute
+  '/widgets': typeof WidgetsRoute
   '/alerts/$id': typeof AlertsIdRoute
   '/reports/$id': typeof ReportsIdRoute
   '/api/public/cron/check-thresholds': typeof ApiPublicCronCheckThresholdsRoute
@@ -321,6 +329,7 @@ export interface FileRoutesById {
   '/tools': typeof ToolsRoute
   '/tropical': typeof TropicalRoute
   '/webcams': typeof WebcamsRoute
+  '/widgets': typeof WidgetsRoute
   '/alerts/$id': typeof AlertsIdRoute
   '/reports/$id': typeof ReportsIdRoute
   '/api/public/cron/check-thresholds': typeof ApiPublicCronCheckThresholdsRoute
@@ -359,6 +368,7 @@ export interface FileRouteTypes {
     | '/tools'
     | '/tropical'
     | '/webcams'
+    | '/widgets'
     | '/alerts/$id'
     | '/reports/$id'
     | '/api/public/cron/check-thresholds'
@@ -395,6 +405,7 @@ export interface FileRouteTypes {
     | '/tools'
     | '/tropical'
     | '/webcams'
+    | '/widgets'
     | '/alerts/$id'
     | '/reports/$id'
     | '/api/public/cron/check-thresholds'
@@ -431,6 +442,7 @@ export interface FileRouteTypes {
     | '/tools'
     | '/tropical'
     | '/webcams'
+    | '/widgets'
     | '/alerts/$id'
     | '/reports/$id'
     | '/api/public/cron/check-thresholds'
@@ -468,6 +480,7 @@ export interface RootRouteChildren {
   ToolsRoute: typeof ToolsRoute
   TropicalRoute: typeof TropicalRoute
   WebcamsRoute: typeof WebcamsRoute
+  WidgetsRoute: typeof WidgetsRoute
   AlertsIdRoute: typeof AlertsIdRoute
   ApiPublicCronCheckThresholdsRoute: typeof ApiPublicCronCheckThresholdsRoute
   ApiPublicCronDailyBriefingRoute: typeof ApiPublicCronDailyBriefingRoute
@@ -673,6 +686,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WebcamsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/widgets': {
+      id: '/widgets'
+      path: '/widgets'
+      fullPath: '/widgets'
+      preLoaderRoute: typeof WidgetsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/alerts/$id': {
       id: '/alerts/$id'
       path: '/alerts/$id'
@@ -758,6 +778,7 @@ const rootRouteChildren: RootRouteChildren = {
   ToolsRoute: ToolsRoute,
   TropicalRoute: TropicalRoute,
   WebcamsRoute: WebcamsRoute,
+  WidgetsRoute: WidgetsRoute,
   AlertsIdRoute: AlertsIdRoute,
   ApiPublicCronCheckThresholdsRoute: ApiPublicCronCheckThresholdsRoute,
   ApiPublicCronDailyBriefingRoute: ApiPublicCronDailyBriefingRoute,
