@@ -6,13 +6,14 @@ import {
   useRouter,
   HeadContent,
   Scripts,
+  type ErrorComponentProps,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { registerServiceWorker } from "../lib/register-sw";
-import { THEME_BOOT_SCRIPT } from "../lib/theme";
+import { THEME_BOOT_SCRIPT, getTheme, getMode } from "../lib/theme";
 import { StatusBanner } from "../components/StatusBanner";
 
 
@@ -38,7 +39,7 @@ function NotFoundComponent() {
   );
 }
 
-function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
+function ErrorComponent({ error, reset }: ErrorComponentProps) {
   console.error(error);
   const router = useRouter();
   useEffect(() => {
@@ -83,7 +84,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" },
       { title: "Michigan Weather Service" },
       { name: "description", content: "Live weather, forecasts, and alerts for every city in Michigan." },
-      { name: "theme-color", content: "#7C3AED" },
+      { name: "theme-color", content: "#167B59" },
       { name: "apple-mobile-web-app-capable", content: "yes" },
       { name: "mobile-web-app-capable", content: "yes" },
       { name: "apple-mobile-web-app-status-bar-style", content: "black-translucent" },
@@ -94,8 +95,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:card", content: "summary" },
       { name: "twitter:title", content: "Michigan Weather Service" },
       { name: "twitter:description", content: "Live weather, forecasts, and alerts for every city in Michigan." },
-      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/j6kBsgZTd4SRMVRd0xv14TBnIMI3/social-images/social-1781649286231-mwa.webp" },
-      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/j6kBsgZTd4SRMVRd0xv14TBnIMI3/social-images/social-1781649286231-mwa.webp" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -135,10 +134,7 @@ function RootComponent() {
     registerServiceWorker();
     // Initialize favicon based on current theme/mode (set by THEME_BOOT_SCRIPT)
     import("../lib/favicon").then(({ updateFavicon }) => {
-      const root = document.documentElement;
-      const theme = (root.getAttribute("data-theme") as "noir" | "aurora" | "og" | "minimal") || "noir";
-      const mode = (root.getAttribute("data-mode") as "dark" | "light") || "dark";
-      updateFavicon(theme, mode);
+      updateFavicon(getTheme(), getMode());
     }).catch(() => {});
   }, []);
 

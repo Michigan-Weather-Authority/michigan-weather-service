@@ -4,7 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import {
   AlertTriangle, MapPin, Radio, RefreshCw, Search, Wind, Droplets,
   Thermometer, Sunrise, Eye, Gauge, Megaphone, ListOrdered,
-  Sun, Activity, UserCircle2, FileText, LogIn, Sunset, Cloud, Bell, BellOff, ShieldAlert,
+  Sun, Activity, UserCircle2, FileText, LogIn, Sunset, Cloud, Bell, BellOff, ShieldAlert, Smartphone, Settings2,
 } from "lucide-react";
 import { useIsAdmin } from "@/hooks/useIsAdmin";
 import { PhosphorousBadge } from "@/components/PhosphorousBadge";
@@ -46,6 +46,8 @@ export const Route = createFileRoute("/")({
       { name: "description", content: "Live weather, forecasts, alerts, air quality, and UV for every city in Michigan from the Michigan Weather Service (MWS)." },
       { property: "og:title", content: "Michigan Weather Service" },
       { property: "og:description", content: "Live weather, forecasts, and alerts for every city in Michigan." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
     ],
   }),
   component: HomePage,
@@ -318,9 +320,9 @@ function HomePage() {
   const today = weather.data?.forecast.properties.periods[0];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen weather-home">
       {/* Header */}
-      <header className="border-b border-border/60 backdrop-blur-xl bg-background/40 sticky top-0 z-50">
+      <header className="weather-header border-b border-border/60 backdrop-blur-xl bg-background/90 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-3 sm:px-4 py-2.5 grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3">
           <Link to="/" className="flex min-w-0 items-center gap-3 min-h-11 py-1">
             <div className="relative h-11 w-11 shrink-0 grid place-items-center overflow-hidden">
@@ -332,7 +334,7 @@ function HomePage() {
                 <span className="sm:hidden text-aurora">MWS</span>
               </h1>
               <p className="text-[10px] md:text-[11px] text-muted-foreground tracking-[0.32em] uppercase truncate font-mono mt-1">
-                PRISM · LIVE · BY PHOSPHOROUS
+                LIVE WEATHER · BY PHOSPHOROUS
               </p>
             </div>
           </Link>
@@ -379,6 +381,18 @@ function HomePage() {
         </div>
       </header>
 
+      <aside className="weather-rail" aria-label="Weather navigation">
+        <span className="text-xs font-mono text-muted-foreground">MICHIGAN / LIVE</span>
+        <Link to="/" aria-current="page"><Sun /> Overview</Link>
+        <Link to="/alerts-map"><AlertTriangle /> Active alerts</Link>
+        <Link to="/forecasts"><FileText /> Forecasts</Link>
+        <Link to="/satellite"><Eye /> Satellite</Link>
+        <Link to="/tools"><Radio /> Weather tools</Link>
+        <Link to="/widgets" search={{ city: city.name, lat: city.lat, lon: city.lon }}><Smartphone /> iPhone widget</Link>
+        <Link to="/settings"><Settings2 /> Settings</Link>
+        <div className="mt-auto border-t border-border pt-5"><PhosphorousBadge /></div>
+      </aside>
+
       <TickerBar entries={weatherAlerts} city={city} />
       {easAlerts.length > 0 && <EasTickerBar entries={easAlerts} />}
       <IosInstallBanner />
@@ -399,12 +413,12 @@ function HomePage() {
         </section>
       )}
 
-      <main className="max-w-7xl mx-auto px-4 py-4 space-y-4">
+      <main className="weather-layout max-w-7xl mx-auto px-4 py-6">
         {/* Top control row */}
-        <div className="flex flex-wrap items-end justify-between gap-3">
+        <div className="weather-location grid grid-cols-1 sm:grid-cols-[minmax(0,1fr)_auto] items-end gap-4">
           <div className="min-w-0">
-            <p className="text-[10px] font-mono uppercase tracking-[0.3em] text-muted-foreground">Now reporting</p>
-            <h2 className="font-display text-4xl md:text-5xl leading-tight truncate text-aurora">{city.name}, MI</h2>
+            <p className="text-xs font-mono uppercase text-muted-foreground">Your local forecast</p>
+            <h2 className="font-display text-4xl md:text-5xl leading-tight truncate">{city.name}<span className="text-muted-foreground text-xl ml-2">MI</span></h2>
             <p className="text-[11px] text-muted-foreground font-mono truncate">
               ZIP {city.zip} · {city.county} County · {MICHIGAN_CITIES.length.toLocaleString()} MI ZIPs indexed
             </p>
@@ -418,9 +432,9 @@ function HomePage() {
           </div>
         </div>
 
-        {weather.isLoading && <LoadingPanel />}
+        {weather.isLoading && <div className="weather-summary"><LoadingPanel /></div>}
         {weather.isError && (
-          <div className="rounded-lg border border-destructive/40 bg-destructive/10 p-4 text-sm">
+          <div className="weather-summary rounded-lg border border-destructive/40 bg-destructive/10 p-4 text-sm">
             Unable to reach NWS data feed. Try refreshing in a moment.
           </div>
         )}
@@ -428,17 +442,17 @@ function HomePage() {
         {current && today && weather.data && (
           <>
             {/* Current + extras grid */}
-            <div className="grid lg:grid-cols-[1.4fr_1fr] gap-4">
-              <div className="rounded-xl border border-border bg-card overflow-hidden">
-                <div className="relative p-4 md:p-5 grid grid-cols-[auto_1fr] gap-4 items-center">
+            <div className="weather-summary grid lg:grid-cols-[1.2fr_1fr] gap-8 border-y border-border py-6">
+              <div className="current-conditions min-w-0 overflow-hidden">
+                <div className="relative pb-6 grid grid-cols-[auto_minmax(0,1fr)] gap-4 items-center">
                   <img
                     src={current.icon.replace("size=medium", "size=large")}
                     alt={current.shortForecast}
-                    className="h-24 w-24 md:h-28 md:w-28 rounded-lg border border-border/60 bg-storm shadow-glow shrink-0"
+                    className="h-20 w-20 md:h-24 md:w-24 rounded-lg shrink-0"
                   />
                   <div className="min-w-0">
                     <div className="flex items-baseline gap-2">
-                      <span className="font-display text-6xl md:text-7xl font-bold text-glow leading-none">
+                      <span className="font-display text-7xl md:text-8xl font-medium leading-none">
                         {Math.round(current.temperature)}°
                       </span>
                       <span className="text-base text-muted-foreground">{current.temperatureUnit}</span>
@@ -447,7 +461,7 @@ function HomePage() {
                     <p className="text-[11px] text-muted-foreground line-clamp-2">{today.detailedForecast}</p>
                   </div>
                 </div>
-                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 px-4 pb-4 text-xs">
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-4 gap-y-5 text-xs">
                   <FeelsLikeMetric
                     tempF={current.temperature}
                     humidity={current.relativeHumidity?.value ?? null}
@@ -465,22 +479,19 @@ function HomePage() {
             </div>
 
             {/* Radar */}
-            <RadarPanel />
+            <div className="weather-radar min-w-0"><RadarPanel /></div>
 
             {/* Tool shortcuts — full pages live under /tools */}
-            <section>
+            <section className="weather-tools min-w-0">
               <div className="flex items-end justify-between mb-3 gap-3 flex-wrap">
                 <div>
-                  <h2 className="font-display text-3xl">Tools</h2>
-                  <p className="text-[11px] font-mono uppercase tracking-[0.25em] text-muted-foreground">
-                    Open any tool in its own page
-                  </p>
+                  <h2 className="font-display text-2xl">Explore</h2>
                 </div>
                 <Link to="/tools" className="text-[11px] font-mono uppercase tracking-[0.25em] text-accent hover:underline">
                   See all →
                 </Link>
               </div>
-              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+              <div className="grid grid-cols-2 gap-2">
                 <ToolCard to="/alerts-map"    icon={AlertTriangle}    label="Alerts Map"     blurb="Counties shaded live." badge="Live" />
                 <ToolCard to="/outlook"       icon={Cloud}            label="Severe Outlook" blurb="SPC Days 1–8." />
                 <ToolCard to="/lightning"     icon={Activity}         label="Lightning"      blurb="Real-time strikes." badge="Live" />
@@ -494,10 +505,13 @@ function HomePage() {
                 <ToolCard to="/changelog"     icon={Megaphone}        label="Changelog"      blurb="What's new." />
                 <ToolCard to="/tools"         icon={Radio}            label="All tools"      blurb="Hub of everything." />
               </div>
+              <Button asChild variant="outline" className="w-full mt-4">
+                <Link to="/widgets" search={{ city: city.name, lat: city.lat, lon: city.lon }}><Smartphone /> iPhone widget</Link>
+              </Button>
             </section>
 
             {/* Hourly meteogram */}
-            <HourlyMeteogram periods={weather.data.hourly.properties.periods} hours={36} />
+            <div className="weather-trend min-w-0"><HourlyMeteogram periods={weather.data.hourly.properties.periods} hours={36} /></div>
 
 
 
@@ -505,7 +519,7 @@ function HomePage() {
 
 
             {/* Hourly + Extended */}
-            <div className="grid xl:grid-cols-[1fr_320px] gap-4">
+            <div className="weather-forecast grid md:grid-cols-[1fr_320px] gap-5 min-w-0">
               <div className="rounded-xl border border-border bg-card p-3 min-w-0">
                 <div className="flex items-center justify-between mb-2">
                   <h3 className="font-display tracking-wider text-[11px] uppercase text-muted-foreground">
@@ -548,10 +562,10 @@ function HomePage() {
               </div>
             </div>
 
-            <AlertHistoryPanel />
+            <div className="weather-history min-w-0"><AlertHistoryPanel /></div>
 
 
-            <div className="flex flex-wrap items-center gap-3 text-[10px] font-mono uppercase tracking-wider text-muted-foreground">
+            <div className="weather-source flex flex-wrap items-center gap-3 text-[10px] font-mono uppercase tracking-wider text-muted-foreground">
               <Eye className="h-3 w-3" />
               NOAA / NWS · Open-Meteo · Updated{" "}
               <span suppressHydrationWarning>
@@ -584,7 +598,8 @@ function HomePage() {
             >
               Status Page
             </a>
-            <span className="font-mono">MWS · v3.5.0</span>
+            <Link to="/widgets" search={{ city: city.name, lat: city.lat, lon: city.lon }} className="text-accent hover:underline">iPhone widget</Link>
+            <span className="font-mono">MWS</span>
           </div>
         </div>
       </footer>
@@ -705,7 +720,7 @@ function ExtraStatsPanel({ data, loading }: { data: ExtraStats | undefined; load
       : null;
 
   return (
-    <div className="rounded-xl border border-border bg-card p-4 space-y-3">
+    <div className="air-conditions min-w-0 space-y-4 lg:border-l lg:border-border lg:pl-8">
       <div className="flex items-center gap-2">
         <Activity className="h-4 w-4 text-accent" />
         <h3 className="font-display tracking-wider text-[11px] uppercase text-muted-foreground">
@@ -1452,7 +1467,7 @@ function ToolCard({
   badge?: string;
 }) {
   return (
-    <Link to={to} className="glass aurora-border liquid rounded-2xl p-4 block group">
+    <Link to={to} className="rounded-lg border border-border p-3 block group transition-colors hover:bg-secondary">
       <div className="flex items-center justify-between mb-2">
         <Icon className="h-5 w-5 text-accent" />
         {badge && (
