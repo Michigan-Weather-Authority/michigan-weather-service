@@ -614,6 +614,8 @@
 .weather-layout { display: grid; gap: 28px; grid-template-columns: minmax(0,1fr); }
 .weather-rail { display: none; }
 .weather-summary { min-width: 0; }
+.weather-home { overflow-x: clip; }
+.weather-forecast { align-items: start; }
 .weather-trend { grid-row: 4; }
 .weather-forecast { grid-row: 3; }
 .weather-tools { grid-row: 6; }

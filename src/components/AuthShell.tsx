@@ -40,7 +40,7 @@ export function AuthShell({
             </div>
             <div>
               <div className="font-display text-lg leading-none text-aurora">Michigan Weather Service</div>
-              <div className="text-[10px] font-mono uppercase tracking-[0.3em] text-muted-foreground mt-1">STORM CONSOLE · v3.3 BETA</div>
+              <div className="text-[10px] font-mono uppercase text-muted-foreground mt-1">BY PHOSPHOROUS</div>
             </div>
           </Link>
 
@@ -57,7 +57,7 @@ export function AuthShell({
             </p>
             <div className="grid grid-cols-3 gap-3 max-w-md pt-4">
               <Feature icon={Activity} label="Live radar" />
-              <Feature icon={ShieldCheck} label="Encrypted 2FA" />
+              <Feature icon={ShieldCheck} label="Saved locations" />
               <Feature icon={Radio} label="EAS feed" />
             </div>
           </div>
@@ -71,7 +71,7 @@ export function AuthShell({
         <div className="flex flex-col justify-center px-6 py-10 sm:px-10 lg:px-16">
           <div className="w-full max-w-md mx-auto">
             <Link to="/" className="lg:hidden text-xs text-muted-foreground hover:text-accent inline-flex items-center gap-1 mb-6">
-              <ArrowLeft className="h-3 w-3" /> Back to MWA
+              <ArrowLeft className="h-3 w-3" /> Back to MWS
             </Link>
 
             <div className="mb-6">
