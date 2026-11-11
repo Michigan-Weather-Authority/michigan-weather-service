@@ -51,6 +51,27 @@ type Entry = {
 
 const ENTRIES: Entry[] = [
   {
+    version: "3.8.0",
+    date: "Nov 11, 2026",
+    status: "minor",
+    title: "New Sunset theme",
+    bullets: [
+      "Introducing Sunset — warm amber highlights over a dusky plum background, with a soft peach light mode.",
+      "Matching amber favicons for dark and light mode.",
+      "Pick it any time in Settings → Theme.",
+    ],
+  },
+  {
+    version: "3.7.1",
+    date: "Nov 11, 2026",
+    status: "emergency",
+    title: "Security hardening",
+    bullets: [
+      "Spotter reports can now only be read directly by the person who sent them; the public feed still hides identities and rounds locations to about 1 km.",
+      "Storm photos are no longer downloadable by anyone — only the uploader can open them from storage, and shared photos use private links.",
+    ],
+  },
+  {
     version: "3.7.0",
     date: "Nov 11, 2026",
     status: "minor",

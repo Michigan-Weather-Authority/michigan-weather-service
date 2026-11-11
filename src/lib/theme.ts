@@ -1,10 +1,11 @@
-export type ThemeName = "lake" | "prism" | "noir" | "aurora" | "og" | "minimal";
+export type ThemeName = "lake" | "sunset" | "prism" | "noir" | "aurora" | "og" | "minimal";
 export type ThemeMode = "dark" | "light";
 
 const THEME_KEY = "mwa-theme";
 const MODE_KEY = "mwa-mode";
 
 export const THEMES: { id: ThemeName; label: string; desc: string }[] = [
+  { id: "sunset", label: "Sunset", desc: "Warm amber + dusk plum — Space Grotesk + Fira Sans" },
   { id: "lake", label: "Lakefront", desc: "Crisp emerald + graphite — Space Grotesk + Fira Sans" },
   { id: "prism", label: "Prism", desc: "Modern iridescent — Space Grotesk + Inter" },
   { id: "noir", label: "Storm Noir", desc: "Black + gold editorial broadcast" },
@@ -18,7 +19,7 @@ export const MODES: { id: ThemeMode; label: string }[] = [
   { id: "light", label: "Light" },
 ];
 
-const VALID: ThemeName[] = ["lake", "prism", "noir", "aurora", "og", "minimal"];
+const VALID: ThemeName[] = ["lake", "sunset", "prism", "noir", "aurora", "og", "minimal"];
 
 export function getTheme(): ThemeName {
   if (typeof window === "undefined") return "lake";
@@ -54,7 +55,7 @@ export const THEME_BOOT_SCRIPT = `
     localStorage.setItem('${THEME_KEY}',t);
     localStorage.setItem('mws-lakefront-introduced','1');
   }
-  if(['lake','prism','noir','aurora','og','minimal'].indexOf(t)===-1)t='lake';
+  if(['lake','sunset','prism','noir','aurora','og','minimal'].indexOf(t)===-1)t='lake';
   var m=localStorage.getItem('${MODE_KEY}')||'dark';
   document.documentElement.setAttribute('data-theme',t);
   document.documentElement.setAttribute('data-mode',m);
