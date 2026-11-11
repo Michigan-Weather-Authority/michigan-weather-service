@@ -596,6 +596,8 @@ function HomePage() {
             © Michigan Weather Service — Unofficial. Source: NWS + Open-Meteo + MWS.
           </span>
           <div className="flex items-center gap-4">
+            <button type="button" className="text-accent hover:underline" onClick={async () => { const url = window.location.href; try { if (navigator.share) await navigator.share({ title: "Michigan Weather Service", url }); else { await navigator.clipboard.writeText(url); alert("Link copied"); } } catch {} }}>Share</button>
+            <button type="button" className="text-accent hover:underline" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>Back to top</button>
             <Link to="/changelog" className="text-accent hover:underline">
               Changelog
             </Link>

@@ -60,6 +60,7 @@ const ENTRIES: Entry[] = [
       "Sign-up no longer requires email verification — create an account and you're signed in instantly.",
       "Added a show/hide password toggle on the sign-in page.",
       "New keyboard shortcuts on the home page: R satellite, A alerts, F forecasts, S settings, / changelog.",
+      "Added Share and Back to top buttons in the home page footer.",
       "Lakefront theme and iPhone widget page (from the recent redesign) are now officially logged.",
     ],
   },
