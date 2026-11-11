@@ -344,7 +344,7 @@ function HomePage() {
                 <span className="sm:hidden text-aurora">MWS</span>
               </h1>
               <p className="text-[10px] md:text-[11px] text-muted-foreground tracking-[0.32em] uppercase truncate font-mono mt-1">
-                LIVE WEATHER · MICHIGAN
+                LIVE WEATHER · MICHIGAN <Greeting />
               </p>
             </div>
           </Link>
@@ -1491,4 +1491,13 @@ function ToolCard({
       <div className="text-[11px] text-muted-foreground mt-1">{blurb}</div>
     </Link>
   );
+}
+
+function Greeting() {
+  const [txt, setTxt] = useState("");
+  useEffect(() => {
+    const h = new Date().getHours();
+    setTxt(h < 5 ? "· 🌙 Night owl mode" : h < 12 ? "· ☀️ Good morning" : h < 17 ? "· 🌤️ Good afternoon" : h < 21 ? "· 🌇 Good evening" : "· 🌙 Good night");
+  }, []);
+  return <span suppressHydrationWarning>{txt}</span>;
 }
