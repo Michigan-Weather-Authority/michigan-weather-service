@@ -2,7 +2,7 @@ export interface WidgetLocation { city: string; lat: number; lon: number }
 
 // Scriptable runs this on the iPhone, not in the website or server runtime.
 export function createIphoneWidget(location: WidgetLocation): string {
-  return `// Michigan Weather Service by phosphorous — iPhone widget
+  return `// Michigan Weather Service — iPhone widget
 // Install in Scriptable. iOS controls background refresh timing.
 const place = ${JSON.stringify(location)};
 const site = "https://michigan-weather-auth.lovable.app";

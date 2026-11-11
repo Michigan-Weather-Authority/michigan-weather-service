@@ -1,7 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { ArrowLeft } from "lucide-react";
-import { PhosphorousBadge } from "@/components/PhosphorousBadge";
 
 export const Route = createFileRoute("/changelog")({
   head: () => ({
@@ -51,6 +50,19 @@ type Entry = {
 };
 
 const ENTRIES: Entry[] = [
+  {
+    version: "3.7.0",
+    date: "Nov 11, 2026",
+    status: "minor",
+    title: "Independent again + faster sign-up",
+    bullets: [
+      "Michigan Weather Service has parted ways with phosphorous and is once again independent. All phosphorous branding has been removed.",
+      "Sign-up no longer requires email verification — create an account and you're signed in instantly.",
+      "Added a show/hide password toggle on the sign-in page.",
+      "New keyboard shortcuts on the home page: R satellite, A alerts, F forecasts, S settings, / changelog.",
+      "Lakefront theme and iPhone widget page (from the recent redesign) are now officially logged.",
+    ],
+  },
   {
     version: "3.6.0",
     date: "Sep 10, 2026",
@@ -315,7 +327,6 @@ function ChangelogPage() {
         <div className="max-w-4xl mx-auto px-6 py-4 text-[11px] text-muted-foreground flex items-center justify-between">
           <span className="flex items-center gap-2">
             © Michigan Weather Service — Unofficial.
-            <PhosphorousBadge />
           </span>
           <a href="https://mwa.instatus.com" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">
             Status Page

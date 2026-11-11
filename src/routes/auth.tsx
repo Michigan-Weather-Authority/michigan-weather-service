@@ -36,6 +36,7 @@ function AuthPage() {
     });
   }, [nav]);
 
+  const [showPw, setShowPw] = useState(false);
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     setBusy(true);
@@ -46,7 +47,12 @@ function AuthPage() {
           options: { emailRedirectTo: window.location.origin, data: { display_name: name || email.split("@")[0] } },
         });
         if (error) throw error;
-        toast.success("Account created");
+        const { data: sess } = await supabase.auth.getSession();
+        if (!sess.session) {
+          const { error: e2 } = await supabase.auth.signInWithPassword({ email, password });
+          if (e2) throw e2;
+        }
+        toast.success("Account created — you're signed in");
         nav({ to: "/settings" });
       } else {
         const { error } = await supabase.auth.signInWithPassword({ email, password });
@@ -117,7 +123,8 @@ function AuthPage() {
             </Field>
 
             <Field icon={Lock} label="Password">
-              <Input type="password" required minLength={6} value={password} onChange={(e) => setPassword(e.target.value)} placeholder="••••••••" className="pl-9 h-11" />
+              <Input type={showPw ? "text" : "password"} required minLength={6} value={password} onChange={(e) => setPassword(e.target.value)} placeholder="••••••••" className="pl-9 pr-16 h-11" />
+              <button type="button" onClick={() => setShowPw((v) => !v)} className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-muted-foreground hover:text-foreground">{showPw ? "Hide" : "Show"}</button>
             </Field>
 
             <Button type="submit" disabled={busy} className="w-full h-11 font-display tracking-wider mt-2">

@@ -7,7 +7,6 @@ import {
   Sun, Activity, UserCircle2, FileText, LogIn, Sunset, Cloud, Bell, BellOff, ShieldAlert, Smartphone, Settings2,
 } from "lucide-react";
 import { useIsAdmin } from "@/hooks/useIsAdmin";
-import { PhosphorousBadge } from "@/components/PhosphorousBadge";
 
 import { MICHIGAN_CITIES, type MichiganCity } from "@/lib/michigan-cities";
 import { useGeolocation, nearestMichiganCity } from "@/lib/use-geolocation";
@@ -210,6 +209,17 @@ const LS_CITY = "mwa.home.city";
 
 function HomePage() {
   const user = useAuthUser();
+  useEffect(() => {
+    const map: Record<string, string> = { r: "/satellite", a: "/alerts-map", f: "/forecasts", s: "/settings", "/": "/changelog" };
+    const onKey = (e: KeyboardEvent) => {
+      const t = e.target as HTMLElement | null;
+      if (e.metaKey || e.ctrlKey || e.altKey || (t && (t.isContentEditable || /INPUT|TEXTAREA|SELECT/.test(t.tagName)))) return;
+      const to = map[e.key.toLowerCase()];
+      if (to) { e.preventDefault(); window.location.assign(to); }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
   const { isAdmin } = useIsAdmin();
 
 
@@ -334,7 +344,7 @@ function HomePage() {
                 <span className="sm:hidden text-aurora">MWS</span>
               </h1>
               <p className="text-[10px] md:text-[11px] text-muted-foreground tracking-[0.32em] uppercase truncate font-mono mt-1">
-                LIVE WEATHER · BY PHOSPHOROUS
+                LIVE WEATHER · MICHIGAN
               </p>
             </div>
           </Link>
@@ -390,7 +400,7 @@ function HomePage() {
         <Link to="/tools"><Radio /> Weather tools</Link>
         <Link to="/widgets" search={{ city: city.name, lat: city.lat, lon: city.lon }}><Smartphone /> iPhone widget</Link>
         <Link to="/settings"><Settings2 /> Settings</Link>
-        <div className="mt-auto border-t border-border pt-5"><PhosphorousBadge /></div>
+        <div className="mt-auto border-t border-border pt-5 text-[11px] text-muted-foreground">Shortcuts: <kbd>R</kbd> satellite · <kbd>A</kbd> alerts · <kbd>F</kbd> forecasts · <kbd>S</kbd> settings</div>
       </aside>
 
       <TickerBar entries={weatherAlerts} city={city} />
@@ -584,7 +594,6 @@ function HomePage() {
         <div className="max-w-7xl mx-auto px-4 py-3 text-[11px] text-muted-foreground flex flex-wrap items-center justify-between gap-3">
           <span className="flex items-center gap-2 flex-wrap">
             © Michigan Weather Service — Unofficial. Source: NWS + Open-Meteo + MWS.
-            <PhosphorousBadge />
           </span>
           <div className="flex items-center gap-4">
             <Link to="/changelog" className="text-accent hover:underline">

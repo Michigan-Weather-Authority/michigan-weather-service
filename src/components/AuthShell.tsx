@@ -40,7 +40,7 @@ export function AuthShell({
             </div>
             <div>
               <div className="font-display text-lg leading-none text-aurora">Michigan Weather Service</div>
-              <div className="text-[10px] font-mono uppercase text-muted-foreground mt-1">BY PHOSPHOROUS</div>
+              <div className="text-[10px] font-mono uppercase text-muted-foreground mt-1">MICHIGAN · LIVE</div>
             </div>
           </Link>
 
