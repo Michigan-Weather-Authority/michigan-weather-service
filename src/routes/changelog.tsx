@@ -51,6 +51,21 @@ type Entry = {
 
 const ENTRIES: Entry[] = [
   {
+    version: "3.9.0",
+    date: "Nov 12, 2026",
+    status: "minor",
+    title: "The road to iOS + Android",
+    bullets: [
+      "Michigan Weather Service is now part of Michigan Weather Authority, its parent company, which owns other weather-related services.",
+      "Added permanent self-service account deletion in Settings and on a dedicated public page, including personal records and uploaded storm photos.",
+      "Added Privacy Policy and Terms of Use pages describing accounts, location, notifications, embeds, analytics, and weather-service limitations.",
+      "New iOS + Android release page tracks preparation for the App Store and Google Play. No launch date or store availability is confirmed yet.",
+      "Retired the Scriptable iPhone widget offering; old widget links now redirect to mobile release information.",
+      "New next-12-hours briefing highlights the temperature range, peak precipitation chance, and local alert count using the existing forecast.",
+      "Listen to your local forecast with a new read-aloud button on supported devices, with a stop control.",
+    ],
+  },
+  {
     version: "3.8.0",
     date: "Nov 11, 2026",
     status: "minor",

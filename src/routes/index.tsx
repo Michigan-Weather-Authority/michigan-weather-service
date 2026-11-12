@@ -36,6 +36,7 @@ import { cn } from "@/lib/utils";
 import { IosInstallBanner } from "@/components/IosInstallBanner";
 import { InstallAppButton } from "@/components/InstallAppButton";
 import mwaLogo from "@/assets/mwa-logo-noir.png.asset.json";
+import { WeatherBriefing } from "@/components/WeatherBriefing";
 
 
 export const Route = createFileRoute("/")({
@@ -344,7 +345,7 @@ function HomePage() {
                 <span className="sm:hidden text-aurora">MWS</span>
               </h1>
               <p className="text-[10px] md:text-[11px] text-muted-foreground tracking-[0.32em] uppercase truncate font-mono mt-1">
-                LIVE WEATHER · MICHIGAN <Greeting />
+                PART OF MICHIGAN WEATHER AUTHORITY <Greeting />
               </p>
             </div>
           </Link>
@@ -398,7 +399,7 @@ function HomePage() {
         <Link to="/forecasts"><FileText /> Forecasts</Link>
         <Link to="/satellite"><Eye /> Satellite</Link>
         <Link to="/tools"><Radio /> Weather tools</Link>
-        <Link to="/widgets" search={{ city: city.name, lat: city.lat, lon: city.lon }}><Smartphone /> iPhone widget</Link>
+        <Link to="/mobile"><Smartphone /> iOS + Android</Link>
         <Link to="/settings"><Settings2 /> Settings</Link>
         <div className="mt-auto border-t border-border pt-5 text-[11px] text-muted-foreground">Shortcuts: <kbd>R</kbd> satellite · <kbd>A</kbd> alerts · <kbd>F</kbd> forecasts · <kbd>S</kbd> settings</div>
       </aside>
@@ -452,7 +453,8 @@ function HomePage() {
         {current && today && weather.data && (
           <>
             {/* Current + extras grid */}
-            <div className="weather-summary grid lg:grid-cols-[1.2fr_1fr] gap-8 border-y border-border py-6">
+            <div className="weather-summary">
+            <div className="grid lg:grid-cols-[1.2fr_1fr] gap-8 border-y border-border py-6">
               <div className="current-conditions min-w-0 overflow-hidden">
                 <div className="relative pb-6 grid grid-cols-[auto_minmax(0,1fr)] gap-4 items-center">
                   <img
@@ -487,6 +489,8 @@ function HomePage() {
 
               <ExtraStatsPanel data={extra.data} loading={extra.isLoading} />
             </div>
+            <WeatherBriefing city={city.name} periods={weather.data.hourly.properties.periods} alertCount={nwsAlerts.isSuccess ? cityAlerts.length : null} />
+            </div>
 
             {/* Radar */}
             <div className="weather-radar min-w-0"><RadarPanel /></div>
@@ -516,7 +520,7 @@ function HomePage() {
                 <ToolCard to="/tools"         icon={Radio}            label="All tools"      blurb="Hub of everything." />
               </div>
               <Button asChild variant="outline" className="w-full mt-4">
-                <Link to="/widgets" search={{ city: city.name, lat: city.lat, lon: city.lon }}><Smartphone /> iPhone widget</Link>
+                <Link to="/mobile"><Smartphone /> iOS + Android · Coming soon</Link>
               </Button>
             </section>
 
@@ -593,9 +597,9 @@ function HomePage() {
       <footer className="border-t border-border/60 mt-6">
         <div className="max-w-7xl mx-auto px-4 py-3 text-[11px] text-muted-foreground flex flex-wrap items-center justify-between gap-3">
           <span className="flex items-center gap-2 flex-wrap">
-            © Michigan Weather Service — Unofficial. Source: NWS + Open-Meteo + MWS.
+            © Michigan Weather Service · Part of Michigan Weather Authority. Unofficial · NWS + Open-Meteo.
           </span>
-          <div className="flex items-center gap-4">
+          <div className="flex flex-wrap items-center gap-4">
             <button type="button" className="text-accent hover:underline" onClick={async () => { const url = window.location.href; try { if (navigator.share) await navigator.share({ title: "Michigan Weather Service", url }); else { await navigator.clipboard.writeText(url); alert("Link copied"); } } catch {} }}>Share</button>
             <button type="button" className="text-accent hover:underline" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>Back to top</button>
             <Link to="/changelog" className="text-accent hover:underline">
@@ -609,7 +613,10 @@ function HomePage() {
             >
               Status Page
             </a>
-            <Link to="/widgets" search={{ city: city.name, lat: city.lat, lon: city.lon }} className="text-accent hover:underline">iPhone widget</Link>
+            <Link to="/mobile" className="text-accent hover:underline">iOS + Android</Link>
+            <Link to="/privacy" className="text-accent hover:underline">Privacy</Link>
+            <Link to="/terms" className="text-accent hover:underline">Terms</Link>
+            <Link to="/delete-account" className="text-accent hover:underline">Delete account</Link>
             <span className="font-mono">MWS</span>
           </div>
         </div>

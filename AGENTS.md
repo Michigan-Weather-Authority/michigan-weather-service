@@ -1,4 +1,6 @@
 # Project rules
 - Keep themes in the shared theme registry and semantic CSS tokens so all pages and favicon variants stay consistent.
 - Use named CSS grid regions to organize the weather homepage without changing its data or notification behavior.
-- Generate the iPhone widget as a downloadable Scriptable script in the browser; native WidgetKit cannot be installed by this web app, and no server credentials belong in widget downloads.
+- Retired downloadable widget code stays removed; preserve its published URL with a permanent redirect to mobile release information.
+- Self-account deletion takes its target exclusively from verified auth middleware, removes storage and non-cascading delivery logs before deleting the identity, and relies on existing foreign-key cascades for account records.
+- Public information pages share a lightweight shell and per-page metadata; weather briefing reuses existing forecast data and browser speech without additional services.

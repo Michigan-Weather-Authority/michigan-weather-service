@@ -20,19 +20,23 @@ import { Route as ChangelogRouteImport } from './routes/changelog'
 import { Route as ChaseRouteImport } from './routes/chase'
 import { Route as ClimateRouteImport } from './routes/climate'
 import { Route as CommandRouteImport } from './routes/command'
+import { Route as DeleteAccountRouteImport } from './routes/delete-account'
 import { Route as DispatcherHealthRouteImport } from './routes/dispatcher-health'
 import { Route as ForecastsRouteImport } from './routes/forecasts'
 import { Route as LightningRouteImport } from './routes/lightning'
 import { Route as LocationsRouteImport } from './routes/locations'
 import { Route as ManagementRouteImport } from './routes/management'
 import { Route as MesoscaleRouteImport } from './routes/mesoscale'
+import { Route as MobileRouteImport } from './routes/mobile'
 import { Route as OutlookRouteImport } from './routes/outlook'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ReportsRouteImport } from './routes/reports'
 import { Route as SatelliteRouteImport } from './routes/satellite'
 import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as SnowRouteImport } from './routes/snow'
 import { Route as SpotterRouteImport } from './routes/spotter'
 import { Route as StormReportsRouteImport } from './routes/storm-reports'
+import { Route as TermsRouteImport } from './routes/terms'
 import { Route as ThresholdsRouteImport } from './routes/thresholds'
 import { Route as ToolsRouteImport } from './routes/tools'
 import { Route as TropicalRouteImport } from './routes/tropical'
@@ -100,6 +104,11 @@ const CommandRoute = CommandRouteImport.update({
   path: '/command',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DeleteAccountRoute = DeleteAccountRouteImport.update({
+  id: '/delete-account',
+  path: '/delete-account',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DispatcherHealthRoute = DispatcherHealthRouteImport.update({
   id: '/dispatcher-health',
   path: '/dispatcher-health',
@@ -130,9 +139,19 @@ const MesoscaleRoute = MesoscaleRouteImport.update({
   path: '/mesoscale',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MobileRoute = MobileRouteImport.update({
+  id: '/mobile',
+  path: '/mobile',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const OutlookRoute = OutlookRouteImport.update({
   id: '/outlook',
   path: '/outlook',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ReportsRoute = ReportsRouteImport.update({
@@ -163,6 +182,11 @@ const SpotterRoute = SpotterRouteImport.update({
 const StormReportsRoute = StormReportsRouteImport.update({
   id: '/storm-reports',
   path: '/storm-reports',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ThresholdsRoute = ThresholdsRouteImport.update({
@@ -237,19 +261,23 @@ export interface FileRoutesByFullPath {
   '/chase': typeof ChaseRoute
   '/climate': typeof ClimateRoute
   '/command': typeof CommandRoute
+  '/delete-account': typeof DeleteAccountRoute
   '/dispatcher-health': typeof DispatcherHealthRoute
   '/forecasts': typeof ForecastsRoute
   '/lightning': typeof LightningRoute
   '/locations': typeof LocationsRoute
   '/management': typeof ManagementRoute
   '/mesoscale': typeof MesoscaleRoute
+  '/mobile': typeof MobileRoute
   '/outlook': typeof OutlookRoute
+  '/privacy': typeof PrivacyRoute
   '/reports': typeof ReportsRouteWithChildren
   '/satellite': typeof SatelliteRoute
   '/settings': typeof SettingsRoute
   '/snow': typeof SnowRoute
   '/spotter': typeof SpotterRoute
   '/storm-reports': typeof StormReportsRoute
+  '/terms': typeof TermsRoute
   '/thresholds': typeof ThresholdsRoute
   '/tools': typeof ToolsRoute
   '/tropical': typeof TropicalRoute
@@ -274,19 +302,23 @@ export interface FileRoutesByTo {
   '/chase': typeof ChaseRoute
   '/climate': typeof ClimateRoute
   '/command': typeof CommandRoute
+  '/delete-account': typeof DeleteAccountRoute
   '/dispatcher-health': typeof DispatcherHealthRoute
   '/forecasts': typeof ForecastsRoute
   '/lightning': typeof LightningRoute
   '/locations': typeof LocationsRoute
   '/management': typeof ManagementRoute
   '/mesoscale': typeof MesoscaleRoute
+  '/mobile': typeof MobileRoute
   '/outlook': typeof OutlookRoute
+  '/privacy': typeof PrivacyRoute
   '/reports': typeof ReportsRouteWithChildren
   '/satellite': typeof SatelliteRoute
   '/settings': typeof SettingsRoute
   '/snow': typeof SnowRoute
   '/spotter': typeof SpotterRoute
   '/storm-reports': typeof StormReportsRoute
+  '/terms': typeof TermsRoute
   '/thresholds': typeof ThresholdsRoute
   '/tools': typeof ToolsRoute
   '/tropical': typeof TropicalRoute
@@ -312,19 +344,23 @@ export interface FileRoutesById {
   '/chase': typeof ChaseRoute
   '/climate': typeof ClimateRoute
   '/command': typeof CommandRoute
+  '/delete-account': typeof DeleteAccountRoute
   '/dispatcher-health': typeof DispatcherHealthRoute
   '/forecasts': typeof ForecastsRoute
   '/lightning': typeof LightningRoute
   '/locations': typeof LocationsRoute
   '/management': typeof ManagementRoute
   '/mesoscale': typeof MesoscaleRoute
+  '/mobile': typeof MobileRoute
   '/outlook': typeof OutlookRoute
+  '/privacy': typeof PrivacyRoute
   '/reports': typeof ReportsRouteWithChildren
   '/satellite': typeof SatelliteRoute
   '/settings': typeof SettingsRoute
   '/snow': typeof SnowRoute
   '/spotter': typeof SpotterRoute
   '/storm-reports': typeof StormReportsRoute
+  '/terms': typeof TermsRoute
   '/thresholds': typeof ThresholdsRoute
   '/tools': typeof ToolsRoute
   '/tropical': typeof TropicalRoute
@@ -351,19 +387,23 @@ export interface FileRouteTypes {
     | '/chase'
     | '/climate'
     | '/command'
+    | '/delete-account'
     | '/dispatcher-health'
     | '/forecasts'
     | '/lightning'
     | '/locations'
     | '/management'
     | '/mesoscale'
+    | '/mobile'
     | '/outlook'
+    | '/privacy'
     | '/reports'
     | '/satellite'
     | '/settings'
     | '/snow'
     | '/spotter'
     | '/storm-reports'
+    | '/terms'
     | '/thresholds'
     | '/tools'
     | '/tropical'
@@ -388,19 +428,23 @@ export interface FileRouteTypes {
     | '/chase'
     | '/climate'
     | '/command'
+    | '/delete-account'
     | '/dispatcher-health'
     | '/forecasts'
     | '/lightning'
     | '/locations'
     | '/management'
     | '/mesoscale'
+    | '/mobile'
     | '/outlook'
+    | '/privacy'
     | '/reports'
     | '/satellite'
     | '/settings'
     | '/snow'
     | '/spotter'
     | '/storm-reports'
+    | '/terms'
     | '/thresholds'
     | '/tools'
     | '/tropical'
@@ -425,19 +469,23 @@ export interface FileRouteTypes {
     | '/chase'
     | '/climate'
     | '/command'
+    | '/delete-account'
     | '/dispatcher-health'
     | '/forecasts'
     | '/lightning'
     | '/locations'
     | '/management'
     | '/mesoscale'
+    | '/mobile'
     | '/outlook'
+    | '/privacy'
     | '/reports'
     | '/satellite'
     | '/settings'
     | '/snow'
     | '/spotter'
     | '/storm-reports'
+    | '/terms'
     | '/thresholds'
     | '/tools'
     | '/tropical'
@@ -463,19 +511,23 @@ export interface RootRouteChildren {
   ChaseRoute: typeof ChaseRoute
   ClimateRoute: typeof ClimateRoute
   CommandRoute: typeof CommandRoute
+  DeleteAccountRoute: typeof DeleteAccountRoute
   DispatcherHealthRoute: typeof DispatcherHealthRoute
   ForecastsRoute: typeof ForecastsRoute
   LightningRoute: typeof LightningRoute
   LocationsRoute: typeof LocationsRoute
   ManagementRoute: typeof ManagementRoute
   MesoscaleRoute: typeof MesoscaleRoute
+  MobileRoute: typeof MobileRoute
   OutlookRoute: typeof OutlookRoute
+  PrivacyRoute: typeof PrivacyRoute
   ReportsRoute: typeof ReportsRouteWithChildren
   SatelliteRoute: typeof SatelliteRoute
   SettingsRoute: typeof SettingsRoute
   SnowRoute: typeof SnowRoute
   SpotterRoute: typeof SpotterRoute
   StormReportsRoute: typeof StormReportsRoute
+  TermsRoute: typeof TermsRoute
   ThresholdsRoute: typeof ThresholdsRoute
   ToolsRoute: typeof ToolsRoute
   TropicalRoute: typeof TropicalRoute
@@ -567,6 +619,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CommandRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/delete-account': {
+      id: '/delete-account'
+      path: '/delete-account'
+      fullPath: '/delete-account'
+      preLoaderRoute: typeof DeleteAccountRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/dispatcher-health': {
       id: '/dispatcher-health'
       path: '/dispatcher-health'
@@ -609,11 +668,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MesoscaleRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/mobile': {
+      id: '/mobile'
+      path: '/mobile'
+      fullPath: '/mobile'
+      preLoaderRoute: typeof MobileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/outlook': {
       id: '/outlook'
       path: '/outlook'
       fullPath: '/outlook'
       preLoaderRoute: typeof OutlookRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/reports': {
@@ -656,6 +729,13 @@ declare module '@tanstack/react-router' {
       path: '/storm-reports'
       fullPath: '/storm-reports'
       preLoaderRoute: typeof StormReportsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/thresholds': {
@@ -761,19 +841,23 @@ const rootRouteChildren: RootRouteChildren = {
   ChaseRoute: ChaseRoute,
   ClimateRoute: ClimateRoute,
   CommandRoute: CommandRoute,
+  DeleteAccountRoute: DeleteAccountRoute,
   DispatcherHealthRoute: DispatcherHealthRoute,
   ForecastsRoute: ForecastsRoute,
   LightningRoute: LightningRoute,
   LocationsRoute: LocationsRoute,
   ManagementRoute: ManagementRoute,
   MesoscaleRoute: MesoscaleRoute,
+  MobileRoute: MobileRoute,
   OutlookRoute: OutlookRoute,
+  PrivacyRoute: PrivacyRoute,
   ReportsRoute: ReportsRouteWithChildren,
   SatelliteRoute: SatelliteRoute,
   SettingsRoute: SettingsRoute,
   SnowRoute: SnowRoute,
   SpotterRoute: SpotterRoute,
   StormReportsRoute: StormReportsRoute,
+  TermsRoute: TermsRoute,
   ThresholdsRoute: ThresholdsRoute,
   ToolsRoute: ToolsRoute,
   TropicalRoute: TropicalRoute,

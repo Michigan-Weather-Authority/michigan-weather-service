@@ -21,6 +21,7 @@ import { usePrefs } from "@/lib/prefs";
 import { sendTestPushToMe } from "@/lib/test-push.functions";
 import { getMyPreferences, updateMyPreferences } from "@/lib/preferences.functions";
 import { useIsAdmin } from "@/hooks/useIsAdmin";
+import { DeleteAccount } from "@/components/DeleteAccount";
 
 
 
@@ -304,6 +305,8 @@ function SettingsPage() {
           <Save className="h-4 w-4 mr-2" /> {save.isPending ? "Saving…" : "Save changes"}
         </Button>
       </div>
+      <DeleteAccount />
+      <div className="flex flex-wrap gap-4 text-xs text-accent"><Link to="/mobile">iOS & Android release</Link><Link to="/privacy">Privacy policy</Link><Link to="/terms">Terms of use</Link></div>
       <Toaster />
     </div>
   );
