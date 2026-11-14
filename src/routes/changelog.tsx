@@ -50,7 +50,25 @@ type Entry = {
 };
 
 const ENTRIES: Entry[] = [
-  {
+    {
+    version: "3.11.0",
+    date: "Nov 14, 2026",
+    status: "revamp",
+    title: "Project MIWeather: Sunsetting MWS for a Total Rebirth",
+    bullets: [
+      "🌙 Sunsetting Michigan Weather Service this November to make a major transition to MIWeather by Michigan Weather Authority.",
+      "New Identity: Brand, official logo, and refreshed color system under the Michigan Weather Authority umbrella.",
+      "Entire Look of Site: Same trusted data and NWS alerts, but an entirely redesigned, high-contrast, modern interface.",
+      "Hailey (AI Weather Bot): Conversational assistant powered by Google Gemini Flash — plain-English storm explanations, morning voice briefings, and zero credit quotas.",
+      "Multi-Role Personalization: Tailor your feed and alerts for Agriculture, Office Commuters, Boaters/Marine, Runners, Parents/Schools, and Storm Spotters.",
+      "Interactive Onboarding: Hailey walks new signups through a quick setup to dial in their location and role-specific needs.",
+      "Drag-and-Drop Dashboard: Reorder and toggle metric cards directly on the home screen to keep what matters most at the top.",
+      "New Michigan Diagnostics: Lake-Effect Snow Potential Index (LES-PI), Great Lakes wave heights, and pavement flash-freeze warnings.",
+      "Redone Status Page: Live operational health monitors for Open-Meteo, NWS Alert Feeds, Push Notification Dispatchers, and Radar feeds.",
+      "Current MWS operations, alerts, and forecasts remain 100% active and supported through the November transition.",
+    ],
+  },
+{
     version: "3.10.0",
     date: "Nov 14, 2026",
     status: "minor",
