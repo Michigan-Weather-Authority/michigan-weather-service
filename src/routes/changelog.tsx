@@ -66,7 +66,7 @@ const ENTRIES: Entry[] = [
       "New Michigan Diagnostics: Lake-Effect Snow Potential Index (LES-PI), Great Lakes wave heights, and pavement flash-freeze warnings.",
       "Redone Status Page: Live operational health monitors for Open-Meteo, NWS Alert Feeds, Push Notification Dispatchers, and Radar feeds.",
       "Current MWS operations, alerts, and forecasts remain 100% active and supported through the November transition.",
-      "🌐 New Web Address: As part of the November transition, our site URL is moving to miweatherapp.lovable.app (with automatic redirects in place so your existing bookmarks continue to work).",
+      "🌐 New Web Address: As part of the November transition, our site URL is moving to https://miweatherapp.lovable.app. Make sure you remember that before we switch links!",
     ],
   },
 {
