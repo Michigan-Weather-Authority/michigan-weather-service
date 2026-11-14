@@ -16,6 +16,8 @@ import { registerServiceWorker } from "../lib/register-sw";
 import { THEME_BOOT_SCRIPT, getTheme, getMode } from "../lib/theme";
 import { StatusBanner } from "../components/StatusBanner";
 import { MiWeatherBanner } from "../components/MiWeatherBanner";
+import { HaileyChat } from "../components/HaileyChat";
+
 
 
 function NotFoundComponent() {
@@ -144,7 +146,7 @@ function RootComponent() {
       <StatusBanner />
       <MiWeatherBanner />
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <Outlet /> <HaileyChat />
     </QueryClientProvider>
   );
 return (
