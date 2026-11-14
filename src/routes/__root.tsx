@@ -15,6 +15,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { registerServiceWorker } from "../lib/register-sw";
 import { THEME_BOOT_SCRIPT, getTheme, getMode } from "../lib/theme";
 import { StatusBanner } from "../components/StatusBanner";
+import { MiWeatherBanner } from "../components/MiWeatherBanner";
 
 
 function NotFoundComponent() {
@@ -138,7 +139,15 @@ function RootComponent() {
     }).catch(() => {});
   }, []);
 
-  return (
+    return (
+    <QueryClientProvider client={queryClient}>
+      <StatusBanner />
+      <MiWeatherBanner />
+      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+      <Outlet />
+    </QueryClientProvider>
+  );
+return (
     <QueryClientProvider client={queryClient}>
       <StatusBanner />
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
