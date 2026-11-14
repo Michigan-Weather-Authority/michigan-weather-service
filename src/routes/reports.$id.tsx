@@ -1,13 +1,13 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
-import { ArrowLeft, MapPin, Send, ThumbsUp, ThumbsDown } from "lucide-react";
+import { ArrowLeft, MapPin, Send, ThumbsUp, ThumbsDown, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { Toaster } from "@/components/ui/sonner";
-import { getReportThread, reactToReport, commentOnReport } from "@/lib/spotter-reports.functions";
+import { getReportThread, reactToReport, commentOnReport, deleteReport } from "@/lib/spotter-reports.functions";
 import { supabase } from "@/integrations/supabase/client";
 import { useEffect } from "react";
 
@@ -30,9 +30,18 @@ function ReportDetail() {
   const comment = useServerFn(commentOnReport);
 
   const [signedIn, setSignedIn] = useState(false);
+  const [canDelete, setCanDelete] = useState(false);
+  const nav = useNavigate();
+  const del = useServerFn(deleteReport);
   useEffect(() => {
     supabase.auth.getUser().then(({ data }) => setSignedIn(!!data.user));
-  }, []);
+    supabase.from("spotter_reports").select("id").eq("id", id).maybeSingle().then(({ data }) => setCanDelete(!!data));
+  }, [id]);
+  const delMut = useMutation({
+    mutationFn: () => del({ data: { report_id: id } }),
+    onSuccess: () => { toast.success("Report deleted"); nav({ to: "/reports" }); },
+    onError: (e: Error) => toast.error(e.message),
+  });
 
   const thread = useQuery({
     queryKey: ["report-thread", id],
@@ -63,6 +72,12 @@ function ReportDetail() {
           <div className="flex items-center gap-2 flex-wrap">
             <h1 className="font-display text-2xl tracking-tight capitalize">{r.kind.replace("_", " ")}</h1>
             {r.measurement && <span className="text-xs font-mono text-accent">{r.measurement}</span>}
+            {canDelete && (
+              <Button variant="outline" size="sm" className="ml-auto text-destructive" disabled={delMut.isPending}
+                onClick={() => { if (confirm("Delete this report? This can't be undone.")) delMut.mutate(); }}>
+                <Trash2 className="h-3.5 w-3.5 mr-1.5" /> Delete
+              </Button>
+            )}
           </div>
           <div className="text-xs text-muted-foreground flex items-center gap-1.5">
             <MapPin className="h-3 w-3" />

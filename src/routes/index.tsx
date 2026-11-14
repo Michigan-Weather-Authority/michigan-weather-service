@@ -37,6 +37,8 @@ import { IosInstallBanner } from "@/components/IosInstallBanner";
 import { InstallAppButton } from "@/components/InstallAppButton";
 import mwaLogo from "@/assets/mwa-logo-noir.png.asset.json";
 import { WeatherBriefing } from "@/components/WeatherBriefing";
+import { MobileMenu } from "@/components/MobileMenu";
+import { MoonPhase } from "@/components/MoonPhase";
 
 
 export const Route = createFileRoute("/")({
@@ -333,7 +335,7 @@ function HomePage() {
   return (
     <div className="min-h-screen weather-home">
       {/* Header */}
-      <header className="weather-header border-b border-border/60 backdrop-blur-xl bg-background/90 sticky top-0 z-50">
+      <header className="weather-header border-b border-border/60 backdrop-blur-xl bg-background/90 sticky top-0 z-50 pt-[env(safe-area-inset-top,0px)]">
         <div className="max-w-7xl mx-auto px-3 sm:px-4 py-2.5 grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3">
           <Link to="/" className="flex min-w-0 items-center gap-3 min-h-11 py-1">
             <div className="relative h-11 w-11 shrink-0 grid place-items-center overflow-hidden">
@@ -374,6 +376,7 @@ function HomePage() {
             )}
             <InstallAppButton />
             <NotifyToggle />
+            <MobileMenu />
 
             {user ? (
               <Link to="/settings" className="inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-accent hover:opacity-80 min-h-11 min-w-11 px-2 justify-center" aria-label="Account">
@@ -490,6 +493,7 @@ function HomePage() {
               <ExtraStatsPanel data={extra.data} loading={extra.isLoading} />
             </div>
             <WeatherBriefing city={city.name} periods={weather.data.hourly.properties.periods} alertCount={nwsAlerts.isSuccess ? cityAlerts.length : null} />
+            <MoonPhase />
             </div>
 
             {/* Radar */}

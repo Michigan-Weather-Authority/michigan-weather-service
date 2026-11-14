@@ -41,7 +41,7 @@ export function StatusBanner() {
   if (visible.length === 0) return null;
 
   return (
-    <div className="w-full space-y-1.5 px-3 pt-2">
+    <div className="status-banner w-full space-y-1.5 px-3 pt-2">
       {visible.slice(0, 3).map((r) => {
         const tone =
           r.severity === "critical"

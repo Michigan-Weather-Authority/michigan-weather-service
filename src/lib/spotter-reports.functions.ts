@@ -166,3 +166,19 @@ export const leaderboardThisMonth = createServerFn({ method: "GET" }).handler(as
     .slice(0, 25);
 });
 
+
+export const deleteReport = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator((data: unknown) => z.object({ report_id: z.string().uuid() }).parse(data))
+  .handler(async ({ data, context }) => {
+    // RLS only lets the owner or an admin see the row, so this is the permission check.
+    const { data: own } = await context.supabase
+      .from("spotter_reports").select("id").eq("id", data.report_id).maybeSingle();
+    if (!own) throw new Error("You can only delete your own reports.");
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    await supabaseAdmin.from("report_comments").delete().eq("report_id", data.report_id);
+    await supabaseAdmin.from("report_reactions").delete().eq("report_id", data.report_id);
+    const { error } = await supabaseAdmin.from("spotter_reports").delete().eq("id", data.report_id);
+    if (error) throw new Error(error.message);
+    return { ok: true };
+  });

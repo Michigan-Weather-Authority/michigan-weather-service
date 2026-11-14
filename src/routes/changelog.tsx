@@ -51,6 +51,19 @@ type Entry = {
 
 const ENTRIES: Entry[] = [
   {
+    version: "3.10.0",
+    date: "Nov 14, 2026",
+    status: "minor",
+    title: "Mobile menu + moon phase",
+    bullets: [
+      "New menu button on phones opens every page: alerts, forecasts, satellite, tools, spotter reports, settings and more.",
+      "Header no longer sits under the iPhone notch when MWS is installed as an app.",
+      "Site status banners now show beside the sidebar instead of hiding behind it.",
+      "Spotter reports can now be deleted by the person who sent them, and by the admin.",
+      "New tonight's moon card shows the moon phase, how much is lit, and days until full moon.",
+    ],
+  },
+  {
     version: "3.9.0",
     date: "Nov 12, 2026",
     status: "minor",
