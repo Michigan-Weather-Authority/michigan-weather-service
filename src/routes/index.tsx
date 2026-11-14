@@ -1507,8 +1507,16 @@ function ToolCard({
 function Greeting() {
   const [txt, setTxt] = useState("");
   useEffect(() => {
-    const h = new Date().getHours();
-    setTxt(h < 5 ? "· 🌙 Night owl mode" : h < 12 ? "· ☀️ Good morning" : h < 17 ? "· 🌤️ Good afternoon" : h < 21 ? "· 🌇 Good evening" : "· 🌙 Good night");
+    const update = () => {
+      const d = new Date();
+      const h = d.getHours();
+      const part = h < 5 ? "· 🌙 Night owl mode" : h < 12 ? "· ☀️ Good morning" : h < 17 ? "· 🌤️ Good afternoon" : h < 21 ? "· 🌇 Good evening" : "· 🌙 Good night";
+      const time = d.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
+      setTxt(`${part} · ${time}`);
+    };
+    update();
+    const id = setInterval(update, 30000);
+    return () => clearInterval(id);
   }, []);
   return <span suppressHydrationWarning>{txt}</span>;
 }
