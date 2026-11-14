@@ -17,6 +17,7 @@ import { THEME_BOOT_SCRIPT, getTheme, getMode } from "../lib/theme";
 import { StatusBanner } from "../components/StatusBanner";
 import { MiWeatherBanner } from "../components/MiWeatherBanner";
 import { HaileyChat } from "../components/HaileyChat";
+import { HaileyOnboarding } from "@/components/HaileyOnboarding";
 
 
 
@@ -146,7 +147,9 @@ function RootComponent() {
       <StatusBanner />
       <MiWeatherBanner />
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet /> <HaileyChat />
+      <HaileyChat />
+      <HaileyOnboarding />
+      <Outlet />
     </QueryClientProvider>
   );
 return (
