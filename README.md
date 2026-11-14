@@ -3,6 +3,12 @@
 Live weather, alerts, and storm tools for every city in Michigan. Part of **Michigan Weather Authority**.
 
 **Live app**: https://michigan-weather-service.lovable.app
+# Michigan Weather Service
+
+> ### 📑 Navigation
+> **[ 📖 Overview / README ]** &nbsp;|&nbsp; **[ 🌙 Project MIWeather (November Revamp) ](./project_miweather.md)** &nbsp;|&nbsp; **[ 📜 Live Changelog ](https://michigan-weather-service.lovable.app/changelog)**
+
+---
 
 ## What it does
 
