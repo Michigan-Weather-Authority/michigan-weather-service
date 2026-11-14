@@ -39,6 +39,8 @@ import mwaLogo from "@/assets/mwa-logo-noir.png.asset.json";
 import { WeatherBriefing } from "@/components/WeatherBriefing";
 import { MobileMenu } from "@/components/MobileMenu";
 import { MoonPhase } from "@/components/MoonPhase";
+import { RoleDashboard } from "@/components/RoleDashboard";
+
 
 
 export const Route = createFileRoute("/")({
@@ -492,7 +494,15 @@ function HomePage() {
 
               <ExtraStatsPanel data={extra.data} loading={extra.isLoading} />
             </div>
-            <WeatherBriefing city={city.name} periods={weather.data.hourly.properties.periods} alertCount={nwsAlerts.isSuccess ? cityAlerts.length : null} />
+            <RoleDashboard
+  currentTemp={weather.data.current.temperature.value ?? 60}
+  windSpeed={parseInt(current.windSpeed) || 0}
+  precipProb={current.probabilityOfPrecipitation?.value}
+  hourlyPeriods={weather.data.hourly.properties.periods}
+  cityName={city.name}
+/>
+
+              <WeatherBriefing city={city.name} periods={weather.data.hourly.properties.periods} alertCount={nwsAlerts.isSuccess ? cityAlerts.length : null} />
             <MoonPhase />
             </div>
 
