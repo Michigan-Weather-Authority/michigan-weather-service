@@ -30,6 +30,20 @@ export const EAS_ALERT_TYPES: EasAlertType[] = [
   { id: "administrative-message", name: "Administrative Message", category: "statement", severity: "minor", code: "ADR" },
   { id: "national-periodic-test", name: "National Periodic Test", category: "statement", severity: "minor", code: "NPT" },
 ];
+export const MIWEATHER_OUTLOOK_TYPE: EasAlertType = {
+  id: "miweather-outlook",
+  name: "MIWeather Severe Weather Outlook",
+  category: "statement",
+  severity: "minor",
+  code: "OTL",
+};
+
+// And in getEasType:
+export function getEasType(id: string): EasAlertType | undefined {
+  if (id === MWA_NETWORK_TYPE.id) return MWA_NETWORK_TYPE;
+  if (id === MIWEATHER_OUTLOOK_TYPE.id) return MIWEATHER_OUTLOOK_TYPE;
+  return EAS_ALERT_TYPES.find((a) => a.id === id);
+}
 
 export const MWA_NETWORK_TYPE: EasAlertType = {
   id: "mwa-network-notification",
