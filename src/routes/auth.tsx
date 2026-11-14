@@ -51,6 +51,7 @@ function AuthPage() {
         if (!sess.session) {
           const { error: e2 } = await supabase.auth.signInWithPassword({ email, password });
           if (e2) throw e2;
+        sessionStorage.setItem("miweather_just_signed_up", "true");
         }
         toast.success("Account created — you're signed in");
         nav({ to: "/settings" });
