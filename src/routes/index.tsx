@@ -495,12 +495,12 @@ function HomePage() {
               <ExtraStatsPanel data={extra.data} loading={extra.isLoading} />
             </div>
             <RoleDashboard
-  currentTemp={weather.data.current.temperature.value ?? 60}
-  windSpeed={parseInt(current.windSpeed) || 0}
-  precipProb={current.probabilityOfPrecipitation?.value}
-  hourlyPeriods={weather.data.hourly.properties.periods}
-  cityName={city.name}
-/>
+           currentTemp={weather.data.current.temperature.value ?? 60}
+           windSpeed={parseInt(current.windSpeed) || 0}
+           precipProb={current.probabilityOfPrecipitation?.value}
+           hourlyPeriods={weather.data.hourly.properties.periods}
+           cityName={city.name}
+           />
 
               <WeatherBriefing city={city.name} periods={weather.data.hourly.properties.periods} alertCount={nwsAlerts.isSuccess ? cityAlerts.length : null} />
             <MoonPhase />
