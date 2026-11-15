@@ -26,7 +26,7 @@ import { DeleteAccount } from "@/components/DeleteAccount";
 
 
 export const Route = createFileRoute("/settings")({
-  head: () => ({ meta: [{ name: "description", content: "Settings tools and preferences for Michigan Weather Service." }, { property: "og:title", content: "Settings \u2014 Michigan Weather Service" }, { property: "og:description", content: "Settings tools and preferences for Michigan Weather Service." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" }, { title: "Settings \u2014 Michigan Weather Service" }, { name: "robots", content: "noindex" }] }),
+  head: () => ({ meta: [{ name: "description", content: "Settings tools and preferences for MIWeather." }, { property: "og:title", content: "Settings \u2014 MIWeather" }, { property: "og:description", content: "Settings tools and preferences for MIWeather." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" }, { title: "Settings \u2014 MIWeather" }, { name: "robots", content: "noindex" }] }),
   component: SettingsPage,
 });
 
@@ -109,7 +109,7 @@ function SettingsPage() {
     <div className="min-h-screen max-w-3xl mx-auto px-4 py-6 space-y-6">
       <div className="flex items-center justify-between gap-2">
         <Link to="/" className="text-xs text-muted-foreground hover:text-accent inline-flex items-center gap-1.5 min-h-11 px-2">
-          <ArrowLeft className="h-4 w-4" /> Back to MWA
+          <ArrowLeft className="h-4 w-4" /> Back to MIWeather
         </Link>
         <Button variant="ghost" size="sm" onClick={signOut} className="min-h-11">
           <LogOut className="h-4 w-4 mr-1.5" /> Sign out
@@ -289,7 +289,7 @@ function SettingsPage() {
             ))}
           </RadioGroup>
           <p className="text-[10px] text-muted-foreground">
-            Notifications fire while MWA is open in any tab on this device. Make sure you've turned them on in the header.
+            Notifications fire while MIWeather is open in any tab on this device. Make sure you've turned them on in the header.
           </p>
         </div>
       </section>
@@ -329,7 +329,7 @@ function TestPushButton() {
     if (perm !== "granted") { toast.error("Notifications blocked"); return; }
     try {
       const reg = "serviceWorker" in navigator ? await navigator.serviceWorker.getRegistration() : null;
-      const t = "MWA local test";
+      const t = "MIWeather local test";
       const body = "Local notification (no server roundtrip).";
       if (reg) reg.showNotification(t, { body, tag: "mwa-local-test" });
       else new Notification(t, { body, tag: "mwa-local-test" });
@@ -571,7 +571,7 @@ function AppearanceSection() {
           })}
         </div>
         <p className="text-[10px] text-muted-foreground">
-          Saved to this device. Applies instantly across MWA.
+          Saved to this device. Applies instantly across MIWeather.
         </p>
       </div>
     </section>
@@ -762,7 +762,7 @@ function PreferencesSection() {
       </div>
 
       <p className="text-[10px] text-muted-foreground">
-        Preferences are saved to this device only. They apply instantly across MWA.
+        Preferences are saved to this device only. They apply instantly across MIWeather.
       </p>
     </section>
   );

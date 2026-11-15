@@ -35,8 +35,8 @@ import { isCommandUnlocked, lockCommand } from "@/lib/command-gate.functions";
 
 export const Route = createFileRoute("/command")({
   head: () => ({
-    meta: [{ name: "description", content: "Michigan Weather Service Command tools and preferences for Michigan Weather Service." }, { property: "og:title", content: "Michigan Weather Service Command" }, { property: "og:description", content: "Michigan Weather Service Command tools and preferences for Michigan Weather Service." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" }, 
-      { title: "Michigan Weather Service Command" },
+    meta: [{ name: "description", content: "MIWeather Command tools and preferences for MIWeather." }, { property: "og:title", content: "MIWeather Command" }, { property: "og:description", content: "MIWeather Command tools and preferences for MIWeather." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" }, 
+      { title: "MIWeather Command" },
       { name: "robots", content: "noindex,nofollow" },
     ],
   }),
@@ -104,7 +104,7 @@ const QUICK_PRESETS: QuickPreset[] = [
     kind: "eas",
     typeId: "rmt",
     headline: "This is a Required Monthly Test of the Emergency Alert System",
-    description: "This is a test of the MWA emergency notification system. This is only a test. No action is required.",
+    description: "This is a test of the MIWeather emergency notification system. This is only a test. No action is required.",
     durationMinutes: 5,
   },
   {
@@ -122,7 +122,7 @@ const QUICK_PRESETS: QuickPreset[] = [
     label: "Network Maintenance",
     kind: "mwa-network",
     headline: "Scheduled maintenance window",
-    description: "MWA will perform scheduled maintenance. Brief interruptions to live data feeds and the alert ticker may occur.",
+    description: "MIWeather will perform scheduled maintenance. Brief interruptions to live data feeds and the alert ticker may occur.",
     durationMinutes: 60,
   },
 ];
@@ -216,7 +216,7 @@ function CommandConsole({ code, onLock }: { code: string; onLock?: () => void })
   const [startsImmediately, setStartsImmediately] = useState(true);
   const [startsAtLocal, setStartsAtLocal] = useState("");
   const [endsAtLocal, setEndsAtLocal] = useState("");
-  const [issuer, setIssuer] = useState("MWA Operations");
+  const [issuer, setIssuer] = useState("MIWeather Operations");
   const [submitting, setSubmitting] = useState(false);
   const [testMode, setTestMode] = useState(false);
   const [soundOn, setSoundOn] = useState(true);
@@ -310,7 +310,7 @@ function CommandConsole({ code, onLock }: { code: string; onLock?: () => void })
   const previewName = useMemo(() => {
     if (kind === "weather") return mode === "template" ? selectedTemplate?.name ?? "Alert" : customName || "Custom Alert";
     if (kind === "eas") return easMode === "template" ? selectedEas?.name ?? "EAS Alert" : customName || "Custom EAS";
-    return customName || "MWA Network Notification";
+    return customName || "MIWeather Network Notification";
   }, [kind, mode, easMode, selectedTemplate, selectedEas, customName]);
 
   const previewCategory: AlertCategory = useMemo(() => {
@@ -397,7 +397,7 @@ function CommandConsole({ code, onLock }: { code: string; onLock?: () => void })
             category: s.customCategory, severity: s.customSeverity };
     } else {
       payload = { kind: s.kind, code, typeId: MWA_NETWORK_TYPE.id,
-        customName: s.customName.trim() || "MWA Network Notification",
+        customName: s.customName.trim() || "MIWeather Network Notification",
         category: s.customCategory, severity: s.customSeverity };
     }
     await issueFn({
@@ -439,7 +439,7 @@ function CommandConsole({ code, onLock }: { code: string; onLock?: () => void })
               category: customCategory, severity: customSeverity };
       } else {
         payload = { kind, code, typeId: MWA_NETWORK_TYPE.id,
-          customName: customName.trim() || "MWA Network Notification",
+          customName: customName.trim() || "MIWeather Network Notification",
           category: customCategory, severity: customSeverity };
       }
 
@@ -577,7 +577,7 @@ function CommandConsole({ code, onLock }: { code: string; onLock?: () => void })
               <p className="text-[10px] font-mono uppercase tracking-[0.3em] text-severe">
                 Live · Broadcast Channel
               </p>
-              <h1 className="font-display text-lg tracking-wider">MWA Operations Console</h1>
+              <h1 className="font-display text-lg tracking-wider">MIWeather Operations Console</h1>
             </div>
           </div>
           <div className="hidden md:flex items-center gap-2 text-[10px] font-mono uppercase tracking-wider text-muted-foreground">
@@ -825,7 +825,7 @@ function CommandConsole({ code, onLock }: { code: string; onLock?: () => void })
                 cat={customCategory} onCat={setCustomCategory}
                 sev={customSeverity} onSev={setCustomSeverity}
                 namePlaceholder="e.g. Scheduled maintenance window"
-                hint="Defaults to 'MWA Network Notification' if left blank."
+                hint="Defaults to 'MIWeather Network Notification' if left blank."
               />
             )}
           </section>

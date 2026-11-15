@@ -47,13 +47,9 @@ export function getEasType(id: string): EasAlertType | undefined {
 
 export const MWA_NETWORK_TYPE: EasAlertType = {
   id: "mwa-network-notification",
-  name: "MWA Network Notification",
+  name: "MIWeather Network Notification",
   category: "statement",
   severity: "minor",
   code: "MWA",
 };
 
-export function getEasType(id: string): EasAlertType | undefined {
-  if (id === MWA_NETWORK_TYPE.id) return MWA_NETWORK_TYPE;
-  return EAS_ALERT_TYPES.find((a) => a.id === id);
-}

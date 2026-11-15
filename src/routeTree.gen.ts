@@ -23,6 +23,7 @@ import { Route as CommandRouteImport } from './routes/command'
 import { Route as DeleteAccountRouteImport } from './routes/delete-account'
 import { Route as DispatcherHealthRouteImport } from './routes/dispatcher-health'
 import { Route as ForecastsRouteImport } from './routes/forecasts'
+import { Route as GreatLakesRouteImport } from './routes/great-lakes'
 import { Route as LightningRouteImport } from './routes/lightning'
 import { Route as LocationsRouteImport } from './routes/locations'
 import { Route as ManagementRouteImport } from './routes/management'
@@ -117,6 +118,11 @@ const DispatcherHealthRoute = DispatcherHealthRouteImport.update({
 const ForecastsRoute = ForecastsRouteImport.update({
   id: '/forecasts',
   path: '/forecasts',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GreatLakesRoute = GreatLakesRouteImport.update({
+  id: '/great-lakes',
+  path: '/great-lakes',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LightningRoute = LightningRouteImport.update({
@@ -264,6 +270,7 @@ export interface FileRoutesByFullPath {
   '/delete-account': typeof DeleteAccountRoute
   '/dispatcher-health': typeof DispatcherHealthRoute
   '/forecasts': typeof ForecastsRoute
+  '/great-lakes': typeof GreatLakesRoute
   '/lightning': typeof LightningRoute
   '/locations': typeof LocationsRoute
   '/management': typeof ManagementRoute
@@ -305,6 +312,7 @@ export interface FileRoutesByTo {
   '/delete-account': typeof DeleteAccountRoute
   '/dispatcher-health': typeof DispatcherHealthRoute
   '/forecasts': typeof ForecastsRoute
+  '/great-lakes': typeof GreatLakesRoute
   '/lightning': typeof LightningRoute
   '/locations': typeof LocationsRoute
   '/management': typeof ManagementRoute
@@ -347,6 +355,7 @@ export interface FileRoutesById {
   '/delete-account': typeof DeleteAccountRoute
   '/dispatcher-health': typeof DispatcherHealthRoute
   '/forecasts': typeof ForecastsRoute
+  '/great-lakes': typeof GreatLakesRoute
   '/lightning': typeof LightningRoute
   '/locations': typeof LocationsRoute
   '/management': typeof ManagementRoute
@@ -390,6 +399,7 @@ export interface FileRouteTypes {
     | '/delete-account'
     | '/dispatcher-health'
     | '/forecasts'
+    | '/great-lakes'
     | '/lightning'
     | '/locations'
     | '/management'
@@ -431,6 +441,7 @@ export interface FileRouteTypes {
     | '/delete-account'
     | '/dispatcher-health'
     | '/forecasts'
+    | '/great-lakes'
     | '/lightning'
     | '/locations'
     | '/management'
@@ -472,6 +483,7 @@ export interface FileRouteTypes {
     | '/delete-account'
     | '/dispatcher-health'
     | '/forecasts'
+    | '/great-lakes'
     | '/lightning'
     | '/locations'
     | '/management'
@@ -514,6 +526,7 @@ export interface RootRouteChildren {
   DeleteAccountRoute: typeof DeleteAccountRoute
   DispatcherHealthRoute: typeof DispatcherHealthRoute
   ForecastsRoute: typeof ForecastsRoute
+  GreatLakesRoute: typeof GreatLakesRoute
   LightningRoute: typeof LightningRoute
   LocationsRoute: typeof LocationsRoute
   ManagementRoute: typeof ManagementRoute
@@ -638,6 +651,13 @@ declare module '@tanstack/react-router' {
       path: '/forecasts'
       fullPath: '/forecasts'
       preLoaderRoute: typeof ForecastsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/great-lakes': {
+      id: '/great-lakes'
+      path: '/great-lakes'
+      fullPath: '/great-lakes'
+      preLoaderRoute: typeof GreatLakesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/lightning': {
@@ -844,6 +864,7 @@ const rootRouteChildren: RootRouteChildren = {
   DeleteAccountRoute: DeleteAccountRoute,
   DispatcherHealthRoute: DispatcherHealthRoute,
   ForecastsRoute: ForecastsRoute,
+  GreatLakesRoute: GreatLakesRoute,
   LightningRoute: LightningRoute,
   LocationsRoute: LocationsRoute,
   ManagementRoute: ManagementRoute,

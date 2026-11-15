@@ -15,7 +15,6 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { registerServiceWorker } from "../lib/register-sw";
 import { THEME_BOOT_SCRIPT, getTheme, getMode } from "../lib/theme";
 import { StatusBanner } from "../components/StatusBanner";
-import { MiWeatherBanner } from "../components/MiWeatherBanner";
 import { HaileyChat } from "../components/HaileyChat";
 import { HaileyOnboarding } from "@/components/HaileyOnboarding";
 
@@ -86,18 +85,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" },
-      { title: "Michigan Weather Service" },
+      { title: "MIWeather by Michigan Weather Authority" },
       { name: "description", content: "Live weather, forecasts, and alerts for every city in Michigan." },
-      { name: "theme-color", content: "#167B59" },
+      { name: "theme-color", content: "#137E8D" },
       { name: "apple-mobile-web-app-capable", content: "yes" },
       { name: "mobile-web-app-capable", content: "yes" },
       { name: "apple-mobile-web-app-status-bar-style", content: "black-translucent" },
-      { name: "apple-mobile-web-app-title", content: "MWS" },
-      { property: "og:title", content: "Michigan Weather Service" },
+      { name: "apple-mobile-web-app-title", content: "MIWeather" },
+      { property: "og:title", content: "MIWeather by Michigan Weather Authority" },
       { property: "og:description", content: "Live weather, forecasts, and alerts for every city in Michigan." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
-      { name: "twitter:title", content: "Michigan Weather Service" },
+      { name: "twitter:title", content: "MIWeather by Michigan Weather Authority" },
       { name: "twitter:description", content: "Live weather, forecasts, and alerts for every city in Michigan." },
     ],
     links: [
@@ -145,17 +144,9 @@ function RootComponent() {
     return (
     <QueryClientProvider client={queryClient}>
       <StatusBanner />
-      <MiWeatherBanner />
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <HaileyChat />
       <HaileyOnboarding />
-      <Outlet />
-    </QueryClientProvider>
-  );
-return (
-    <QueryClientProvider client={queryClient}>
-      <StatusBanner />
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
     </QueryClientProvider>
   );

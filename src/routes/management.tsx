@@ -24,6 +24,11 @@ export const Route = createFileRoute("/management")({
   head: () => ({
     meta: [
       { title: "Management · MIWeather" },
+      { name: "description", content: "Authorized MIWeather management and service announcements." },
+      { property: "og:title", content: "Management · MIWeather" },
+      { property: "og:description", content: "Authorized MIWeather management and service announcements." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
       { name: "robots", content: "noindex, nofollow" },
     ],
   }),
@@ -58,7 +63,7 @@ function ManagementPage() {
     return (
       <div className="min-h-screen grid place-items-center bg-background">
         <div className="flex items-center gap-2 text-sm text-muted-foreground">
-          <Loader2 className="h-4 w-4 animate-spin text-violet-400" /> Verifying MIWeather management credentials...
+          <Loader2 className="h-4 w-4 animate-spin text-accent" /> Verifying MIWeather management credentials...
         </div>
       </div>
     );
@@ -112,7 +117,7 @@ function ManagementPage() {
             </Button>
             <div>
               <h1 className="text-xl font-bold flex items-center gap-2">
-                <ShieldCheck className="h-5 w-5 text-violet-400" /> MIWeather Management Console
+                <ShieldCheck className="h-5 w-5 text-accent" /> MIWeather Management Console
               </h1>
               <p className="text-xs text-muted-foreground">Logged in as {auth.email} ({auth.role})</p>
             </div>
@@ -125,7 +130,7 @@ function ManagementPage() {
         {/* Post Status Update */}
         <div className="rounded-xl border border-border bg-card p-6 space-y-4">
           <h2 className="text-sm font-bold flex items-center gap-2">
-            <Plus className="h-4 w-4 text-violet-400" /> Issue Network Broadcast Banner
+            <Plus className="h-4 w-4 text-accent" /> Issue Network Broadcast Banner
           </h2>
           <form onSubmit={handleCreate} className="space-y-3">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -149,7 +154,7 @@ function ManagementPage() {
               <Label className="text-xs">Details (optional)</Label>
               <Textarea value={body} onChange={(e) => setBody(e.target.value)} placeholder="Full advisory details..." className="mt-1" rows={2} />
             </div>
-            <Button type="submit" disabled={submitting} className="w-full bg-violet-600 hover:bg-violet-500">
+            <Button type="submit" disabled={submitting} className="w-full bg-primary hover:bg-primary/90">
               {submitting ? "Broadcasting..." : "Publish Live Banner"}
             </Button>
           </form>

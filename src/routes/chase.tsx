@@ -7,9 +7,9 @@ import { Badge } from "@/components/ui/badge";
 export const Route = createFileRoute("/chase")({
   head: () => ({
     meta: [{ property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" }, 
-      { title: "Storm Chase Mode \u2014 Michigan Weather Service" },
+      { title: "Storm Chase Mode \u2014 MIWeather" },
       { name: "description", content: "Full-screen storm chase dashboard with radar, lightning, and live alerts for Michigan." },
-      { property: "og:title", content: "MWA Storm Chase Mode" },
+      { property: "og:title", content: "MIWeather Storm Chase Mode" },
       { property: "og:description", content: "Auto-refreshing radar, lightning, and warnings dashboard for storm chasers." },
     ],
   }),

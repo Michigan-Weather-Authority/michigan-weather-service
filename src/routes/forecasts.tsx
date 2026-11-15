@@ -12,8 +12,8 @@ import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/forecasts")({
   head: () => ({
-    meta: [{ property: "og:title", content: "NWS Text Products \u2014 Michigan Weather Service" }, { property: "og:description", content: "Read the latest NWS forecast discussions, hazardous weather outlooks, and other text products for Michigan." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" }, 
-      { title: "NWS Text Products \u2014 Michigan Weather Service" },
+    meta: [{ property: "og:title", content: "NWS Text Products \u2014 MIWeather" }, { property: "og:description", content: "Read the latest NWS forecast discussions, hazardous weather outlooks, and other text products for Michigan." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" }, 
+      { title: "NWS Text Products \u2014 MIWeather" },
       { name: "description", content: "Read the latest NWS forecast discussions, hazardous weather outlooks, and other text products for Michigan." },
     ],
   }),

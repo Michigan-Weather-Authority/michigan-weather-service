@@ -5,7 +5,7 @@ import { ArrowLeft, Activity } from "lucide-react";
 import { getAuditLog } from "@/lib/admin-analytics.functions";
 
 export const Route = createFileRoute("/admin-audit")({
-  head: () => ({ meta: [{ name: "description", content: "Admin \u00b7 Audit log tools and preferences for Michigan Weather Service." }, { property: "og:title", content: "Admin \u00b7 Audit log \u2014 Michigan Weather Service" }, { property: "og:description", content: "Admin \u00b7 Audit log tools and preferences for Michigan Weather Service." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" }, { title: "Admin \u00b7 Audit log \u2014 Michigan Weather Service" }, { name: "robots", content: "noindex" }] }),
+  head: () => ({ meta: [{ name: "description", content: "Admin \u00b7 Audit log tools and preferences for MIWeather." }, { property: "og:title", content: "Admin \u00b7 Audit log \u2014 MIWeather" }, { property: "og:description", content: "Admin \u00b7 Audit log tools and preferences for MIWeather." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" }, { title: "Admin \u00b7 Audit log \u2014 MIWeather" }, { name: "robots", content: "noindex" }] }),
   component: AdminAudit,
 });
 

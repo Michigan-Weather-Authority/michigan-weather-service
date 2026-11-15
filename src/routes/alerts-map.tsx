@@ -9,7 +9,7 @@ import { useSharedAlerts } from "@/lib/alerts-store";
 export const Route = createFileRoute("/alerts-map")({
   head: () => ({
     meta: [{ property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" }, 
-      { title: "Active Alerts Map \u2014 Michigan Weather Service" },
+      { title: "Active Alerts Map \u2014 MIWeather" },
       { name: "description", content: "Live Michigan county map shaded by every active NWS watch, warning, and advisory." },
       { property: "og:title", content: "Michigan Active Alerts Map" },
       { property: "og:description", content: "Statewide map shaded by every active NWS alert." },

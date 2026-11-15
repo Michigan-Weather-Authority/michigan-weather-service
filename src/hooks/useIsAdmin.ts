@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useServerFn } from "@tanstack/react-start";
-import { getMyRoles } from "@/lib/role.functions";
+import { getManagementAccess } from "@/lib/role.functions";
 
 export function useIsAdmin() {
   const [isAdmin, setIsAdmin] = useState(false);
   const [loaded, setLoaded] = useState(false);
-  const fetchRoles = useServerFn(getMyRoles);
+  const fetchRoles = useServerFn(getManagementAccess);
   useEffect(() => {
     let cancelled = false;
     (async () => {
@@ -14,7 +14,7 @@ export function useIsAdmin() {
       if (!data.user) { setLoaded(true); return; }
       try {
         const res = await fetchRoles();
-        if (!cancelled) setIsAdmin(res.isAdmin);
+        if (!cancelled) setIsAdmin(res.authorized);
       } catch { /* silent */ }
       if (!cancelled) setLoaded(true);
     })();

@@ -1,10 +1,11 @@
-export type ThemeName = "lake" | "sunset" | "prism" | "noir" | "aurora" | "og" | "minimal";
+export type ThemeName = "miweather" | "lake" | "sunset" | "prism" | "noir" | "aurora" | "og" | "minimal";
 export type ThemeMode = "dark" | "light";
 
 const THEME_KEY = "mwa-theme";
 const MODE_KEY = "mwa-mode";
 
 export const THEMES: { id: ThemeName; label: string; desc: string }[] = [
+  { id: "miweather", label: "MIWeather", desc: "Lake teal, coral signals, and crisp graphite" },
   { id: "sunset", label: "Sunset", desc: "Warm amber + dusk plum — Space Grotesk + Fira Sans" },
   { id: "lake", label: "Lakefront", desc: "Crisp emerald + graphite — Space Grotesk + Fira Sans" },
   { id: "prism", label: "Prism", desc: "Modern iridescent — Space Grotesk + Inter" },
@@ -19,12 +20,14 @@ export const MODES: { id: ThemeMode; label: string }[] = [
   { id: "light", label: "Light" },
 ];
 
-const VALID: ThemeName[] = ["lake", "sunset", "prism", "noir", "aurora", "og", "minimal"];
+const VALID: ThemeName[] = ["miweather", "lake", "sunset", "prism", "noir", "aurora", "og", "minimal"];
 
 export function getTheme(): ThemeName {
-  if (typeof window === "undefined") return "lake";
-  const v = window.localStorage.getItem(THEME_KEY) as ThemeName | null;
-  return v && VALID.includes(v) ? v : "lake";
+  if (typeof window === "undefined") return "miweather";
+  try {
+    const v = window.localStorage.getItem(THEME_KEY) as ThemeName | null;
+    return v && VALID.includes(v) ? v : "miweather";
+  } catch { return "miweather"; }
 }
 
 export function getMode(): ThemeMode {
@@ -49,18 +52,18 @@ export function applyTheme(theme: ThemeName, mode: ThemeMode) {
 // Inline script string injected pre-paint to avoid FOUC.
 export const THEME_BOOT_SCRIPT = `
 (function(){try{
-  var t=localStorage.getItem('${THEME_KEY}')||'lake';
-  if(!localStorage.getItem('mws-lakefront-introduced')){
-    if(t==='prism')t='lake';
+  var t=localStorage.getItem('${THEME_KEY}')||'miweather';
+  if(!localStorage.getItem('miweather-brand-introduced')){
+    t='miweather';
     localStorage.setItem('${THEME_KEY}',t);
-    localStorage.setItem('mws-lakefront-introduced','1');
+    localStorage.setItem('miweather-brand-introduced','1');
   }
-  if(['lake','sunset','prism','noir','aurora','og','minimal'].indexOf(t)===-1)t='lake';
+  if(['miweather','lake','sunset','prism','noir','aurora','og','minimal'].indexOf(t)===-1)t='miweather';
   var m=localStorage.getItem('${MODE_KEY}')||'dark';
   document.documentElement.setAttribute('data-theme',t);
   document.documentElement.setAttribute('data-mode',m);
 }catch(e){
-  document.documentElement.setAttribute('data-theme','lake');
+  document.documentElement.setAttribute('data-theme','miweather');
   document.documentElement.setAttribute('data-mode','dark');
 }})();
 `;

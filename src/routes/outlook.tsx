@@ -6,7 +6,7 @@ import { ToolShell } from "@/routes/alerts-map";
 export const Route = createFileRoute("/outlook")({
   head: () => ({
     meta: [{ property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" }, 
-      { title: "SPC Severe Outlook \u2014 Michigan Weather Service" },
+      { title: "SPC Severe Outlook \u2014 MIWeather" },
       { name: "description", content: "Storm Prediction Center convective outlook for Days 1 through 8 over Michigan and the Great Lakes." },
       { property: "og:title", content: "SPC Severe Outlook" },
       { property: "og:description", content: "Convective risk maps for Days 1–8 from NOAA SPC." },

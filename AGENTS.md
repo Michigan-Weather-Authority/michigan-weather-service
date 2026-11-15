@@ -4,3 +4,4 @@
 - Retired downloadable widget code stays removed; preserve its published URL with a permanent redirect to mobile release information.
 - Self-account deletion takes its target exclusively from verified auth middleware, removes storage and non-cascading delivery logs before deleting the identity, and relies on existing foreign-key cascades for account records.
 - Public information pages share a lightweight shell and per-page metadata; weather briefing reuses existing forecast data and browser speech without additional services.
+- The homepage's personalized outlook is a named grid region separate from current conditions so role content can grow without displacing live weather.

@@ -35,7 +35,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { cn } from "@/lib/utils";
 import { IosInstallBanner } from "@/components/IosInstallBanner";
 import { InstallAppButton } from "@/components/InstallAppButton";
-import mwaLogo from "@/assets/mwa-logo-noir.png.asset.json";
+import { MiWeatherLogo } from "@/components/MiWeatherLogo";
 import { WeatherBriefing } from "@/components/WeatherBriefing";
 import { MobileMenu } from "@/components/MobileMenu";
 import { MoonPhase } from "@/components/MoonPhase";
@@ -46,9 +46,9 @@ import { RoleDashboard } from "@/components/RoleDashboard";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Michigan Weather Service — Live Forecasts & Alerts" },
-      { name: "description", content: "Live weather, forecasts, alerts, air quality, and UV for every city in Michigan from the Michigan Weather Service (MWS)." },
-      { property: "og:title", content: "Michigan Weather Service" },
+      { title: "MIWeather — Live Forecasts & Alerts" },
+      { name: "description", content: "Live weather, forecasts, alerts, air quality, and UV for every city in Michigan from the MIWeather." },
+      { property: "og:title", content: "MIWeather" },
       { property: "og:description", content: "Live weather, forecasts, and alerts for every city in Michigan." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
@@ -340,18 +340,7 @@ function HomePage() {
       <header className="weather-header border-b border-border/60 backdrop-blur-xl bg-background/90 sticky top-0 z-50 pt-[env(safe-area-inset-top,0px)]">
         <div className="max-w-7xl mx-auto px-3 sm:px-4 py-2.5 grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3">
           <Link to="/" className="flex min-w-0 items-center gap-3 min-h-11 py-1">
-            <div className="relative h-11 w-11 shrink-0 grid place-items-center overflow-hidden">
-              <img src={mwaLogo.url} alt="MWS logo" className="relative h-11 w-11 object-contain" />
-            </div>
-            <div className="min-w-0">
-              <h1 className="font-display text-lg sm:text-xl md:text-2xl leading-none truncate">
-                <span className="hidden sm:inline text-aurora">Michigan Weather Service</span>
-                <span className="sm:hidden text-aurora">MWS</span>
-              </h1>
-              <p className="text-[10px] md:text-[11px] text-muted-foreground tracking-[0.32em] uppercase truncate font-mono mt-1">
-                PART OF MICHIGAN WEATHER AUTHORITY <Greeting />
-              </p>
-            </div>
+            <MiWeatherLogo size="lg" />
           </Link>
           <nav className="flex items-center gap-1 sm:gap-2 shrink-0">
             <Link to="/tools" className="hidden sm:inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-muted-foreground hover:text-accent min-h-11 px-2" aria-label="Tools">
@@ -398,11 +387,13 @@ function HomePage() {
       </header>
 
       <aside className="weather-rail" aria-label="Weather navigation">
-        <span className="text-xs font-mono text-muted-foreground">MICHIGAN / LIVE</span>
+        <span className="text-xs font-mono text-accent">MIWeather / LIVE</span>
         <Link to="/" aria-current="page"><Sun /> Overview</Link>
         <Link to="/alerts-map"><AlertTriangle /> Active alerts</Link>
         <Link to="/forecasts"><FileText /> Forecasts</Link>
         <Link to="/satellite"><Eye /> Satellite</Link>
+        <Link to="/great-lakes"><Droplets /> Great Lakes</Link>
+        <Link to="/snow"><Cloud /> Snow day</Link>
         <Link to="/tools"><Radio /> Weather tools</Link>
         <Link to="/mobile"><Smartphone /> iOS + Android</Link>
         <Link to="/settings"><Settings2 /> Settings</Link>
@@ -433,7 +424,7 @@ function HomePage() {
         {/* Top control row */}
         <div className="weather-location grid grid-cols-1 sm:grid-cols-[minmax(0,1fr)_auto] items-end gap-4">
           <div className="min-w-0">
-            <p className="text-xs font-mono uppercase text-muted-foreground">Your local forecast</p>
+            <p className="text-xs font-mono uppercase text-muted-foreground">LOCAL CONDITIONS</p>
             <h2 className="font-display text-4xl md:text-5xl leading-tight truncate">{city.name}<span className="text-muted-foreground text-xl ml-2">MI</span></h2>
             <p className="text-[11px] text-muted-foreground font-mono truncate">
               ZIP {city.zip} · {city.county} County · {MICHIGAN_CITIES.length.toLocaleString()} MI ZIPs indexed
@@ -494,6 +485,9 @@ function HomePage() {
 
               <ExtraStatsPanel data={extra.data} loading={extra.isLoading} />
             </div>
+            </div>
+            <section className="weather-personal min-w-0 border-b border-border pb-6">
+            <div className="flex items-center gap-3 py-5"><span className="h-2 w-2 rounded-full bg-accent" /><h2 className="font-display text-2xl">Your daily outlook</h2></div>
             <RoleDashboard
               currentTemp={current?.temperature ?? 60}
               windSpeed={parseInt(current?.windSpeed ?? "0") || 0}
@@ -505,7 +499,7 @@ function HomePage() {
 
               <WeatherBriefing city={city.name} periods={weather.data.hourly.properties.periods} alertCount={nwsAlerts.isSuccess ? cityAlerts.length : null} />
             <MoonPhase />
-            </div>
+            </section>
 
             {/* Radar */}
             <div className="weather-radar min-w-0"><RadarPanel /></div>
@@ -521,6 +515,8 @@ function HomePage() {
                 </Link>
               </div>
               <div className="grid grid-cols-2 gap-2">
+                <ToolCard to="/great-lakes" icon={Droplets} label="Great Lakes" blurb="Marine conditions." />
+                <ToolCard to="/snow" icon={Cloud} label="Snow day" blurb="School closure estimate." />
                 <ToolCard to="/alerts-map"    icon={AlertTriangle}    label="Alerts Map"     blurb="Counties shaded live." badge="Live" />
                 <ToolCard to="/outlook"       icon={Cloud}            label="Severe Outlook" blurb="SPC Days 1–8." />
                 <ToolCard to="/lightning"     icon={Activity}         label="Lightning"      blurb="Real-time strikes." badge="Live" />
@@ -612,10 +608,10 @@ function HomePage() {
       <footer className="border-t border-border/60 mt-6">
         <div className="max-w-7xl mx-auto px-4 py-3 text-[11px] text-muted-foreground flex flex-wrap items-center justify-between gap-3">
           <span className="flex items-center gap-2 flex-wrap">
-            © Michigan Weather Service · Part of Michigan Weather Authority. Unofficial · NWS + Open-Meteo.
+            © MIWeather · Part of Michigan Weather Authority. Unofficial · NWS + Open-Meteo.
           </span>
           <div className="flex flex-wrap items-center gap-4">
-            <button type="button" className="text-accent hover:underline" onClick={async () => { const url = window.location.href; try { if (navigator.share) await navigator.share({ title: "Michigan Weather Service", url }); else { await navigator.clipboard.writeText(url); alert("Link copied"); } } catch {} }}>Share</button>
+            <button type="button" className="text-accent hover:underline" onClick={async () => { const url = window.location.href; try { if (navigator.share) await navigator.share({ title: "MIWeather", url }); else { await navigator.clipboard.writeText(url); alert("Link copied"); } } catch {} }}>Share</button>
             <button type="button" className="text-accent hover:underline" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>Back to top</button>
             <Link to="/changelog" className="text-accent hover:underline">
               Changelog
@@ -632,7 +628,7 @@ function HomePage() {
             <Link to="/privacy" className="text-accent hover:underline">Privacy</Link>
             <Link to="/terms" className="text-accent hover:underline">Terms</Link>
             <Link to="/delete-account" className="text-accent hover:underline">Delete account</Link>
-            <span className="font-mono">MWS</span>
+            <span className="font-mono">MIWeather</span>
           </div>
         </div>
       </footer>
@@ -1103,7 +1099,7 @@ function EasTickerBar({ entries }: { entries: AlertEntry[] }) {
   const tierBg = hasNetwork && items.every((i) => i.isNetwork)
     ? "bg-accent text-white border-accent"
     : "bg-amber-alert text-black border-amber-alert";
-  const label = items.every((i) => i.isNetwork) ? "MWA NETWORK" : "EAS / EMERGENCY";
+  const label = items.every((i) => i.isNetwork) ? "MIWEATHER NETWORK" : "EAS / EMERGENCY";
 
   const doubled = [...items, ...items, ...items];
 
@@ -1310,14 +1306,14 @@ function FullAlert({ entry }: { entry: AlertEntry }) {
   if (entry.kind === "shared") {
     const a = entry.alert;
     const t = a.type_id ? (getAlertType(a.type_id) ?? getEasType(a.type_id)) : undefined;
-    const fallbackName = a.kind === "eas" ? "EAS Alert" : a.kind === "mwa-network" ? "MWA Network Notification" : "Weather Alert";
+    const fallbackName = a.kind === "eas" ? "EAS Alert" : a.kind === "mwa-network" ? "MIWeather Network Notification" : "Weather Alert";
     return (
       <div className="rounded-lg border border-border bg-storm/60 overflow-hidden">
         <div className="px-4 py-2 flex items-center justify-between" style={{ backgroundColor: bg, color: fg }}>
           <div className="flex items-center gap-2 font-display uppercase tracking-wider text-sm font-bold">
             <AlertTriangle className="h-4 w-4" />
             {t?.name ?? a.custom_name ?? fallbackName}
-            <Badge variant="outline" className="border-current/40 text-[10px]" style={{ color: fg, borderColor: fg }}>MWA Issued</Badge>
+            <Badge variant="outline" className="border-current/40 text-[10px]" style={{ color: fg, borderColor: fg }}>MIWeather Issued</Badge>
           </div>
           <span className="text-[10px] font-mono">until {new Date(a.expires_at).toLocaleString([], { dateStyle: "short", timeStyle: "short" })}</span>
         </div>
@@ -1365,7 +1361,7 @@ function AlertCard({ entry }: { entry: AlertEntry }) {
   if (entry.kind === "shared") {
     const a = entry.alert;
     const t = a.type_id ? (getAlertType(a.type_id) ?? getEasType(a.type_id)) : undefined;
-    const fallbackName = a.kind === "eas" ? "EAS Alert" : a.kind === "mwa-network" ? "MWA Network Notification" : "Weather Alert";
+    const fallbackName = a.kind === "eas" ? "EAS Alert" : a.kind === "mwa-network" ? "MIWeather Network Notification" : "Weather Alert";
     return (
       <div className={cn("rounded-md p-3 flex items-start gap-3", severityFromShared(a))}>
         <AlertTriangle className="h-5 w-5 flex-none mt-0.5" />

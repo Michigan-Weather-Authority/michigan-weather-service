@@ -7,6 +7,10 @@ export const Route = createFileRoute("/great-lakes")({
     meta: [
       { title: "Great Lakes Marine Dashboard · MIWeather" },
       { name: "description", content: "Live wave heights, water temperatures, and buoy observations across Michigan's Great Lakes." },
+      { property: "og:title", content: "Great Lakes Marine Dashboard · MIWeather" },
+      { property: "og:description", content: "Explore Michigan's Great Lakes marine dashboard." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
     ],
   }),
   component: GreatLakesPage,
@@ -26,7 +30,7 @@ function GreatLakesPage() {
   return (
     <div className="min-h-screen bg-background text-foreground p-4 sm:p-8 space-y-6 max-w-5xl mx-auto">
       <div className="flex items-center gap-3 border-b border-border pb-4">
-        <div className="p-3 rounded-2xl bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
+        <div className="p-3 rounded-lg bg-primary/10 text-accent border border-primary/20">
           <Waves className="h-6 w-6" />
         </div>
         <div>
@@ -41,9 +45,9 @@ function GreatLakesPage() {
           <button
             key={l.id}
             onClick={() => setSelectedLake(l)}
-            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all shrink-0 ${
+            className={`px-4 py-2 rounded-lg text-xs font-bold transition-all shrink-0 ${
               selectedLake.id === l.id
-                ? "bg-cyan-600 text-white shadow-md shadow-cyan-600/30"
+                ? "bg-primary text-primary-foreground shadow-md shadow-none"
                 : "bg-card border border-border text-muted-foreground hover:bg-muted"
             }`}
           >
@@ -53,25 +57,25 @@ function GreatLakesPage() {
       </div>
 
       {/* Selected Lake Card */}
-      <div className="rounded-2xl border border-cyan-500/30 bg-card p-6 space-y-6 shadow-xl">
+      <div className="rounded-lg border border-primary/30 bg-card p-6 space-y-6 shadow-xl">
         <div className="flex items-center justify-between">
           <h2 className="text-xl font-bold text-foreground">{selectedLake.name} Nearshore</h2>
-          <span className="text-xs font-mono font-bold px-3 py-1 rounded-full bg-cyan-500/20 text-cyan-400">
+          <span className="text-xs font-mono font-bold px-3 py-1 rounded-full bg-primary/20 text-accent">
             {selectedLake.status}
           </span>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <div className="p-4 rounded-xl bg-muted/40 border border-border space-y-1">
-            <span className="text-xs text-muted-foreground flex items-center gap-1"><Waves className="h-4 w-4 text-cyan-400" /> Wave Height</span>
+          <div className="p-4 rounded-lg bg-muted/40 border border-border space-y-1">
+            <span className="text-xs text-muted-foreground flex items-center gap-1"><Waves className="h-4 w-4 text-accent" /> Wave Height</span>
             <p className="text-xl font-bold text-foreground">{selectedLake.wave}</p>
           </div>
-          <div className="p-4 rounded-xl bg-muted/40 border border-border space-y-1">
-            <span className="text-xs text-muted-foreground flex items-center gap-1"><Wind className="h-4 w-4 text-cyan-400" /> Marine Winds</span>
+          <div className="p-4 rounded-lg bg-muted/40 border border-border space-y-1">
+            <span className="text-xs text-muted-foreground flex items-center gap-1"><Wind className="h-4 w-4 text-accent" /> Marine Winds</span>
             <p className="text-xl font-bold text-foreground">{selectedLake.wind}</p>
           </div>
-          <div className="p-4 rounded-xl bg-muted/40 border border-border space-y-1">
-            <span className="text-xs text-muted-foreground flex items-center gap-1"><Thermometer className="h-4 w-4 text-cyan-400" /> Surface Temp</span>
+          <div className="p-4 rounded-lg bg-muted/40 border border-border space-y-1">
+            <span className="text-xs text-muted-foreground flex items-center gap-1"><Thermometer className="h-4 w-4 text-accent" /> Surface Temp</span>
             <p className="text-xl font-bold text-foreground">{selectedLake.temp}</p>
           </div>
         </div>

@@ -4,7 +4,7 @@ import { ArrowLeft, FileText, ExternalLink, Cloud } from "lucide-react";
 export const Route = createFileRoute("/mesoscale")({
   head: () => ({
     meta: [{ property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" }, 
-      { title: "SPC Mesoscale Discussions \u2014 Michigan Weather Service" },
+      { title: "SPC Mesoscale Discussions \u2014 MIWeather" },
       { name: "description", content: "Live Storm Prediction Center mesoscale discussions and convective trends." },
       { property: "og:title", content: "SPC Mesoscale Discussions" },
       { property: "og:description", content: "MDs covering active convective threats across CONUS." },

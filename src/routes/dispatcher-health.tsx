@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/dispatcher-health")({
-  head: () => ({ meta: [{ name: "description", content: "Dispatcher health tools and preferences for Michigan Weather Service." }, { property: "og:title", content: "Dispatcher health \u2014 Michigan Weather Service admin" }, { property: "og:description", content: "Dispatcher health tools and preferences for Michigan Weather Service." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" }, { title: "Dispatcher health \u2014 Michigan Weather Service admin" }] }),
+  head: () => ({ meta: [{ name: "description", content: "Dispatcher health tools and preferences for MIWeather." }, { property: "og:title", content: "Dispatcher health \u2014 MIWeather admin" }, { property: "og:description", content: "Dispatcher health tools and preferences for MIWeather." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" }, { title: "Dispatcher health \u2014 MIWeather admin" }] }),
   component: DispatcherHealth,
 });
 

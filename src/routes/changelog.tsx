@@ -5,9 +5,9 @@ import { ArrowLeft } from "lucide-react";
 export const Route = createFileRoute("/changelog")({
   head: () => ({
     meta: [{ property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" }, 
-      { title: "Changelog \u2014 Michigan Weather Service" },
+      { title: "Changelog \u2014 MIWeather" },
       { name: "description", content: "Release notes and version history for the Michigan Weather Authority." },
-      { property: "og:title", content: "MWA Changelog" },
+      { property: "og:title", content: "MIWeather Changelog" },
       { property: "og:description", content: "What's new at Michigan Weather Authority." },
     ],
   }),
@@ -50,6 +50,18 @@ type Entry = {
 };
 
 const ENTRIES: Entry[] = [
+  {
+    version: "4.0.0",
+    date: "Nov 15, 2026",
+    status: "revamp",
+    title: "MIWeather arrives",
+    bullets: [
+      "MIWeather by Michigan Weather Authority replaces the previous branding across pages, sharing, and app installation.",
+      "New lake-teal and coral identity, consistent weather mark, and redesigned local conditions and personalized outlook layout.",
+      "Retired the Project MIWeather announcement; management status updates remain available.",
+      "Fixed duplicate EAS definitions and the management-access import that prevented pages from loading.",
+    ],
+  },
     {
     version: "3.11.0",
     date: "Nov 14, 2026",

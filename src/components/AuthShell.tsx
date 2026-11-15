@@ -39,7 +39,7 @@ export function AuthShell({
               <Radio className="h-5 w-5 text-accent" />
             </div>
             <div>
-              <div className="font-display text-lg leading-none text-aurora">Michigan Weather Service</div>
+              <div className="font-display text-lg leading-none text-aurora">MIWeather</div>
               <div className="text-[10px] font-mono uppercase text-muted-foreground mt-1">MICHIGAN · LIVE</div>
             </div>
           </Link>
@@ -71,7 +71,7 @@ export function AuthShell({
         <div className="flex flex-col justify-center px-6 py-10 sm:px-10 lg:px-16">
           <div className="w-full max-w-md mx-auto">
             <Link to="/" className="lg:hidden text-xs text-muted-foreground hover:text-accent inline-flex items-center gap-1 mb-6">
-              <ArrowLeft className="h-3 w-3" /> Back to MWS
+              <ArrowLeft className="h-3 w-3" /> Back to MIWeather
             </Link>
 
             <div className="mb-6">

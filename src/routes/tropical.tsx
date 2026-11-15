@@ -5,9 +5,9 @@ import { ArrowLeft, Wind, RefreshCw, ExternalLink } from "lucide-react";
 export const Route = createFileRoute("/tropical")({
   head: () => ({
     meta: [{ property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" }, 
-      { title: "Tropical Tracker \u2014 Michigan Weather Service" },
+      { title: "Tropical Tracker \u2014 MIWeather" },
       { name: "description", content: "Live NHC active tropical systems, Atlantic and Eastern Pacific basins." },
-      { property: "og:title", content: "MWA Tropical Tracker" },
+      { property: "og:title", content: "MIWeather Tropical Tracker" },
       { property: "og:description", content: "Active hurricanes, tropical storms, and disturbances." },
     ],
   }),

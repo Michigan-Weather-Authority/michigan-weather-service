@@ -9,6 +9,10 @@ export const Route = createFileRoute("/snow")({
     meta: [
       { title: "Michigan Snow Day Calculator · MIWeather" },
       { name: "description", content: "Instant school closure odds and winter road risk for every Michigan ZIP code." },
+      { property: "og:title", content: "Michigan Snow Day Calculator · MIWeather" },
+      { property: "og:description", content: "Michigan school closure estimates and winter weather planning." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
     ],
   }),
   component: SnowDayPage,
@@ -86,7 +90,7 @@ function SnowDayPage() {
           </Button>
           <div>
             <h1 className="text-xl sm:text-2xl font-bold flex items-center gap-2">
-              <Snowflake className="h-6 w-6 text-cyan-400" /> MIWeather Snow Day Calculator
+              <Snowflake className="h-6 w-6 text-accent" /> MIWeather Snow Day Calculator
             </h1>
             <p className="text-xs text-muted-foreground">Calibrated for all 83 Michigan counties & school superintendents</p>
           </div>
@@ -99,26 +103,26 @@ function SnowDayPage() {
             onChange={(e) => setZip(e.target.value)}
             placeholder="Enter Michigan ZIP (e.g. 48823, 49503, 49855)"
             maxLength={5}
-            className="font-mono text-center text-lg bg-card border-border rounded-xl"
+            className="font-mono text-center text-lg bg-card border-border rounded-lg"
           />
-          <Button type="submit" disabled={loading} className="bg-cyan-600 hover:bg-cyan-500 rounded-xl px-6 font-bold">
+          <Button type="submit" disabled={loading} className="bg-primary hover:bg-primary rounded-lg px-6 font-bold">
             <Search className="h-4 w-4 mr-1.5" /> {loading ? "Calculating..." : "Calculate"}
           </Button>
         </form>
 
         {/* Result Card */}
-        <div className="rounded-2xl border border-cyan-500/30 bg-card p-6 md:p-8 shadow-2xl relative overflow-hidden space-y-6">
-          <div className="pointer-events-none absolute -right-20 -top-20 h-60 w-60 rounded-full bg-cyan-500/10 blur-3xl" />
+        <div className="rounded-lg border border-primary/30 bg-card p-6 md:p-8 shadow-2xl relative overflow-hidden space-y-6">
+
 
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-b border-border/40 pb-6">
             <div>
-              <span className="text-[10px] font-mono uppercase tracking-widest text-cyan-400 font-bold">
+              <span className="text-[10px] font-mono uppercase tracking-widest text-accent font-bold">
                 {calc.region}
               </span>
               <h2 className="text-lg font-bold text-foreground">Closure Probability</h2>
             </div>
             <div className="flex items-baseline gap-2">
-              <span className="text-6xl font-black font-mono text-cyan-400">{calc.odds}%</span>
+              <span className="text-6xl font-black font-mono text-accent">{calc.odds}%</span>
               <span className={`text-xs font-bold px-2.5 py-1 rounded-full ${
                 calc.hazardLevel === "Extreme" ? "bg-red-500/20 text-red-400" :
                 calc.hazardLevel === "High" ? "bg-orange-500/20 text-orange-400" :
@@ -130,15 +134,15 @@ function SnowDayPage() {
           </div>
 
           <div className="grid grid-cols-2 gap-4">
-            <div className="p-4 rounded-xl bg-muted/40 border border-border/60">
+            <div className="p-4 rounded-lg bg-muted/40 border border-border/60">
               <span className="text-xs text-muted-foreground flex items-center gap-1.5">
-                <Snowflake className="h-4 w-4 text-cyan-400" /> Projected Overnight Snow
+                <Snowflake className="h-4 w-4 text-accent" /> Projected Overnight Snow
               </span>
               <p className="text-2xl font-bold font-mono text-foreground mt-1">{calc.snowAccum}"</p>
             </div>
-            <div className="p-4 rounded-xl bg-muted/40 border border-border/60">
+            <div className="p-4 rounded-lg bg-muted/40 border border-border/60">
               <span className="text-xs text-muted-foreground flex items-center gap-1.5">
-                <Wind className="h-4 w-4 text-cyan-400" /> Morning Wind Chill
+                <Wind className="h-4 w-4 text-accent" /> Morning Wind Chill
               </span>
               <p className="text-2xl font-bold font-mono text-foreground mt-1">{calc.windChill}°F</p>
             </div>

@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 import { Car, Waves, Tractor, Activity, Users, ShieldAlert, Sparkles, AlertCircle, CheckCircle2, ChevronRight, SlidersHorizontal } from "lucide-react";
 import { Link } from "@tanstack/react-router";
@@ -59,9 +60,9 @@ export function RoleDashboard({
 
   if (activeRoles.length === 0) {
     return (
-      <div className="rounded-xl border border-violet-500/20 bg-violet-950/10 p-4 mb-6 flex items-center justify-between gap-4">
+      <div className="rounded-lg border border-primary/20 bg-muted/30 p-4 mb-6 flex items-center justify-between gap-4">
         <div className="flex items-center gap-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-violet-500/20 text-violet-400">
+          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/20 text-accent">
             <Sparkles className="h-4 w-4" />
           </div>
           <div>
@@ -69,15 +70,15 @@ export function RoleDashboard({
             <p className="text-[11px] text-muted-foreground">Pick roles (Commuter, Marine, Ag, etc.) to unlock specialized metrics.</p>
           </div>
         </div>
-        <button
+        <Button
           onClick={() => {
             localStorage.removeItem("miweather_onboarding_v1_completed");
             window.location.reload();
           }}
-          className="text-xs font-semibold text-violet-400 hover:text-violet-300 underline underline-offset-2 shrink-0"
+          className="text-xs font-semibold text-accent hover:text-accent underline underline-offset-2 shrink-0"
         >
           Setup Roles →
-        </button>
+        </Button>
       </div>
     );
   }
@@ -87,39 +88,39 @@ export function RoleDashboard({
       {/* Role Filter Selector */}
       <div className="flex items-center justify-between gap-2 overflow-x-auto pb-1">
         <div className="flex items-center gap-1.5">
-          <button
+          <Button
             type="button"
             onClick={() => setSelectedFilter("all")}
             className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
               selectedFilter === "all"
-                ? "bg-violet-600 text-white shadow-sm"
+                ? "bg-primary text-primary-foreground shadow-sm"
                 : "bg-muted/60 text-muted-foreground hover:bg-muted hover:text-foreground"
             }`}
           >
             All Insights
-          </button>
+          </Button>
           {availableRoles.map((r) => {
             const Icon = r.icon;
             const active = selectedFilter === r.id;
             return (
-              <button
+              <Button
                 key={r.id}
                 type="button"
                 onClick={() => setSelectedFilter(r.id)}
                 className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
                   active
-                    ? "bg-violet-600 text-white shadow-sm"
+                    ? "bg-primary text-primary-foreground shadow-sm"
                     : "bg-muted/60 text-muted-foreground hover:bg-muted hover:text-foreground"
                 }`}
               >
                 <Icon className="h-3.5 w-3.5" />
                 {r.label}
-              </button>
+              </Button>
             );
           })}
         </div>
 
-        <button
+        <Button
           onClick={() => {
             localStorage.removeItem("miweather_onboarding_v1_completed");
             window.location.reload();
@@ -128,17 +129,17 @@ export function RoleDashboard({
           title="Edit role preferences"
         >
           <SlidersHorizontal className="h-3 w-3" /> Edit
-        </button>
+        </Button>
       </div>
 
       {/* Dynamic Role Cards Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
         {/* COMMUTER CARD */}
         {(selectedFilter === "all" || selectedFilter === "commuter") && activeRoles.includes("commuter") && (
-          <div className="rounded-xl border border-border bg-card p-4 space-y-3">
+          <div className="rounded-lg border border-border bg-card p-4 space-y-3">
             <div className="flex items-center justify-between">
               <span className="inline-flex items-center gap-1.5 text-xs font-bold text-foreground">
-                <Car className="h-4 w-4 text-violet-400" /> Commuter Index
+                <Car className="h-4 w-4 text-accent" /> Commuter Index
               </span>
               <span className={`text-[10px] font-mono px-2 py-0.5 rounded-full font-bold ${
                 flashFreezeRisk ? "bg-red-500/20 text-red-400" : "bg-emerald-500/20 text-emerald-400"
@@ -161,7 +162,7 @@ export function RoleDashboard({
 
         {/* MARINE CARD */}
         {(selectedFilter === "all" || selectedFilter === "marine") && activeRoles.includes("marine") && (
-          <div className="rounded-xl border border-border bg-card p-4 space-y-3">
+          <div className="rounded-lg border border-border bg-card p-4 space-y-3">
             <div className="flex items-center justify-between">
               <span className="inline-flex items-center gap-1.5 text-xs font-bold text-foreground">
                 <Waves className="h-4 w-4 text-cyan-400" /> Great Lakes Marine
@@ -187,7 +188,7 @@ export function RoleDashboard({
 
         {/* AGRICULTURE CARD */}
         {(selectedFilter === "all" || selectedFilter === "ag") && activeRoles.includes("ag") && (
-          <div className="rounded-xl border border-border bg-card p-4 space-y-3">
+          <div className="rounded-lg border border-border bg-card p-4 space-y-3">
             <div className="flex items-center justify-between">
               <span className="inline-flex items-center gap-1.5 text-xs font-bold text-foreground">
                 <Tractor className="h-4 w-4 text-emerald-400" /> Ag & Farm Clock
@@ -213,7 +214,7 @@ export function RoleDashboard({
 
         {/* OUTDOOR & RUNNER CARD */}
         {(selectedFilter === "all" || selectedFilter === "outdoor") && activeRoles.includes("outdoor") && (
-          <div className="rounded-xl border border-border bg-card p-4 space-y-3">
+          <div className="rounded-lg border border-border bg-card p-4 space-y-3">
             <div className="flex items-center justify-between">
               <span className="inline-flex items-center gap-1.5 text-xs font-bold text-foreground">
                 <Activity className="h-4 w-4 text-orange-400" /> Outdoor & Runner
@@ -237,7 +238,7 @@ export function RoleDashboard({
 
         {/* PARENT & FAMILY CARD */}
         {(selectedFilter === "all" || selectedFilter === "parent") && activeRoles.includes("parent") && (
-          <div className="rounded-xl border border-border bg-card p-4 space-y-3">
+          <div className="rounded-lg border border-border bg-card p-4 space-y-3">
             <div className="flex items-center justify-between">
               <span className="inline-flex items-center gap-1.5 text-xs font-bold text-foreground">
                 <Users className="h-4 w-4 text-pink-400" /> Bus Stop & Family
@@ -265,7 +266,7 @@ export function RoleDashboard({
 
         {/* STORM SPOTTER CARD */}
         {(selectedFilter === "all" || selectedFilter === "spotter") && activeRoles.includes("spotter") && (
-          <div className="rounded-xl border border-border bg-card p-4 space-y-3">
+          <div className="rounded-lg border border-border bg-card p-4 space-y-3">
             <div className="flex items-center justify-between">
               <span className="inline-flex items-center gap-1.5 text-xs font-bold text-foreground">
                 <ShieldAlert className="h-4 w-4 text-amber-400" /> Spotter Operations

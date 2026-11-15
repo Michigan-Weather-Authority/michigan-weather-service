@@ -1,4 +1,4 @@
-import { Zap, CloudLightning } from "lucide-react";
+import { CloudLightning } from "lucide-react";
 
 export function MiWeatherLogo({ size = "md" }: { size?: "sm" | "md" | "lg" }) {
   const isLg = size === "lg";
@@ -6,23 +6,20 @@ export function MiWeatherLogo({ size = "md" }: { size?: "sm" | "md" | "lg" }) {
 
   return (
     <div className="inline-flex items-center gap-2.5 select-none">
-      <div className={`relative flex items-center justify-center rounded-xl bg-gradient-to-br from-violet-600 via-indigo-600 to-cyan-500 text-white shadow-lg shadow-violet-600/30 ${
+      <div className={`miweather-mark relative flex shrink-0 items-center justify-center rounded-lg bg-primary text-primary-foreground ${
         isLg ? "h-11 w-11" : isSm ? "h-7 w-7" : "h-9 w-9"
       }`}>
-        <Zap className={`${isLg ? "h-6 w-6" : isSm ? "h-3.5 w-3.5" : "h-5 w-5"} fill-white`} />
+        <CloudLightning aria-hidden="true" className={isLg ? "h-7 w-7" : isSm ? "h-5 w-5" : "h-6 w-6"} />
       </div>
       <div>
         <div className="flex items-center gap-1.5 leading-none">
-          <span className={`font-black tracking-tight text-foreground ${
-            isLg ? "text-xl" : isSm ? "text-sm" : "text-base"
+          <span className={`font-display font-bold text-foreground ${
+            isLg ? "text-2xl" : isSm ? "text-sm" : "text-xl"
           }`}>
-            MI<span className="text-violet-400">Weather</span>
-          </span>
-          <span className="rounded-full bg-violet-500/20 px-1.5 py-0.5 text-[9px] font-mono font-bold text-violet-300">
-            PRO
+            MI<span className="text-accent">Weather</span>
           </span>
         </div>
-        <p className="text-[9px] font-bold tracking-wider text-muted-foreground uppercase mt-0.5">
+        <p className="hidden sm:block text-[9px] font-medium text-muted-foreground uppercase mt-1">
           By Michigan Weather Authority
         </p>
       </div>

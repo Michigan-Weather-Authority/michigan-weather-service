@@ -60,7 +60,7 @@ const toggleThreshold = createServerFn({ method: "POST" })
   });
 
 export const Route = createFileRoute("/thresholds")({
-  head: () => ({ meta: [{ name: "description", content: "Custom alert thresholds tools and preferences for Michigan Weather Service." }, { property: "og:title", content: "Custom alert thresholds \u2014 Michigan Weather Service" }, { property: "og:description", content: "Custom alert thresholds tools and preferences for Michigan Weather Service." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" }, { title: "Custom alert thresholds \u2014 Michigan Weather Service" }, { name: "robots", content: "noindex" }] }),
+  head: () => ({ meta: [{ name: "description", content: "Custom alert thresholds tools and preferences for MIWeather." }, { property: "og:title", content: "Custom alert thresholds \u2014 MIWeather" }, { property: "og:description", content: "Custom alert thresholds tools and preferences for MIWeather." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" }, { title: "Custom alert thresholds \u2014 MIWeather" }, { name: "robots", content: "noindex" }] }),
   component: ThresholdsPage,
 });
 

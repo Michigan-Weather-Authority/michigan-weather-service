@@ -1,6 +1,5 @@
-# Release preparation
-- [ ] Add authenticated self-account deletion with confirmation and personal-data cleanup.
-- [ ] Publish upcoming iOS/Android information, privacy policy, and terms pages.
-- [ ] Replace widget offering with mobile release links and update parent-company branding.
-- [ ] Add a noticeable local weather briefing and forecast read-aloud control using existing data.
-- [ ] Record v3.9.0 in the changelog and verify the new flows.
+# MIWeather cleanup
+- [ ] Resolve build and page-loading errors.
+- [ ] Complete the shared MIWeather name, logo, theme, and homepage presentation.
+- [ ] Remove the revamp announcement while preserving management status updates.
+- [ ] Verify desktop and mobile pages and record the release.

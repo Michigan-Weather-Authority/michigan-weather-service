@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Menu, Sun, AlertTriangle, FileText, Eye, Radio, Smartphone, Settings2, Camera, ScrollText } from "lucide-react";
+import { Menu, Sun, AlertTriangle, FileText, Eye, Radio, Smartphone, Settings2, Camera, ScrollText, Waves, CloudSnow } from "lucide-react";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 
 const LINKS = [
@@ -8,6 +8,8 @@ const LINKS = [
   { to: "/forecasts", label: "Forecasts", Icon: FileText },
   { to: "/satellite", label: "Satellite", Icon: Eye },
   { to: "/tools", label: "Weather tools", Icon: Radio },
+  { to: "/great-lakes", label: "Great Lakes", Icon: Waves },
+  { to: "/snow", label: "Snow day", Icon: CloudSnow },
   { to: "/reports", label: "Spotter reports", Icon: Camera },
   { to: "/mobile", label: "iOS + Android", Icon: Smartphone },
   { to: "/settings", label: "Settings", Icon: Settings2 },

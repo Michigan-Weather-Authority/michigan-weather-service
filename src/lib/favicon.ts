@@ -2,6 +2,7 @@ import type { ThemeName, ThemeMode } from "./theme";
 
 // Color per (theme, mode) — bright enough to read on browser tab bars.
 const COLORS: Record<ThemeName, { dark: string; light: string }> = {
+  miweather: { dark: "#62D6DE", light: "#137E8D" },
   sunset:  { dark: "#FFB86B", light: "#C2410C" },
   lake:    { dark: "#69D6AC", light: "#167B59" },
   prism:   { dark: "#A78BFA", light: "#7C3AED" }, // iridescent violet
@@ -39,6 +40,7 @@ function minimalSvg(color: string, mode: ThemeMode): string {
 }
 
 function svgFor(theme: ThemeName, mode: ThemeMode, color: string): string {
+  if (theme === "miweather") return `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><path d='M17 39a11 11 0 1 1 3-21 16 16 0 0 1 30 6 8 8 0 0 1-1 15' fill='none' stroke='${color}' stroke-width='5' stroke-linecap='round'/><path d='m34 32-10 14h10l-4 13 15-18H34l5-9Z' fill='${color}'/></svg>`;
   if (theme === "minimal") return minimalSvg(color, mode);
   return boltSvg(color);
 }
