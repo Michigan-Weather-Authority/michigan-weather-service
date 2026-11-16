@@ -127,6 +127,19 @@ function ManagementPage() {
           </Button>
         </div>
 
+        <div className="grid grid-cols-3 gap-3">
+          {[
+            ["Total banners", updatesQ.data?.length ?? 0],
+            ["Live now", updatesQ.data?.filter((u: any) => u.active).length ?? 0],
+            ["Your role", auth.role ?? "—"],
+          ].map(([l, v]) => (
+            <div key={l as string} className="rounded-xl border border-border bg-card p-4">
+              <div className="text-[10px] uppercase tracking-wider text-muted-foreground">{l}</div>
+              <div className="text-xl font-bold capitalize text-foreground">{v}</div>
+            </div>
+          ))}
+        </div>
+
         {/* Post Status Update */}
         <div className="rounded-xl border border-border bg-card p-6 space-y-4">
           <h2 className="text-sm font-bold flex items-center gap-2">
@@ -169,6 +182,16 @@ function ManagementPage() {
                 <span className="text-[10px] font-mono uppercase px-2 py-0.5 rounded font-bold bg-muted mr-2">{u.kind}</span>
                 <span className="text-xs font-semibold">{u.headline}</span>
               </div>
+              <div className="flex items-center gap-2">
+              <Switch
+                checked={!!u.active}
+                aria-label="Show banner live"
+                onCheckedChange={async (v) => {
+                  await toggleStatusUpdate({ data: { id: u.id, active: v } });
+                  qc.invalidateQueries({ queryKey: ["admin-status-updates"] });
+                  qc.invalidateQueries({ queryKey: ["active-status-updates"] });
+                }}
+              />
               <Button
                 variant="ghost"
                 size="icon"
@@ -180,8 +203,10 @@ function ManagementPage() {
               >
                 <Trash2 className="h-4 w-4" />
               </Button>
+              </div>
             </div>
           ))}
+          {updatesQ.data?.length === 0 && <p className="text-xs text-muted-foreground">No banners yet.</p>}
         </div>
       </div>
     </div>

@@ -21,7 +21,7 @@ import {
   Tabs, TabsContent, TabsList, TabsTrigger,
 } from "@/components/ui/tabs";
 import { NWS_ALERT_TYPES, getAlertType, type AlertCategory, type AlertSeverity } from "@/lib/nws-alert-types";
-import { EAS_ALERT_TYPES, MWA_NETWORK_TYPE, getEasType } from "@/lib/eas-alert-types";
+import { EAS_ALERT_TYPES, MWA_NETWORK_TYPE, MIWEATHER_OUTLOOK_TYPE, getEasType } from "@/lib/eas-alert-types";
 import { MICHIGAN_COUNTIES } from "@/lib/michigan-counties";
 import { useSharedAlerts, type SharedAlert } from "@/lib/alerts-store";
 import { issueAlert, cancelAlert } from "@/lib/admin-alerts.functions";
@@ -789,9 +789,11 @@ function CommandConsole({ code, onLock }: { code: string; onLock?: () => void })
                 <TabsContent value="template" className="space-y-4 pt-4">
                   <div className="space-y-1.5">
                     <Label>EAS Product</Label>
+                    <Button type="button" size="sm" variant={easTypeId === MIWEATHER_OUTLOOK_TYPE.id ? "default" : "outline"} className="mb-2 w-full" onClick={() => setEasTypeId(MIWEATHER_OUTLOOK_TYPE.id)}>Issue an Outlook (shows blue on the alert map)</Button>
                     <Select value={easTypeId} onValueChange={setEasTypeId}>
                       <SelectTrigger><SelectValue /></SelectTrigger>
                       <SelectContent className="max-h-[320px]">
+                        <SelectItem value={MIWEATHER_OUTLOOK_TYPE.id}>🔭 {MIWEATHER_OUTLOOK_TYPE.name} (OTL)</SelectItem>
                         {EAS_ALERT_TYPES.map((t) => (
                           <SelectItem key={t.id} value={t.id}>{t.name} ({t.code})</SelectItem>
                         ))}
