@@ -29,8 +29,7 @@ import { toast } from "sonner";
 import { Toaster } from "@/components/ui/sonner";
 import { cn } from "@/lib/utils";
 import { CommandExtras, type CommandSnapshot } from "@/components/CommandExtras";
-import { CommandUnlock } from "@/components/CommandUnlock";
-import { isCommandUnlocked, lockCommand } from "@/lib/command-gate.functions";
+import { getManagementAccess } from "@/lib/role.functions";
 
 
 export const Route = createFileRoute("/command")({
@@ -150,13 +149,12 @@ interface Draft {
 
 function CommandPage() {
   const [unlocked, setUnlocked] = useState<boolean | null>(null);
-  const checkUnlock = useServerFn(isCommandUnlocked);
-  const lockFn = useServerFn(lockCommand);
+  const checkUnlock = useServerFn(getManagementAccess);
 
   useEffect(() => {
     let cancelled = false;
     checkUnlock()
-      .then((r) => { if (!cancelled) setUnlocked(r.unlocked); })
+      .then((r) => { if (!cancelled) setUnlocked(!!r.authorized); })
       .catch(() => { if (!cancelled) setUnlocked(false); });
     return () => { cancelled = true; };
   }, [checkUnlock]);
@@ -164,21 +162,27 @@ function CommandPage() {
   if (unlocked === null) {
     return (
       <div className="min-h-screen grid place-items-center text-muted-foreground text-sm">
-        <span className="font-mono uppercase tracking-[0.3em] text-[10px]">Checking authorization…</span>
+        <span className="font-mono uppercase tracking-[0.3em] text-[10px]">Checking MIWeather access…</span>
       </div>
     );
   }
-  if (!unlocked) return <CommandUnlock onUnlocked={() => setUnlocked(true)} />;
+  if (!unlocked) {
+    return (
+      <div className="min-h-screen grid place-items-center bg-background p-4">
+        <div className="max-w-md w-full rounded-2xl border border-destructive/30 bg-destructive/5 p-6 text-center space-y-3">
+          <ShieldAlert className="h-10 w-10 text-destructive mx-auto" />
+          <h2 className="text-lg font-bold text-foreground">Access Restricted</h2>
+          <p className="text-xs text-muted-foreground">Sign in as the Owner or an account with a Management role to use Command.</p>
+          <div className="flex justify-center gap-3 pt-2">
+            <Button asChild variant="outline" size="sm"><Link to="/">Back to Home</Link></Button>
+            <Button asChild size="sm"><Link to="/auth">Sign In</Link></Button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
-  return (
-    <CommandConsole
-      code={ACCESS_CODE}
-      onLock={async () => {
-        try { await lockFn(); } catch {}
-        setUnlocked(false);
-      }}
-    />
-  );
+  return <CommandConsole code={ACCESS_CODE} />;
 }
 
 
