@@ -27,7 +27,7 @@ function AdminScheduler() {
 
   const [form, setForm] = useState({
     when: "",
-    kind: "weather" as "weather" | "eas" | "mwa-network",
+    kind: "weather" as "weather" | "eas" | "mwa-network" | "outlook" | "forecast",
     severity: "moderate" as "extreme" | "severe" | "moderate" | "minor",
     category: "advisory" as "warning" | "watch" | "advisory" | "statement" | "extreme",
     headline: "",

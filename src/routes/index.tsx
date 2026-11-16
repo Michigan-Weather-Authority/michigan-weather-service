@@ -1306,7 +1306,7 @@ function FullAlert({ entry }: { entry: AlertEntry }) {
   if (entry.kind === "shared") {
     const a = entry.alert;
     const t = a.type_id ? (getAlertType(a.type_id) ?? getEasType(a.type_id)) : undefined;
-    const fallbackName = a.kind === "eas" ? "EAS Alert" : a.kind === "mwa-network" ? "MIWeather Network Notification" : "Weather Alert";
+    const fallbackName = a.kind === "eas" ? "EAS Alert" : a.kind === "mwa-network" ? "MIWeather Network Notification" : a.kind === "outlook" ? "Outlook" : a.kind === "forecast" ? "Forecast" : "Weather Alert";
     return (
       <div className="rounded-lg border border-border bg-storm/60 overflow-hidden">
         <div className="px-4 py-2 flex items-center justify-between" style={{ backgroundColor: bg, color: fg }}>
@@ -1361,7 +1361,7 @@ function AlertCard({ entry }: { entry: AlertEntry }) {
   if (entry.kind === "shared") {
     const a = entry.alert;
     const t = a.type_id ? (getAlertType(a.type_id) ?? getEasType(a.type_id)) : undefined;
-    const fallbackName = a.kind === "eas" ? "EAS Alert" : a.kind === "mwa-network" ? "MIWeather Network Notification" : "Weather Alert";
+    const fallbackName = a.kind === "eas" ? "EAS Alert" : a.kind === "mwa-network" ? "MIWeather Network Notification" : a.kind === "outlook" ? "Outlook" : a.kind === "forecast" ? "Forecast" : "Weather Alert";
     return (
       <div className={cn("rounded-md p-3 flex items-start gap-3", severityFromShared(a))}>
         <AlertTriangle className="h-5 w-5 flex-none mt-0.5" />

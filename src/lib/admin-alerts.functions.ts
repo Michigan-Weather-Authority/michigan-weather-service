@@ -6,7 +6,7 @@ const ACCESS_CODE = "mwa-admin";
 const alertSchema = z
   .object({
     code: z.string(),
-    kind: z.enum(["weather", "eas", "mwa-network"]).default("weather"),
+    kind: z.enum(["weather", "eas", "mwa-network", "outlook", "forecast"]).default("weather"),
     typeId: z.string().nullable(),
     customName: z.string().nullable(),
     category: z.enum(["warning", "watch", "advisory", "statement", "extreme"]),
@@ -83,8 +83,8 @@ export const issueAlert = createServerFn({ method: "POST" })
             (data.kind === "eas"
               ? "EAS Alert"
               : data.kind === "mwa-network"
-                ? "MWA Network Notification"
-                : data.headline);
+                ? "MIWeather Network Notification"
+                : data.kind === "outlook" ? "Outlook" : data.kind === "forecast" ? "Forecast" : data.headline);
           const result = await sendPushNotifications(
             targets.map((s: any) => ({ endpoint: s.endpoint, p256dh: s.p256dh, auth: s.auth })),
             {

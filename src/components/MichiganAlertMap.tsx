@@ -80,6 +80,8 @@ const MARINE_ZONES = [
 export function resolveAlertColor(event: string, severity?: string): string {
   const ev = (event || "").toLowerCase();
   
+  if (ev.includes("forecast")) return "#22c55e"; // Green Forecast
+  if (ev.includes("outlook")) return "#3b82f6"; // Blue Outlook
   if (ev.includes("network") || ev.includes("miweather")) return "#8b5cf6"; // Violet Network
   if (ev.includes("emergency") || ev.includes("amber") || ev.includes("civil")) return "#dc2626"; // EAS Emergency Red
 

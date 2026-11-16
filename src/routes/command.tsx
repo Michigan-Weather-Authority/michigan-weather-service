@@ -21,7 +21,7 @@ import {
   Tabs, TabsContent, TabsList, TabsTrigger,
 } from "@/components/ui/tabs";
 import { NWS_ALERT_TYPES, getAlertType, type AlertCategory, type AlertSeverity } from "@/lib/nws-alert-types";
-import { EAS_ALERT_TYPES, MWA_NETWORK_TYPE, MIWEATHER_OUTLOOK_TYPE, getEasType } from "@/lib/eas-alert-types";
+import { EAS_ALERT_TYPES, MWA_NETWORK_TYPE, getEasType } from "@/lib/eas-alert-types";
 import { MICHIGAN_COUNTIES } from "@/lib/michigan-counties";
 import { useSharedAlerts, type SharedAlert } from "@/lib/alerts-store";
 import { issueAlert, cancelAlert } from "@/lib/admin-alerts.functions";
@@ -30,6 +30,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { cn } from "@/lib/utils";
 import { CommandExtras, type CommandSnapshot } from "@/components/CommandExtras";
 import { getManagementAccess } from "@/lib/role.functions";
+import { OUTLOOK_TYPES, OUTLOOK_RISKS, FORECAST_TYPES, outlookProduct } from "@/lib/outlook-forecast-types";
 
 
 export const Route = createFileRoute("/command")({
@@ -43,7 +44,7 @@ export const Route = createFileRoute("/command")({
 });
 
 const ACCESS_CODE = "mwa-admin";
-type AlertKind = "weather" | "eas" | "mwa-network";
+type AlertKind = "weather" | "eas" | "mwa-network" | "outlook" | "forecast";
 
 // ---------- Quick-fill presets ----------
 interface QuickPreset {
@@ -210,6 +211,9 @@ function CommandConsole({ code, onLock }: { code: string; onLock?: () => void })
   const [kind, setKind] = useState<AlertKind>("weather");
   const [mode, setMode] = useState<"template" | "custom">("template");
   const [easMode, setEasMode] = useState<"template" | "custom">("template");
+  const [outlookId, setOutlookId] = useState(OUTLOOK_TYPES[0].id);
+  const [riskId, setRiskId] = useState("general");
+  const [forecastId, setForecastId] = useState(FORECAST_TYPES[0].id);
 
   const [headline, setHeadline] = useState("");
   const [areas, setAreas] = useState<string[]>(["Statewide"]);
@@ -314,20 +318,25 @@ function CommandConsole({ code, onLock }: { code: string; onLock?: () => void })
   const previewName = useMemo(() => {
     if (kind === "weather") return mode === "template" ? selectedTemplate?.name ?? "Alert" : customName || "Custom Alert";
     if (kind === "eas") return easMode === "template" ? selectedEas?.name ?? "EAS Alert" : customName || "Custom EAS";
+    if (kind === "outlook") return outlookProduct(outlookId, riskId).name;
+    if (kind === "forecast") return FORECAST_TYPES.find((f) => f.id === forecastId)?.name ?? "Forecast";
     return customName || "MIWeather Network Notification";
-  }, [kind, mode, easMode, selectedTemplate, selectedEas, customName]);
+  }, [kind, mode, easMode, selectedTemplate, selectedEas, customName, outlookId, riskId, forecastId]);
 
   const previewCategory: AlertCategory = useMemo(() => {
     if (kind === "weather") return mode === "template" ? (selectedTemplate?.category ?? "statement") : customCategory;
     if (kind === "eas") return easMode === "template" ? (selectedEas?.category ?? "statement") : customCategory;
+    if (kind === "outlook" || kind === "forecast") return "statement";
     return customCategory;
   }, [kind, mode, easMode, selectedTemplate, selectedEas, customCategory]);
 
   const previewSeverity: AlertSeverity = useMemo(() => {
     if (kind === "weather") return mode === "template" ? (selectedTemplate?.severity ?? "minor") : customSeverity;
     if (kind === "eas") return easMode === "template" ? (selectedEas?.severity ?? "minor") : customSeverity;
+    if (kind === "outlook") return outlookProduct(outlookId, riskId).severity;
+    if (kind === "forecast") return "minor";
     return customSeverity;
-  }, [kind, mode, easMode, selectedTemplate, selectedEas, customSeverity]);
+  }, [kind, mode, easMode, selectedTemplate, selectedEas, customSeverity, outlookId, riskId]);
 
   // Pre-flight checks
   const checks = useMemo(() => {
@@ -347,7 +356,7 @@ function CommandConsole({ code, onLock }: { code: string; onLock?: () => void })
   // Stats
   const stats = useMemo(() => {
     const byCat = { warning: 0, watch: 0, advisory: 0, statement: 0, extreme: 0 } as Record<string, number>;
-    const byKind = { weather: 0, eas: 0, "mwa-network": 0 } as Record<string, number>;
+    const byKind = { weather: 0, eas: 0, "mwa-network": 0, outlook: 0, forecast: 0 } as Record<string, number>;
     let expiringSoon = 0;
     const now = Date.now();
     for (const a of alerts) {
@@ -399,6 +408,9 @@ function CommandConsole({ code, onLock }: { code: string; onLock?: () => void })
             severity: (t?.severity ?? "minor") as AlertSeverity }
         : { kind: s.kind, code, typeId: null, customName: s.customName.trim(),
             category: s.customCategory, severity: s.customSeverity };
+    } else if (s.kind === "outlook" || s.kind === "forecast") {
+      payload = { kind: s.kind, code, typeId: null, customName: s.customName.trim() || (s.kind === "outlook" ? "Outlook" : "Forecast"),
+        category: "statement" as AlertCategory, severity: s.customSeverity };
     } else {
       payload = { kind: s.kind, code, typeId: MWA_NETWORK_TYPE.id,
         customName: s.customName.trim() || "MIWeather Network Notification",
@@ -441,6 +453,9 @@ function CommandConsole({ code, onLock }: { code: string; onLock?: () => void })
               severity: (selectedEas?.severity ?? "minor") as AlertSeverity }
           : { kind, code, typeId: null, customName: customName.trim(),
               category: customCategory, severity: customSeverity };
+      } else if (kind === "outlook" || kind === "forecast") {
+        payload = { kind, code, typeId: kind === "outlook" ? outlookId : forecastId,
+          customName: previewName, category: "statement" as AlertCategory, severity: previewSeverity };
       } else {
         payload = { kind, code, typeId: MWA_NETWORK_TYPE.id,
           customName: customName.trim() || "MIWeather Network Notification",
@@ -650,6 +665,8 @@ function CommandConsole({ code, onLock }: { code: string; onLock?: () => void })
           <StatPill label="WX" value={stats.byKind.weather ?? 0} />
           <StatPill label="EAS" value={stats.byKind.eas ?? 0} />
           <StatPill label="NET" value={stats.byKind["mwa-network"] ?? 0} />
+          <StatPill label="OTL" value={stats.byKind.outlook ?? 0} />
+          <StatPill label="FCST" value={stats.byKind.forecast ?? 0} />
           {stats.expiringSoon > 0 && (
             <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded border border-amber-alert/60 bg-amber-alert/10 text-amber-alert">
               <Clock className="h-3 w-3" /> {stats.expiringSoon} expiring &lt;15m
@@ -730,10 +747,12 @@ function CommandConsole({ code, onLock }: { code: string; onLock?: () => void })
           <section className="glass liquid rounded-2xl p-5 space-y-4">
             <SectionLabel n="01" title="Channel" hint="Where this alert is delivered" />
             <Tabs value={kind} onValueChange={(v) => setKind(v as AlertKind)}>
-              <TabsList className="grid grid-cols-3 w-full h-auto p-1">
+              <TabsList className="grid grid-cols-3 sm:grid-cols-5 w-full h-auto p-1 gap-1">
                 <ChannelTab value="weather" icon={<AlertTriangle className="h-3.5 w-3.5" />} label="Weather" sub="WX ticker" />
                 <ChannelTab value="eas" icon={<ShieldAlert className="h-3.5 w-3.5" />} label="EAS" sub="Emergency" />
                 <ChannelTab value="mwa-network" icon={<Network className="h-3.5 w-3.5" />} label="Network" sub="System status" />
+                <ChannelTab value="outlook" icon={<Eye className="h-3.5 w-3.5" />} label="Outlook" sub="Risk ahead" />
+                <ChannelTab value="forecast" icon={<Clock className="h-3.5 w-3.5" />} label="Forecast" sub="What to expect" />
               </TabsList>
             </Tabs>
           </section>
@@ -793,11 +812,9 @@ function CommandConsole({ code, onLock }: { code: string; onLock?: () => void })
                 <TabsContent value="template" className="space-y-4 pt-4">
                   <div className="space-y-1.5">
                     <Label>EAS Product</Label>
-                    <Button type="button" size="sm" variant={easTypeId === MIWEATHER_OUTLOOK_TYPE.id ? "default" : "outline"} className="mb-2 w-full" onClick={() => setEasTypeId(MIWEATHER_OUTLOOK_TYPE.id)}>Issue an Outlook (shows blue on the alert map)</Button>
                     <Select value={easTypeId} onValueChange={setEasTypeId}>
                       <SelectTrigger><SelectValue /></SelectTrigger>
                       <SelectContent className="max-h-[320px]">
-                        <SelectItem value={MIWEATHER_OUTLOOK_TYPE.id}>🔭 {MIWEATHER_OUTLOOK_TYPE.name} (OTL)</SelectItem>
                         {EAS_ALERT_TYPES.map((t) => (
                           <SelectItem key={t.id} value={t.id}>{t.name} ({t.code})</SelectItem>
                         ))}
@@ -823,6 +840,37 @@ function CommandConsole({ code, onLock }: { code: string; onLock?: () => void })
                   />
                 </TabsContent>
               </Tabs>
+            )}
+
+            {kind === "outlook" && (
+              <div className="grid gap-3 sm:grid-cols-2">
+                <div className="space-y-1.5">
+                  <Label>Outlook type</Label>
+                  <Select value={outlookId} onValueChange={setOutlookId}>
+                    <SelectTrigger><SelectValue /></SelectTrigger>
+                    <SelectContent>{OUTLOOK_TYPES.map((t) => <SelectItem key={t.id} value={t.id}>{t.name} ({t.code})</SelectItem>)}</SelectContent>
+                  </Select>
+                </div>
+                <div className="space-y-1.5">
+                  <Label>Risk level</Label>
+                  <Select value={riskId} onValueChange={setRiskId}>
+                    <SelectTrigger><SelectValue /></SelectTrigger>
+                    <SelectContent>{OUTLOOK_RISKS.map((r) => <SelectItem key={r.id} value={r.id}>{r.label}</SelectItem>)}</SelectContent>
+                  </Select>
+                </div>
+                <p className="text-[11px] text-muted-foreground sm:col-span-2">Shows in blue on the alert map. Higher risk levels rank higher in the header.</p>
+              </div>
+            )}
+
+            {kind === "forecast" && (
+              <div className="space-y-1.5">
+                <Label>Forecast type</Label>
+                <Select value={forecastId} onValueChange={setForecastId}>
+                  <SelectTrigger><SelectValue /></SelectTrigger>
+                  <SelectContent>{FORECAST_TYPES.map((t) => <SelectItem key={t.id} value={t.id}>{t.name} ({t.code})</SelectItem>)}</SelectContent>
+                </Select>
+                <p className="text-[11px] text-muted-foreground">Shows in green on the alert map.</p>
+              </div>
             )}
 
             {kind === "mwa-network" && (
@@ -1055,7 +1103,7 @@ function CommandConsole({ code, onLock }: { code: string; onLock?: () => void })
                     {previewName}
                   </span>
                   <Badge variant="outline" className="text-[9px] font-mono uppercase">
-                    {kind === "eas" ? "EAS" : kind === "mwa-network" ? "NET" : "WX"}
+                    {kind === "eas" ? "EAS" : kind === "mwa-network" ? "NET" : kind === "outlook" ? "OTL" : kind === "forecast" ? "FCST" : "WX"}
                   </Badge>
                   <Badge variant="outline" className="text-[9px] font-mono uppercase capitalize">
                     {previewSeverity}
@@ -1147,7 +1195,7 @@ function CommandConsole({ code, onLock }: { code: string; onLock?: () => void })
                             {t?.name ?? a.custom_name ?? "Alert"}
                           </span>
                           <Badge variant="outline" className="text-[9px] font-mono uppercase">
-                            {a.kind === "eas" ? "EAS" : a.kind === "mwa-network" ? "NET" : "WX"}
+                            {a.kind === "eas" ? "EAS" : a.kind === "mwa-network" ? "NET" : a.kind === "outlook" ? "OTL" : a.kind === "forecast" ? "FCST" : "WX"}
                           </Badge>
                         </div>
                         <div className="flex items-center gap-1 opacity-60 group-hover:opacity-100 transition-opacity">
@@ -1216,7 +1264,7 @@ function CommandConsole({ code, onLock }: { code: string; onLock?: () => void })
                   >
                     <div className="flex items-center justify-between gap-2">
                       <span className="text-[10px] font-mono uppercase text-muted-foreground">
-                        {h.payload.kind === "eas" ? "EAS" : h.payload.kind === "mwa-network" ? "NET" : "WX"} · {new Date(h.at).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
+                        {h.payload.kind === "eas" ? "EAS" : h.payload.kind === "mwa-network" ? "NET" : h.payload.kind === "outlook" ? "OTL" : h.payload.kind === "forecast" ? "FCST" : "WX"} · {new Date(h.at).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
                       </span>
                       <BookMarked className="h-3 w-3 text-muted-foreground group-hover:text-accent" />
                     </div>

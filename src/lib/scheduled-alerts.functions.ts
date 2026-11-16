@@ -3,7 +3,7 @@ import { z } from "zod";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 
 const payloadSchema = z.object({
-  kind: z.enum(["weather", "eas", "mwa-network"]),
+  kind: z.enum(["weather", "eas", "mwa-network", "outlook", "forecast"]),
   typeId: z.string().nullable(),
   customName: z.string().nullable(),
   category: z.enum(["warning", "watch", "advisory", "statement", "extreme"]),

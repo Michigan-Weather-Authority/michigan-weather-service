@@ -14,7 +14,7 @@ import { cn } from "@/lib/utils";
 // Generic snapshot of every field the command form cares about.
 // We deliberately use `any` here for the issueFn payload to avoid coupling.
 export interface CommandSnapshot {
-  kind: "weather" | "eas" | "mwa-network";
+  kind: "weather" | "eas" | "mwa-network" | "outlook" | "forecast";
   mode: "template" | "custom";
   easMode: "template" | "custom";
   typeId: string;

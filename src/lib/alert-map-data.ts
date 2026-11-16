@@ -70,7 +70,9 @@ function sharedRank(a: SharedAlert): number {
 function sharedEventLabel(a: SharedAlert): string {
   if (a.custom_name) return a.custom_name;
   if (a.kind === "eas") return "EAS Alert";
-  if (a.kind === "mwa-network") return "MWA Network Notification";
+  if (a.kind === "mwa-network") return "MIWeather Network Notification";
+  if (a.kind === "outlook") return "Outlook";
+  if (a.kind === "forecast") return "Forecast";
   // Fall back to capitalized type_id (e.g. "tornado-warning" -> "Tornado Warning")
   if (a.type_id) {
     return a.type_id
