@@ -61,7 +61,7 @@ const ENTRIES: Entry[] = [
     bullets: [
       "3.11.0 and below entries have been marked End of Life.",
       "Security changes and bug fixes.",
-      "Fixed changelog build error."
+      "Fixed changelog build error.",
       "Fixed changelog page with legacy brand reductions and eliminations.",
     ],
   },
