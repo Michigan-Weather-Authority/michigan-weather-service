@@ -617,7 +617,7 @@ function HomePage() {
               Changelog
             </Link>
             <a
-              href="https://mwa.instatus.com"
+              href="https://miweather.instatus.com"
               target="_blank"
               rel="noopener noreferrer"
               className="text-accent hover:underline"
