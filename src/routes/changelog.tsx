@@ -347,10 +347,10 @@ function ChangelogPage() {
       <header className="border-b border-border/60">
         <div className="max-w-4xl mx-auto px-6 py-5 flex items-center justify-between">
           <Link to="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-accent transition-colors">
-            <ArrowLeft className="w-4 h-4" /> Back to MWA
+            <ArrowLeft className="w-4 h-4" /> Back to MIWeather
           </Link>
           <span className="text-[10px] uppercase tracking-[0.32em] text-muted-foreground font-mono">
-            mwa · changelog
+            miweather · changelog
           </span>
         </div>
       </header>
@@ -422,7 +422,7 @@ function ChangelogPage() {
       <footer className="border-t border-border/60 mt-10">
         <div className="max-w-4xl mx-auto px-6 py-4 text-[11px] text-muted-foreground flex items-center justify-between">
           <span className="flex items-center gap-2">
-            © Michigan Weather Service — Unofficial.
+            © MIWeather by Michigan Weather Authority.
           </span>
           <a href="https://mwa.instatus.com" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">
             Status Page
