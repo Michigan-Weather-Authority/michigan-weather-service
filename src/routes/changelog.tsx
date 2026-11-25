@@ -37,6 +37,9 @@ const STATUSES: Status[] = [
   { id: "lts",         label: "LTS",               desc: "Long-term support — extended maintenance window",         cls: "bg-cyan-glow/20 text-cyan-glow border border-cyan-glow/40" },
   { id: "lts-patch",   label: "LTS Patch",         desc: "Maintenance or security-only update for an LTS version",  cls: "bg-cyan-glow/10 text-cyan-glow border border-cyan-glow/30" },
   { id: "eol",         label: "EOL",               desc: "End of life — no longer supported, please upgrade",       cls: "bg-foreground/10 text-muted-foreground border border-border line-through" },
+  { id: "security",     label: "Security",           desc: "Patches for vulnerabilities or access control fixes",     cls: "bg-destructive/20 text-destructive border border-destructive/50" },
+  { id: "bug-fix",      label: "Bug Fix",            desc: "Fixes for unexpected application behavior or UI glitches", cls: "bg-warning/20 text-warning border border-warning/50" },
+  { id: "build-hotfix", label: "Build Error Hotfix", desc: "Urgent fix for pipeline, syntax, or bundler build errors", cls: "bg-severe/20 text-severe border border-severe/50 font-mono" },
 ];
 
 const STATUS_MAP = Object.fromEntries(STATUSES.map((s) => [s.id, s])) as Record<StatusId, Status>;
@@ -53,10 +56,12 @@ const ENTRIES: Entry[] = [
   {
     version: "4.0.1",
     date: "Nov 15, 2026",
-    status: "lts-patch",
-    title: "Changelog EOL Status Edit ",
+    status: "lts-patch", "stable",
+    title: "Security fixes, build error fixes, and changelog edit",
     bullets: [
       "3.11.0 and below entries have been marked End of Life.",
+      "Security changes and bug fixes.",
+      "Fixed changelog build error."
     ],
   },
   {
