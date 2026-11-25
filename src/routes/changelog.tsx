@@ -51,6 +51,14 @@ type Entry = {
 
 const ENTRIES: Entry[] = [
   {
+    version: "4.0.1",
+    date: "Nov 15, 2026",
+    status: "lts-patch",
+    title: "Changelog EOL Status Edit ",
+    bullets: [
+      "3.11.0 and below entries have been marked End of Life.",
+    ],
+  },
     version: "4.0.0",
     date: "Nov 15, 2026",
     status: "revamp","lts"
