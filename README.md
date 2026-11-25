@@ -1,45 +1,51 @@
-# Michigan Weather Service
+# MIWeather
 
-Live weather, alerts, and storm tools for every city in Michigan. Part of **Michigan Weather Authority**.
+Live weather intelligence, hyper-local alerts, and specialized storm tools for every community in Michigan. Powered by **Michigan Weather Authority**.
 
-**Live app**: https://michigan-weather-service.lovable.app
+**Live App**: https://miweatherapp.lovable.app
+
+---
+
 ## What it does
 
-- **Live conditions** for any Michigan city — temperature, feels-like (wind chill / heat index), air quality, UV, visibility, and moon phase, with danger markers when values cross safety thresholds.
-- **Alerts** — National Weather Service alerts plus manually issued alerts, shown in the city header, on an interactive Michigan alert map, and pushed to subscribers' devices (county-filtered, quiet-hours aware).
-- **Forecasts & tools** — hourly/daily forecasts, satellite, severe outlooks, tropical and mesoscale discussions, climate data, snow dashboard, lightning, webcams, and storm reports.
-- **Spotter network** — field reports with photos, comments, and confirm/doubt reactions; locations coarsened for privacy.
-- **Command console** — password-gated page for issuing manual and EAS-style alerts (including marine zones), alert templates, scheduling, batch issuing, and polygon drawing.
-- **Management** — site status banners and maintenance updates.
-- **Personalization** — multiple themes (Lakefront, Minimal, Sunset, and more) with matching dynamic favicons, saved locations, custom alert thresholds, and push notifications that work when the app is closed.
-- **Installable** — works as an installable web app (PWA) on phone and desktop.
+- **AI Weather Assistant (Hailey)** — Built-in AI assistant powered by Google Gemini for conversational Michigan forecast breakdowns, lake-effect interpretations, and personalized onboarding.
+- **Role-Driven Dashboards** — Tailored metric cards and danger thresholds based on user roles:
+  - **Agriculture**: Growing Degree Days (GDD), frost risk clocks, agricultural spray windows (wind & rain).
+  - **Commuter**: Flash-freeze probability, bridge icing index, rush-hour road temperature alerts.
+  - **Marine**: Great Lakes wave heights, sustained knots, gale warnings, and small-craft advisories.
+  - **Outdoor**: Running/hiking comfort index, AQI, UV index, and trail condition estimates.
+  - **Parent**: Morning bus-stop temperatures, wind chill guidance, and school coat advisories.
+  - **Storm Spotter**: Convective parameters, SPC thunderstorm probabilities, and rapid report submission.
+- **Great Lakes Marine Hub (`/great-lakes`)** — Dedicated marine telemetry for Lake Superior, Lake Michigan, Lake Huron, Lake Erie, and Lake St. Clair with water temperatures, wave heights, and marine zone alerts.
+- **All-Michigan Snow Day Calculator (`/snow`)** — Calibrated school closure probabilities supporting every Michigan ZIP code (48001–49971), weighted by regional resilience (U.P., Northern Lower, West Michigan, Mid-Michigan, Metro Detroit).
+- **Multi-Tier Alert System & Interactive Map** — Unified visualization of:
+  - Official National Weather Service (NWS) warnings, watches, and advisories.
+  - Emergency Alert System (EAS) alerts.
+  - MIWeather Network Notifications.
+  - **Outlooks**: Categorized risk outlooks (Severe, Winter, Lake-Effect Snow, Flood, Heat, Marine, Fire).
+  - **Forecast Products**: Specialized zone discussions, lake-effect timing, and weekend outlooks.
+  - Severity color-coding with distinct offshore marine zone polygon rendering.
+- **Spotter Network (`/reports`)** — Community storm reports with geotagged photo uploads, verification reactions, and moderation tools.
+- **Role-Gated Command Console (`/command`)** — Secure, database role-gated dispatch console for staff:
+  - Manual, EAS, Outlook, and Forecast issuance.
+  - Marine zone and county multi-targeting.
+  - Interactive polygon drawing and alert scheduling.
+- **Management Portal (`/management`)** — Real-time site status banners, incident alerts, and operational toggles.
+- **Customization & Themes** — Native MIWeather theme (lake teal, signal coral, graphite dark mode) with dynamic cloud-and-lightning SVG favicons and push quiet hours.
+- **Offline-Ready PWA** — Fully installable progressive web app with background push notifications and an emergency offline survival guide when connection drops.
 
-## Tech stack
+---
 
-- [TanStack Start](https://tanstack.com/start) (React 19, Vite) with server functions
-- [Tailwind CSS v4](https://tailwindcss.com) with semantic theme tokens
-- Lovable Cloud (auth, database, storage, push delivery)
-- Open-Meteo and National Weather Service data
+## Tech Stack
+
+- **Framework**: [TanStack Start v1](https://tanstack.com/start) (Full-stack React 19, Vite 7) with server functions
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com) with semantic design tokens
+- **Backend & Auth**: Lovable Cloud (PostgreSQL database, Row Level Security, user authentication, storage, push delivery)
+- **AI Engine**: Google Gemini Flash Lite via secure server functions
+- **Weather Telemetry**: National Weather Service (NWS / api.weather.gov) & Open-Meteo
+
+---
 
 ## Development
 
-Built with [Lovable](https://lovable.dev) — changes made in the editor sync to this repository, and pushes to `main` sync back.
-
-To run locally you need Node.js:
-
-```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
-npm run dev
-```
-
-Other scripts: `npm run build`, `npm run preview`, `npm run lint`, `npm run format`.
-
-## Project layout
-
-- `src/routes/` — pages (home, alerts map, forecasts, command, management, settings, etc.)
-- `src/lib/` — shared logic (themes, push targeting, alert data, server functions)
-- `src/components/` — UI components
-- `public/` — manifest, service workers, icons
-- `drizzle/` — database migrations
+Built with [Lovable](https://lovable.dev) — changes in the editor sync to this repository, and pushes to `main` deploy live.
