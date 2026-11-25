@@ -17,8 +17,8 @@ export const Route = createFileRoute("/changelog")({
 type StatusId =
   | "revamp" | "major" | "minor" | "patch" | "emergency"
   | "pre-release" | "pre-alpha" | "alpha" | "open-beta" | "closed-beta"
-  | "rc" | "stable" | "lts" | "lts-patch" | "eol";
-
+  | "rc" | "stable" | "lts" | "lts-patch" | "eol"
+  | "security" | "bug-fix" | "build-hotfix";
 type Status = { id: StatusId; label: string; desc: string; cls: string };
 
 const STATUSES: Status[] = [
@@ -56,7 +56,7 @@ const ENTRIES: Entry[] = [
   {
     version: "4.0.1",
     date: "Nov 15, 2026",
-    status: "lts-patch", "stable",
+    status: "build-hotfix",
     title: "Security fixes, build error fixes, and changelog edit",
     bullets: [
       "3.11.0 and below entries have been marked End of Life.",
