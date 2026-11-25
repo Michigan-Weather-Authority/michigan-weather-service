@@ -58,12 +58,12 @@ const ENTRIES: Entry[] = [
     bullets: [
       "3.11.0 and below entries have been marked End of Life.",
     ],
-    {
+  },
+  {
     version: "4.0.0",
     date: "Nov 15, 2026",
-    status: "revamp","lts",
+    status: "revamp",
     title: "MIWeather arrives",
-    bullets: [
       "MIWeather by Michigan Weather Authority replaces the previous branding across pages, sharing, and app installation.",
       "New lake-teal and coral identity, consistent weather mark, and redesigned local conditions and personalized outlook layout.",
       "Retired the Project MIWeather announcement; management status updates remain available.",
