@@ -56,12 +56,13 @@ const ENTRIES: Entry[] = [
   {
     version: "4.0.1",
     date: "Nov 15, 2026",
-    status: "build-hotfix",
+    status: "stable",
     title: "Security fixes, build error fixes, and changelog edit",
     bullets: [
       "3.11.0 and below entries have been marked End of Life.",
       "Security changes and bug fixes.",
       "Fixed changelog build error."
+      "Fixed changelog page with legacy brand reductions and eliminations.",
     ],
   },
   {
