@@ -53,7 +53,7 @@ const ENTRIES: Entry[] = [
   {
     version: "4.0.0",
     date: "Nov 15, 2026",
-    status: "revamp",
+    status: "revamp","lts"
     title: "MIWeather arrives",
     bullets: [
       "MIWeather by Michigan Weather Authority replaces the previous branding across pages, sharing, and app installation.",
@@ -65,7 +65,7 @@ const ENTRIES: Entry[] = [
     {
     version: "3.11.0",
     date: "Nov 14, 2026",
-    status: "revamp",
+    status: "revamp","eol"
     title: "Project MIWeather: Sunsetting MWS for a Total Rebirth",
     bullets: [
       "🌙 Sunsetting Michigan Weather Service this November to make a major transition to MIWeather by Michigan Weather Authority.",
@@ -84,7 +84,7 @@ const ENTRIES: Entry[] = [
 {
     version: "3.10.0",
     date: "Nov 14, 2026",
-    status: "minor",
+    status: "minor","eol"
     title: "Mobile menu + moon phase",
     bullets: [
       "New menu button on phones opens every page: alerts, forecasts, satellite, tools, spotter reports, settings and more.",
@@ -97,7 +97,7 @@ const ENTRIES: Entry[] = [
   {
     version: "3.9.0",
     date: "Nov 12, 2026",
-    status: "minor",
+    status: "minor","eol"
     title: "The road to iOS + Android",
     bullets: [
       "Michigan Weather Service is now part of Michigan Weather Authority, its parent company, which owns other weather-related services.",
@@ -112,7 +112,7 @@ const ENTRIES: Entry[] = [
   {
     version: "3.8.0",
     date: "Nov 11, 2026",
-    status: "minor",
+    status: "minor","eol"
     title: "New Sunset theme",
     bullets: [
       "Introducing Sunset — warm amber highlights over a dusky plum background, with a soft peach light mode.",
@@ -123,7 +123,7 @@ const ENTRIES: Entry[] = [
   {
     version: "3.7.1",
     date: "Nov 11, 2026",
-    status: "emergency",
+    status: "emergency","eol"
     title: "Security hardening",
     bullets: [
       "Spotter reports can now only be read directly by the person who sent them; the public feed still hides identities and rounds locations to about 1 km.",
@@ -133,7 +133,7 @@ const ENTRIES: Entry[] = [
   {
     version: "3.7.0",
     date: "Nov 11, 2026",
-    status: "minor",
+    status: "minor","eol"
     title: "Independent again + faster sign-up",
     bullets: [
       "Michigan Weather Service has parted ways with phosphorous and is once again independent. All phosphorous branding has been removed.",
@@ -148,7 +148,7 @@ const ENTRIES: Entry[] = [
   {
     version: "3.6.0",
     date: "Sep 10, 2026",
-    status: "minor",
+    status: "minor","eol"
     title: "Now part of the phosphorous family",
     bullets: [
       "Michigan Weather Service is now Michigan Weather Service by phosphorous — phosphorous is the parent company, owned by Henry Green.",
@@ -159,7 +159,7 @@ const ENTRIES: Entry[] = [
   {
     version: "3.5.0",
     date: "Jul 22, 2026",
-    status: "revamp",
+    status: "revamp","eol"
     title: "Michigan Weather Service rebrand + Prism theme",
     bullets: [
       "Renamed the app to Michigan Weather Service (MWS). New name across the header, footer, share cards, PWA manifest, and iOS home-screen title.",
@@ -173,7 +173,7 @@ const ENTRIES: Entry[] = [
   {
     version: "3.4.0",
     date: "Jun 30, 2026",
-    status: "minor",
+    status: "minor","eol"
     title: "New Minimal theme",
     bullets: [
       "Added a fourth theme — Minimal — in Settings → Appearance: modern monochrome surfaces with a single cool-blue accent.",
@@ -185,7 +185,7 @@ const ENTRIES: Entry[] = [
   {
     version: "3.3.0",
     date: "Jun 28, 2026",
-    status: "open-beta",
+    status: "open-beta","eol"
     title: "Tool pages + expanded preferences",
     bullets: [
       "Spun off Active Alerts Map, SPC Severe Outlook, and Live Lightning into dedicated pages.",
@@ -199,7 +199,7 @@ const ENTRIES: Entry[] = [
   {
     version: "3.2.0",
     date: "Jun 28, 2026",
-    status: "minor",
+    status: "minor","eol"
     title: "Liquid Glass surfaces + SPC outlook fix",
     bullets: [
       "Refined every panel onto a Liquid Glass surface: deeper translucency, top-edge sheen, soft accent glow at the base.",
@@ -210,7 +210,7 @@ const ENTRIES: Entry[] = [
   {
     version: "3.1.0",
     date: "Jun 28, 2026",
-    status: "minor",
+    status: "minor","eol"
     title: "Theming engine + new logo",
     bullets: [
       "Appearance submenu in Settings: switch between Storm Noir, Aurora Glass, and OG Storm Blue.",
@@ -222,7 +222,7 @@ const ENTRIES: Entry[] = [
   {
     version: "3.0.0",
     date: "Jun 28, 2026",
-    status: "revamp",
+    status: "revamp","eol"
     title: "Storm Noir redesign",
     bullets: [
       "Full visual rebuild on a black + gold editorial palette.",
@@ -234,7 +234,7 @@ const ENTRIES: Entry[] = [
   {
     version: "2.1.0",
     date: "Jun 24, 2026",
-    status: "minor",
+    status: "minor","eo;"
     title: "Instatus status widget",
     bullets: [
       "Embedded live system status from mwa.instatus.com.",
@@ -244,7 +244,7 @@ const ENTRIES: Entry[] = [
   {
     version: "2.0.0",
     date: "Jun 20, 2026",
-    status: "major",
+    status: "major","eol"
     title: "Aurora Glass + advanced feature suite",
     bullets: [
       "Live Blitzortung lightning strike map.",
@@ -256,7 +256,7 @@ const ENTRIES: Entry[] = [
   {
     version: "1.4.0",
     date: "Jun 14, 2026",
-    status: "minor",
+    status: "minor","eol"
     title: "Statewide alert map",
     bullets: [
       "Interactive Michigan county map shaded by active NWS alerts.",
